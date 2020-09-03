@@ -1,0 +1,13 @@
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.csprojAssemblyReference.cache
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.AssemblyInfoInputs.cache
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.AssemblyInfo.cs
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.csproj.CoreCompileInputs.cache
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.exe
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.deps.json
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.runtimeconfig.json
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.runtimeconfig.dev.json
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.dll
+C:\Users\Standa\Desktop\rep\Examples\Examples\bin\Debug\netcoreapp3.1\Examples.pdb
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.dll
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.pdb
+C:\Users\Standa\Desktop\rep\Examples\Examples\obj\Debug\netcoreapp3.1\Examples.genruntimeconfig.cache

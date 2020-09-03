@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Standa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Standa\\.nuget\\packages"
+    ]
+  }
+}
