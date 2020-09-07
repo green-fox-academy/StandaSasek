@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace ArraysAndFunctions
 {
     internal class Program
     {
+
         private static void Main(string[] args)
         {
             // THIRD
@@ -165,7 +168,7 @@ namespace ArraysAndFunctions
                 animals[i] += "a";
             }
             Array.ForEach(animals, Console.WriteLine);
-            
+
             Console.ReadLine();*/
 
             // SWAP ELEMENTS
@@ -215,8 +218,124 @@ namespace ArraysAndFunctions
             Array.ForEach(numbers, Console.WriteLine);
             Console.ReadLine();*/
 
+            // DOUBLING
+            // - Create an integer variable named `baseNum` and assign the value `123` to it
+            // - Create a function called `Doubling` that doubles it's input parameter and returns with an integer
+            // - Print the result of `Doubling(baseNum)`
+
+            /* int baseNum = 123;
+
+             Console.WriteLine(Doubling(baseNum));
+             Console.ReadLine();*/
+
+            // GREETER FUNCTION
+            // - Create a string variable named `al` and assign the value `Green Fox` to it
+            // - Create a function called `Greet` that greets it's input parameter
+            //     - Greeting is printing e.g. `Greetings dear, Green Fox`
+            // - Greet `al`
+
+            /*string al = "Green Fox";
+
+            Console.WriteLine(Greet(al));
+            Console.ReadLine();*/
+
+            // APPEND A
+            // - Create a string variable named `typo` and assign the value `Chinchill` to it
+            // - Write a function called `AppendAFunc` that gets a string as an input,
+            //   appends an 'a' character to its end and returns with a string
+            // - Print the result of `AppendAFunc(typo)`
+
+            /*string typo = "Chinchill";
+
+            Console.WriteLine(AppendFunc(typo));
+            Console.ReadLine();*/
+
+            // SUMMING
+            // Write a function called `sum` that returns the sum of numbers from zero to the given parameter
+
+            /* Console.WriteLine("Please write a number: ");
+             string inputNumber = Console.ReadLine();
+             bool isInputCorrect = double.TryParse(inputNumber, out double number);
+
+             Console.WriteLine(Sum(number));
+             Console.ReadLine();*/
+
+            // FACTORIAL
+            // - Create a function called `Factorio`
+            //   that returns it's input's factorial
+
+            /*Console.WriteLine("Please write a number: ");
+            string inputNumber = Console.ReadLine();
+            bool isInputCorrect = double.TryParse(inputNumber, out double number);
+
+            Console.WriteLine(Factorio(number));
+            Console.ReadLine();*/
+
+            // FIND A PART OF INTEGER
+            //  Create a function that takes a number and an array of integers as a parameter
+            //  Returns the indices of the integers in the array of which the first number is a part of
+            //  Or returns an empty array if the number is not part of any of the integers in the array
+
+            //  Example:
+            Console.WriteLine(SubInt(1, new int[] { 1, 11, 34, 52, 61 }));
+            //  should print: `[0, 1, 4]`
+            Console.WriteLine(SubInt(9, new int[] { 1, 11, 34, 52, 61 }));
+            //  should print: '[]'
 
 
+
+
+
+        }
+        public static int SubInt(int num01, int[] array01)
+        {
+            string[] numbersStrings = Array.ConvertAll(array01, ele => ele.ToString());
+            string[] subIntArray = new string[numbers.Length];
+
+            for (int i = 0; i < array01.Length; i++)
+            {
+                numbers[i] = ToString.array01[i];
+
+
+                Console.WriteLine(subIntArray);
+            }
+        }
+
+
+        public static double Factorio(double num01)
+        {
+            double factor = 1;
+            for (int i = 1; i <= num01; i++)
+            {
+                factor = factor * i;
+            }
+            return factor;
+        }
+
+
+        public static double Sum(double num01)
+        {
+            double sumOfAll = 0;
+            for (int i = 0; i <= num01; i++)
+            {
+                sumOfAll += i;
+            }
+            return sumOfAll;
+        }
+
+        public static string AppendFunc(string str01)
+        {
+            return str01 += "a";
+        }
+
+        public static string Greet(string str01)
+        {
+            return "Greetings dear, " + str01;
+        }
+
+        public static int Doubling(int num01)
+        {
+            return num01 *= 2;
         }
 
     }

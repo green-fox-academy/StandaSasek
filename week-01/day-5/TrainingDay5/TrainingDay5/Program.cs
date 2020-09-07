@@ -571,61 +571,8 @@ namespace TrainingDay5
              }
              Console.WriteLine($"{bingo} {myNumber}");*/
 
-            // added User Score, Number of Rounds (setted up by user), PC Score
-            /*Random rnd = new Random();
-            // int myNumber = rnd.Next(int.MinValue, int.MaxValue);  // creates a number between MIN and MAX int value
-            int myNumber = rnd.Next(0, 51);  // creates a number between 1 and 50 
-            int userNumber = 0;
-            int myScore = 0;
-            int userScore = 0;
-            int numberOfRounds = 5;
-            int numberOfPlays = 5;
-            string intro = $"We will play {numberOfPlays}.";
-            string remainingPlays = $"{numberOfRounds} remains.";
-            string guess = $"Number of remaining rounds is {numberOfRounds}. Please guess my number: ";
-            string higher = "The stored number is higher.";
-            string lower = "The stored number is lower.";
-            string bingo = "You found the number:";
-            string score = $"PC score is {myScore}, player score is {userScore}.";
-            string winnerPc = $"PC is winner! PC score is {myScore}, player score is {userScore}.";
-            string winnerUser = $"Player is winner, congratulations! PC score is {myScore}, player score is {userScore}.";
-
-
-            Console.WriteLine(intro);
-
-            for (int i = 0; i < numberOfRounds; i++)
-            {
-                while (userNumber != myNumber)
-                {
-                    numberOfRounds--;
-                    Console.WriteLine(guess);
-                    string input = Console.ReadLine();  // Get a number:
-                    bool isInputCorrect = Int32.TryParse(input, out userNumber); // int user number = ...
-
-                    if (userNumber < myNumber)
-                    {
-                        Console.WriteLine(higher);
-                    }
-                    else if (userNumber > myNumber)
-                    {
-                        Console.WriteLine(lower);
-                    }
-                    if (numberOfRounds == 0)
-                    {
-                        numberOfPlays--;
-                        myScore++;
-                        Console.WriteLine(winnerPc);
-                        Console.WriteLine(remainingPlays);
-                    }
-                    else
-                    {
-                        numberOfPlays--;
-                        userScore++;
-                        Console.WriteLine($"{bingo} {myNumber}. {score}");
-                        Console.WriteLine(remainingPlays);
-                    }
-                }
-            }*/
+          
+           
         }
     }
 }
