@@ -482,14 +482,158 @@ namespace TrainingDay5
             //
             // The square should have as many lines as the number was
 
-            Console.WriteLine("Please enter number of rows of your diamond: ");
+            /*Console.WriteLine("Please enter number of rows of your square: ");
             string input = Console.ReadLine();  // Get a number:
-            bool isInputCorrect = Int32.TryParse(input, out int number); // int number = ...
+            bool isInputCorrect = Int32.TryParse(input, out int rows); // int rows = ...
             string square = "";
 
-            for ()
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < rows; col++)
+                {
+                    if (row == 0 || col == 0 || col == rows - 1 || row == rows - 1)
+                    {
+                        square = square + "*";
+                    }
+                    else
+                    {
+                        square = square + " ";
+
+                    }
+                }
+                square = square + "\n";
+            }
+            Console.WriteLine(square);*/
+
+            // DRAW DIAGONAL
+            // Write a program that reads a number from the standard input, then draws a
+            // square like this:
+            //
+            //
+            // %%%%%
+            // %%  %
+            // % % %
+            // %  %%
+            // %%%%%
+            //
+            // The square should have as many lines as the number was
+
+            /*Console.WriteLine("Please enter number of rows of your square: ");
+            string input = Console.ReadLine();  // Get a number:
+            bool isInputCorrect = Int32.TryParse(input, out int rows); // int rows = ...
+            string square = "";
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < rows; col++)
+                {
+                    if (row == 0 || col == 0 || col == rows - 1 || row == rows - 1 || row == col)
+                    {
+                        square = square + "*";
+                    }
+                    else
+                    {
+                        square = square + " ";
+
+                    }
+                }
+                square = square + "\n";
+            }
+            Console.WriteLine(square);*/
+
+            // GUESS THE NUMBER
+            // Write a program that stores a number, and the user has to figure it out.
+            // The user can input guesses, after each guess the program would tell one
+            // of the following:
+            //
+            // The stored number is higher
+            // The stried number is lower
+            // You found the number: 8
 
 
+            //just one guessed number
+            /* Random rnd = new Random();
+             // int myNumber = rnd.Next(int.MinValue, int.MaxValue);  // creates a number between MIN and MAX int value
+             int myNumber = rnd.Next(0, 1001);  // creates a number between MIN int value and 1000 
+             int userNumber = 0;
+             string guess = "Please guess my number: ";
+             string higher = "The stored number is higher";
+             string lower = "The stored number is lower";
+             string bingo = "You found the number:";
+
+             while (userNumber != myNumber)
+             {
+                 Console.WriteLine(guess);
+                 string input = Console.ReadLine();  // Get a number:
+                 bool isInputCorrect = Int32.TryParse(input, out userNumber); // int user number = ...
+                 if (userNumber < myNumber)
+                 {
+                     Console.WriteLine(higher);
+
+                 }
+                 else if (userNumber > myNumber)
+                 {
+                     Console.WriteLine(lower);
+                 }
+
+             }
+             Console.WriteLine($"{bingo} {myNumber}");*/
+
+            // added User Score, Number of Rounds (setted up by user), PC Score
+            Random rnd = new Random();
+            // int myNumber = rnd.Next(int.MinValue, int.MaxValue);  // creates a number between MIN and MAX int value
+            int myNumber = rnd.Next(0, 51);  // creates a number between 1 and 50 
+            int userNumber = 0;
+            int myScore = 0;
+            int userScore = 0;
+            int numberOfRounds = 5;
+            int numberOfPlays = 5;
+            string intro = $"We will play {numberOfPlays}.";
+            string remainingPlays = $"{numberOfRounds} remains.";
+            string guess = $"Number of remaining rounds is {numberOfRounds}. Please guess my number: ";
+            string higher = "The stored number is higher.";
+            string lower = "The stored number is lower.";
+            string bingo = "You found the number:";
+            string score = $"PC score is {myScore}, player score is {userScore}.";
+            string winnerPc = $"PC is winner! PC score is {myScore}, player score is {userScore}.";
+            string winnerUser = $"Player is winner, congratulations! PC score is {myScore}, player score is {userScore}.";
+
+
+            Console.WriteLine(intro);
+
+            for (int i = 0; i < numberOfRounds; i++)
+            {
+                while (userNumber != myNumber)
+                {
+                    numberOfRounds--;
+                    Console.WriteLine(guess);
+                    string input = Console.ReadLine();  // Get a number:
+                    bool isInputCorrect = Int32.TryParse(input, out userNumber); // int user number = ...
+
+                    if (userNumber < myNumber)
+                    {
+                        Console.WriteLine(higher);
+                    }
+                    else if (userNumber > myNumber)
+                    {
+                        Console.WriteLine(lower);
+                    }
+                    if (numberOfRounds == 0)
+                    {
+                        numberOfPlays--;
+                        myScore++;
+                        Console.WriteLine(winnerPc);
+                        Console.WriteLine(remainingPlays);
+                    }
+                    else
+                    {
+                        numberOfPlays--;
+                        userScore++;
+                        Console.WriteLine($"{bingo} {myNumber}. {score}");
+                        Console.WriteLine(remainingPlays);
+                    }
+                }
+            }
         }
     }
 }

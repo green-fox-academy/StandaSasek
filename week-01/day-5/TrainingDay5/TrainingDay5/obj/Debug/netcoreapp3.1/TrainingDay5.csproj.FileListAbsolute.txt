@@ -1,0 +1,13 @@
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.exe
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.deps.json
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.runtimeconfig.json
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.runtimeconfig.dev.json
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.dll
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\bin\Debug\netcoreapp3.1\TrainingDay5.pdb
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.csprojAssemblyReference.cache
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.AssemblyInfoInputs.cache
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.AssemblyInfo.cs
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.csproj.CoreCompileInputs.cache
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.dll
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.pdb
+D:\Knihovny\Standa\GitHub\greenfox\StandaSasek\week-01\day-5\TrainingDay5\TrainingDay5\obj\Debug\netcoreapp3.1\TrainingDay5.genruntimeconfig.cache

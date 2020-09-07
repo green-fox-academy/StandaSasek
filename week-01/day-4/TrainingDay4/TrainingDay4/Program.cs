@@ -146,7 +146,7 @@ Console.WriteLine(7 / 2.0); //counts as float thanks to a 2.0 > is hardly select
              int e = 8;
              // please cube of e's value
 
-             Console.WriteLine(e * e);
+             Console.WriteLine(e * e * e);
 
              int f1 = 123;
              int f2 = 345;
@@ -185,20 +185,20 @@ Console.WriteLine(7 / 2.0); //counts as float thanks to a 2.0 > is hardly select
              {
                  Console.WriteLine("11 is divisor of " + h + " : " + false);
              }
-
-             int i1 = 10;
+            */
+             int i1 = 8;
              int i2 = 3;
              // tell if i1 is higher than i2 squared and smaller than i2 cubed (print as a boolean)
-
+            
              if (i1 > Math.Pow(i2, 2) && i1 < Math.Pow(i2, 3))
              {
-                 Console.WriteLine(i1 + " squared is bigger than " + i2 + " and smaller than " + i2 + " cubed:" + true);
+                 Console.WriteLine($"{i1} is bigger than {i2} squared ({i2 * i2}) and smaller than {i2} cubed ({i2 * i2 * i2}): {true}");
              }
              else
              {
-                 Console.WriteLine(i1 + " squared is bigger than " + i2 + " and smaller than " + i2 + " cubed:" + false);
+                 Console.WriteLine($"{i1} is bigger than {i2} squared ({i2 * i2}) and smaller than {i2} cubed ({i2 * i2 * i2}): {false}");
              }
-
+             /*
              int j = 1521;
              // tell if j is divisible by 3 or 5 (print as a boolean)
 

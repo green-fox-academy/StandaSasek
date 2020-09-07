@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TrainingDay5/1.0.0": {
+        "runtime": {
+          "TrainingDay5.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TrainingDay5/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
