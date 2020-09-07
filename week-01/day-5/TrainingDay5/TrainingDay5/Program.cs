@@ -213,25 +213,21 @@ namespace TrainingDay5
             // Create a program that writes this line 100 times:
             // "I won't cheat on the exam!"
 
-            /*int a = 0;
-            while (a < 100)
+            /* for (int i = 0; i < 100; i++)
             {
-                a++;
-                Console.WriteLine(a + ". I won't cheat on the exam!");
-            }*/
-
+                Console.WriteLine($"{i + 1}. I won't cheat on the exam!"); //rewritten to for loop
+            }
+*/
             // PRINT EVEN
             // Create a program that prints all the even numbers between 0 and 500
 
-            /*   int number = 0;
-               while (number <= 500)
-               {
-                   if (number % 2 == 0)
-                   {
-                       Console.WriteLine(number);
-                   }
-                   number++;
-               }*/
+            /*for (int i = 0; i < 501; i++) // rewritten to for loop
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }*/
 
             // MULTIPLICATION TABLE
             // Create a program that asks for a number and prints the multiplication table with that number
@@ -250,28 +246,26 @@ namespace TrainingDay5
             // 9 * 15 = 135
             // 10 * 15 = 150
 
-            /*Console.WriteLine("Welcome to the Multiplication Table!");
-            Console.WriteLine("Please provide a number:");
+            /* Console.WriteLine("Welcome to the Multiplication Table!");
+             Console.WriteLine("Please provide a number:");
 
-            string input = Console.ReadLine();  // Get a number:
-            bool isInputCorrect = double.TryParse(input, out double number); // double number = ...
+             string input = Console.ReadLine();  // Get a number:
+             bool isInputCorrect = double.TryParse(input, out double number); // double number = ...
 
-            int i = 1; // set multiplier to one (so can count 1 to 10]
-            while (i <= 10)
-            {
-                double result = number * i;
-
-                if (i == 10)
-                {
-                    Console.WriteLine($"{i} * {number} = {result}");
-                    i++;
-                } else
-                {
-                    Console.WriteLine($" {i} * {number} = {result}");
-                    i++;
-                }
-            }*/
-
+             for (int i = 1; i < 11; i++) // rewritten with for loop and switch statement
+             {
+                 double result = number * i;
+                 switch (i)
+                 {
+                     case 10:
+                         Console.WriteLine($"{i} * {number} = {result}");
+                         break;
+                     default:
+                         Console.WriteLine($" {i} * {number} = {result}");
+                         break;
+                 }
+             }
+ */
             // COUNT FROM TO
             // Create a program that asks for two numbers
             // If the second number is not bigger than the first one it should print:
@@ -314,29 +308,27 @@ namespace TrainingDay5
             // and for the multiples of five print “Buzz”.
             // For numbers which are multiples of both three and five print “FizzBuzz”.
 
-            /* VERSION WITH SIMPLE IF ELSE CHECK AND WORDS
-             * 
-             *int num = 0;
-            while (num < 100)
-            {
-                num++;
-                if (num % 3 == 0 && num % 5 == 0) // check for both dividers first, so it will show FizzBuzz - if it's the last checked, it will never goes there!!!!  
-                {
-                    Console.WriteLine("FizzBuzz");
-                }
-                else if (num % 3 == 0)
-                {
-                    Console.WriteLine("Fizz");
-                }
-                else if (num % 5 == 0)
-                {
-                    Console.WriteLine("Buzz");
-                }
-                else
-                {
-                    Console.WriteLine(num);
-                }
-            }*/
+            //  VERSION WITH SIMPLE IF ELSE CHECK AND WORDS
+
+            /* for (int num = 1; num < 101; num++) // rewritten with for loop 
+             {
+                 if (num % 3 == 0 && num % 5 == 0) // check for both dividers first, so it will show FizzBuzz - if it's the last checked, it will never goes there!!!!  
+                 {
+                     Console.WriteLine("FizzBuzz");
+                 }
+                 else if (num % 3 == 0)
+                 {
+                     Console.WriteLine("Fizz");
+                 }
+                 else if (num % 5 == 0)
+                 {
+                     Console.WriteLine("Buzz");
+                 }
+                 else
+                 {
+                     Console.WriteLine(num);
+                 }
+             }*/
 
             // DRAW TRIANGLE
             // Write a program that reads a number from the standard input, then draws a
@@ -349,11 +341,11 @@ namespace TrainingDay5
             //
             // The triangle should have as many lines as the number was
 
-            /*Console.WriteLine("Please enter number of rows of your triangle: ");
+           /* Console.WriteLine("Please enter number of rows of your triangle: ");
             string input = Console.ReadLine();  // Get a number:
             bool isInputCorrect = Int32.TryParse(input, out int number); // int number = ...
 
-            for (int row = 1; row < number + 1; row++)
+            for (int row = 1; row <= number; row++)
             {
                 for (int col = 0; col < row; col++)
                 {
@@ -580,7 +572,7 @@ namespace TrainingDay5
              Console.WriteLine($"{bingo} {myNumber}");*/
 
             // added User Score, Number of Rounds (setted up by user), PC Score
-            Random rnd = new Random();
+            /*Random rnd = new Random();
             // int myNumber = rnd.Next(int.MinValue, int.MaxValue);  // creates a number between MIN and MAX int value
             int myNumber = rnd.Next(0, 51);  // creates a number between 1 and 50 
             int userNumber = 0;
@@ -633,7 +625,7 @@ namespace TrainingDay5
                         Console.WriteLine(remainingPlays);
                     }
                 }
-            }
+            }*/
         }
     }
 }

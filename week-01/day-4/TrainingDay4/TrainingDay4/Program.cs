@@ -185,7 +185,7 @@ Console.WriteLine(7 / 2.0); //counts as float thanks to a 2.0 > is hardly select
              {
                  Console.WriteLine("11 is divisor of " + h + " : " + false);
              }
-            */
+            
              int i1 = 8;
              int i2 = 3;
              // tell if i1 is higher than i2 squared and smaller than i2 cubed (print as a boolean)
@@ -198,7 +198,7 @@ Console.WriteLine(7 / 2.0); //counts as float thanks to a 2.0 > is hardly select
              {
                  Console.WriteLine($"{i1} is bigger than {i2} squared ({i2 * i2}) and smaller than {i2} cubed ({i2 * i2 * i2}): {false}");
              }
-             /*
+             
              int j = 1521;
              // tell if j is divisible by 3 or 5 (print as a boolean)
 
