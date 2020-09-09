@@ -80,12 +80,154 @@ namespace DataStructures
             Console.WriteLine(todoText);*/
 
             // REVERSE
-            string toBeReversed = ".eslaf eb t'ndluow ecnetnes siht ,dehctiws erew eslaf dna eurt fo sgninaem eht fI";
+            /*string toBeReversed = ".eslaf eb t'ndluow ecnetnes siht ,dehctiws erew eslaf dna eurt fo sgninaem eht fI";
 
             // Create a method that can reverse a String, which is passed as the parameter
             // Use it on this reversed string to check it!
 
             Console.WriteLine(Reverse(toBeReversed));
+            Console.ReadLine();*/
+
+            // LIST INTRODUCTION 1
+            /*var myList = new List<string>();
+            myList.Add("William");
+            myList.Add("John");
+            myList.Add("Amanda");
+
+            if (myList.Count == 0)
+            {
+                Console.WriteLine("empty");
+            }
+            Console.WriteLine("list not empty, enlisted {0} items", myList.Count);
+            Console.WriteLine("third elelment of the list is {0}", myList[2]);
+            Console.WriteLine();
+            foreach (var item in myList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
+            for (int i = 0; i < myList.Count; i++)
+            {
+                Console.WriteLine("{0}. {1}", i + 1, myList[i]);
+            }
+
+            myList.RemoveAt(1);
+
+            Console.WriteLine();
+            for (int i = myList.Count - 1; i >= 0; i--)
+            {
+                Console.WriteLine(myList[i]);
+            }
+            
+            myList.Clear();
+
+            Console.ReadLine();*/
+
+            // MAP INTRODUCTION 1
+            /*var myMap = new Dictionary<int, char> {};
+            myMap.Add(97, 'a');
+            myMap.Add(98, 'b');
+            myMap.Add(99, 'c');
+            myMap.Add(65, 'A');
+            myMap.Add(66, 'B');
+            myMap.Add(67, 'C');
+
+            Console.WriteLine(myMap.Count);
+            Console.WriteLine();
+            foreach (var item in myMap)
+            {
+                Console.WriteLine(item.Key);
+            }
+            Console.WriteLine();
+            foreach (var item in myMap)
+            {
+                Console.WriteLine(item.Value);
+            }
+            Console.WriteLine();
+
+            myMap.Add(68, 'D');
+            Console.WriteLine("In the map is {0} key-value pairs.", myMap.Count);
+            Console.WriteLine();
+
+            Console.WriteLine(myMap[99]);
+            Console.WriteLine();
+
+            myMap.Remove(97);
+
+            Console.WriteLine(myMap.TryGetValue(100, out char value));
+
+            myMap.Clear();
+
+            Console.ReadLine();*/
+
+            // LIST INTRODUCTION 2
+            /* var myListA = new List<string>() { "Apple", "Avocado", "Blueberries", "Durian", "Lychee" };
+             var myListB = new List<string>(myListA);
+
+             foreach (var item in myListA)
+             {
+                 if (item == "Durian")
+                 {
+                     Console.WriteLine(true);
+                 }
+             }
+             Console.WriteLine();
+
+             myListB.Remove("Durian");
+             myListA.Insert(4, "Kiwifruit");
+
+             if (myListA.Count == myListB.Count)
+             {
+                 Console.WriteLine("Lists are the same size");
+             } else
+             {
+                 Console.WriteLine("Lists aren't the same size");
+             }
+             Console.WriteLine("Avocado is on {0}. position in List A", myListA.IndexOf("Avocado"));
+             Console.WriteLine("Durian is on {0}. position in List B", myListB.IndexOf("Durian"));
+
+             myListA.AddRange(new string[] { "Passion Fruit", "Pomelo" });
+
+             Console.WriteLine(myListA[2]);
+
+             Console.WriteLine();
+             Console.WriteLine("List A");
+             foreach (var item in myListA)
+             {
+                 Console.WriteLine(item);
+             }
+             Console.WriteLine(); 
+             Console.WriteLine("List B");
+             foreach (var item in myListB)
+             {
+                 Console.WriteLine(item);
+             }
+             Console.ReadLine();*/
+
+            // MAP INTRODUCTION 2
+            var myMap = new Dictionary<string, string>
+            { { "978-1-60309-452-8", "A Letter to Jo" },
+                { "978-1-60309-459-7", "Lupus" },
+                { "978-1-60309-444-3", "Red Panda and Moon Bear" },
+                { "978-1-60309-461-0", "The Lab" }};
+
+            foreach (KeyValuePair<string, string> kvp in myMap)
+            {
+                Console.WriteLine("{1} (ISBN: {0})", kvp.Key, kvp.Value);
+            }
+
+            myMap.Remove("978-1-60309-444-3");
+
+            var item = myMap.First(kvp => kvp.Value == "The Lab"); // need to decode it - identifies key of searched value
+            myMap.Remove(item.Key);
+            
+            Console.WriteLine();
+            foreach (KeyValuePair<string, string> kvp in myMap)
+            {
+                Console.WriteLine("{1} (ISBN: {0})", kvp.Key, kvp.Value);
+            }
+
+
             Console.ReadLine();
         }
 
