@@ -174,8 +174,16 @@ namespace DrawingApplication
             // CHECKERBOARD
             // Fill the canvas with a checkerboard pattern.
 
-            foxDraw.DrawRectangle(0, 0, 50, 50);
+            var size = 50;
+            foxDraw.SetFillColor(Colors.Black);
 
+            for (int x = 0; x < Width / size; x++)
+            {
+                for (int y = 0; y < Height / size; y++)
+                {                    
+                foxDraw.DrawRectangle((y % 2 * size) + x * 2 * size, 0 + y * size, size, size);
+                }
+            }
 
         }
         private static void RainbowCenteredBoxes(FoxDraw foxDraw, Int32 numberOfBoxes)
