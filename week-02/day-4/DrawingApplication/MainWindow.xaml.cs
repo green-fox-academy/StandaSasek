@@ -142,7 +142,7 @@ namespace DrawingApplication
             // and draws a square of that size and color to the center of the canvas.
             // Create a loop that fills the canvas with rainbow colored squares (red, orange, yellow, green, blue, indigo, violet).
 
-            // RainbowCenteredBoxes(foxDraw, 7);
+            // RainbowCenteredBoxes(foxDraw);
 
             // PURPLE STEPS
             // Reproduce this:
@@ -174,25 +174,112 @@ namespace DrawingApplication
             // CHECKERBOARD
             // Fill the canvas with a checkerboard pattern.
 
-            var size = 50;
+            /*var size = 50;
             foxDraw.SetFillColor(Colors.Black);
 
             for (int x = 0; x < Width / size; x++)
             {
                 for (int y = 0; y < Height / size; y++)
-                {                    
-                foxDraw.DrawRectangle((y % 2 * size) + x * 2 * size, 0 + y * size, size, size);
+                {
+                    foxDraw.DrawRectangle((y % 2 * size) + x * 2 * size, 0 + y * size, size, size);
+                }
+            }*/
+
+            // EVERYTHING GOES TO CENTER
+            // Create a function that draws a single line and takes 3 parameters:
+            // the x and y coordinates of the line's starting point and the
+            // foxDraw and draws a line from that point to the center of the
+            // canvas.
+            // Fill the canvas with lines from the edges, every 20 px, to the center.
+
+            // LinesToCenter(foxDraw, 2);
+
+            // CONNECT THE DOTS
+            // Create a function that takes 2 parameters:
+            // A list of (x, y) points and foxDraw
+            // and connects them with green lines.
+            // connect these to get a box: {new Point(10, 10), new Point(290, 10), new Point(290, 290), new Point(10, 290)}
+            // Connect these: {new Point(50, 100), new Point(70, 70), new Point(80, 90), new Point(90, 90), new Point(100, 70),
+            // new Point(120, 100), new Point(85, 130), new Point(50, 100)}
+
+            // RectangleFromPoints(foxDraw);
+
+            // STARRY NIGHT
+            // Draw the night sky:
+            //  - The background should be black
+            //  - The stars can be small squares
+            //  - The stars should have random positions on the canvas
+            //  - The stars should have random color (some shade of grey)
+
+            foxDraw.SetBackgroundColor(Colors.Black);
+            for (int i = 0; i < 300; i++)
+            {
+                Random rnd = new Random();
+                var rndC = rnd.Next(200, 254);
+                Color randomColor = Color.FromRgb((byte)rndC, (byte)rndC, (byte)rndC);
+                foxDraw.SetStrokeColor(randomColor);
+                var x = rnd.Next(0, 800);
+                var y = rnd.Next(0, 800);
+                foxDraw.DrawLine(x, y, x + 6, y);
+                foxDraw.DrawLine(x + 3, y - 3, x + 3, y + 3);
+            }
+        }
+
+        private static void RectangleFromPoints(FoxDraw foxDraw)
+        {
+            List<Point> points1 = new List<Point> { new Point(10, 10), new Point(290, 10), new Point(290, 290), new Point(10, 290) };
+            List<Point> points2 = new List<Point> { new Point(50, 100), new Point(70, 70), new Point(80, 90), new Point(90, 90), new Point(100, 70),
+             new Point(120, 100), new Point(85, 130), new Point(50, 100) };
+            List<Point> points = new List<Point> { };
+
+            Point newLast1 = points1[0];
+            points1.Add(newLast1);
+
+            for (int i = 0; i < points1.Count - 1; i++)
+            {
+                Point secondPoint = points1[i + 1];
+                foxDraw.DrawLine(points1[i].X, points1[i].Y, secondPoint.X, secondPoint.Y);
+            }
+            Point newLast2 = points2[0];
+            points2.Add(newLast2);
+
+            for (int i = 0; i < points2.Count - 1; i++)
+            {
+                Point secondPoint = points2[i + 1];
+                foxDraw.DrawLine(points2[i].X, points2[i].Y, secondPoint.X, secondPoint.Y);
+            }
+        }
+
+        private static void LinesToCenter(FoxDraw foxDraw, Int32 numberOfLines)
+        {
+            Int32 numberOn1Side = 800 / numberOfLines;
+            var x = 0;
+            var y = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int k = 0; k <= numberOn1Side; k++)
+                {
+                    foxDraw.DrawLine(x, y, 400, 400);
+                    x = (i + 1) % 2 * k * numberOfLines;
+                    y = i % 2 * k * numberOfLines;
+                }
+                for (int k = 0; k <= numberOn1Side; k++)
+                {
+                    foxDraw.DrawLine(x, y, 400, 400);
+                    x = 800 - (i % 2 * k * numberOfLines);
+                    y = 800 - ((i + 1) % 2 * k * numberOfLines);
                 }
             }
-
         }
-        private static void RainbowCenteredBoxes(FoxDraw foxDraw, Int32 numberOfBoxes)
+
+        private static void RainbowCenteredBoxes(FoxDraw foxDraw)
         {
             var mid = 400;
-            var sizeStep = mid * 2 / numberOfBoxes;
+            var sizeStep = mid * 2 / 7;
             var listColors = new List<Color> { Colors.Red, Colors.Orange, Colors.Yellow, Colors.Green, Colors.Blue, Colors.Indigo, Colors.Violet };
 
-            for (int i = 0; i < numberOfBoxes; i++)
+            for (int i = 0; i < 7; i++)
             {
                 foxDraw.SetFillColor(listColors[i]);
                 var sqSize = 800 - i * sizeStep;
@@ -234,15 +321,15 @@ namespace DrawingApplication
                 foxDraw.DrawRectangle(userNumberX, userNumberY, size, size);
             }
         }
-        /*private static void DrawNumberOfRectangles(FoxDraw foxDraw, Int32 number)
+        private static void DrawNumberOfRectangles(FoxDraw foxDraw, Int32 number)
         {
             Random rnd = new Random();
             var numberRectangles = number;
 
             for (int i = 0; i < numberRectangles; i++)
             {
-                var x = rnd.Next(0, Convert.ToInt32(Width));
-                var y = rnd.Next(0, Convert.ToInt32(Height));
+                var x = rnd.Next(0, 800);
+                var y = rnd.Next(0, 800);
                 var size = rnd.Next(0, 50);
                 foxDraw.SetFillColor(GetColor());
                 foxDraw.DrawRectangle(x, y, size, size);
@@ -255,8 +342,8 @@ namespace DrawingApplication
             Random rnd = new Random();
             for (int i = 0; i < numberOfLines; i++)
             {
-                var x = rnd.Next(0, Convert.ToInt32(Width));
-                var y = rnd.Next(0, Convert.ToInt32(Height));
+                var x = rnd.Next(0, 800);
+                var y = rnd.Next(0, 800);
                 foxDraw.SetStrokeColor(GetColor());
                 foxDraw.SetStrokeThicknes(2);
                 foxDraw.DrawLine(new Point(x, y), new Point(x + 50, y));
@@ -268,13 +355,13 @@ namespace DrawingApplication
             Random rnd = new Random();
             for (int i = 0; i < numberOfLines; i++)
             {
-                var x = rnd.Next(0, Convert.ToInt32(Width));
-                var y = rnd.Next(0, Convert.ToInt32(Height));
+                var x = rnd.Next(0, 800);
+                var y = rnd.Next(0, 800);
                 foxDraw.SetStrokeColor(GetColor());
                 foxDraw.SetStrokeThicknes(2);
-                foxDraw.DrawLine(new Point(x, y), new Point(Width / 2, Height / 2));
+                foxDraw.DrawLine(new Point(x, y), new Point(800 / 2, 800 / 2));
             }
-        }*/
+        }
 
         private static Color GetColor()
         {
