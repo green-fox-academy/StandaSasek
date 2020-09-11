@@ -19,11 +19,6 @@ namespace DrawingApplication
             var canvas = this.Get<Canvas>("canvas");
             var foxDraw = new FoxDraw(canvas);
 
-            // foxDraw.SetBackgroundColor(Colors.Wheat);
-            int middleVInt = Convert.ToInt32(Height) / 2;
-            int middleHInt = Convert.ToInt32(Width) / 2;
-            var middleV = Height / 2;
-            var middleH = Width / 2;
 
 
             // Drawings here
@@ -60,32 +55,6 @@ namespace DrawingApplication
              foxDraw.DrawLine(bottomRightPoint, topRightPoint);
              foxDraw.SetStrokeColor(topColor);
              foxDraw.DrawLine(topLeftPoint, topRightPoint);*/
-
-            // VAR WITH LOOP
-            var leftFirstPointX = 150;
-            var leftFirstPointY = 150;
-            var sizeH = 100;
-            var sizeV = 150;
-            var nextX = 0;
-            var nextY = 0;
-            var point1 = new Point();
-            var point2 = new Point();
-
-            for (int y = 0; y < 1; y++)
-            {
-                for (int x = 0; x <= y; x++)
-                {
-                    if (y == 0 || x == 0)
-                    {
-                        point1 = nextX, nextY;
-                        foxDraw.SetStrokeColor(GetColor());
-                        foxDraw.DrawLine(new Point(point1, point2);
-                    }
-                }
-
-            }
-
-
 
             // DIAGONALS
             // Draw the canvas' diagonals.
@@ -156,12 +125,89 @@ namespace DrawingApplication
             // draw 3 squares with that function.
             // avoid code duplication.
 
-            DrawNumberOfRectanglesSize50(foxDraw);
+            //  DrawNumberOfRectanglesSize50(foxDraw);
+
+            // CENTERED BOXES
+            // create a function that draws one square and takes 2 parameters:
+            // the square size and the foxDraw
+            // and draws a square of that size to the center of the canvas.
+            // draw 3 squares with that function.
+            // avoid code duplication.
+
+            // CenteredBoxes(foxDraw, 10);
+
+            // RAINBOW BOXES
+            // Create a square drawing function that takes 3 parameters:
+            // The square size, and the fill color, foxDraw
+            // and draws a square of that size and color to the center of the canvas.
+            // Create a loop that fills the canvas with rainbow colored squares (red, orange, yellow, green, blue, indigo, violet).
+
+            // RainbowCenteredBoxes(foxDraw, 7);
+
+            // PURPLE STEPS
+            // Reproduce this:
+            // [https://github.com/green-fox-academy/teaching-materials/blob/master/workshop/drawing/assets/r3.png]
+
+            /*var size = 20;
+            foxDraw.SetFillColor(Colors.Purple);
+
+            for (int i = 0; i < 20; i++)
+            {
+                foxDraw.DrawRectangle(0 + i * size, 0 + i * size, size, size);
+            }*/
+
+            // PURPLE STEPS 3D
+            // Reproduce this:
+            // [https://github.com/green-fox-academy/teaching-materials/blob/master/workshop/drawing/assets/r4.png]
+
+            /*var size = 20;
+            var start = size;
+            foxDraw.SetFillColor(Colors.Purple);
+
+            for (int i = 0; i < 5; i++)
+            {
+                var sizeA = (i + 1) * size;
+                foxDraw.DrawRectangle(0 + start, 0 + start, sizeA, sizeA);
+                start = sizeA + start;
+            }*/
+
+            // CHECKERBOARD
+            // Fill the canvas with a checkerboard pattern.
+
+            foxDraw.DrawRectangle(0, 0, 50, 50);
 
 
         }
+        private static void RainbowCenteredBoxes(FoxDraw foxDraw, Int32 numberOfBoxes)
+        {
+            var mid = 400;
+            var sizeStep = mid * 2 / numberOfBoxes;
+            var listColors = new List<Color> { Colors.Red, Colors.Orange, Colors.Yellow, Colors.Green, Colors.Blue, Colors.Indigo, Colors.Violet };
 
-        private void DrawNumberOfRectanglesSize50(FoxDraw foxDraw)
+            for (int i = 0; i < numberOfBoxes; i++)
+            {
+                foxDraw.SetFillColor(listColors[i]);
+                var sqSize = 800 - i * sizeStep;
+                var startingX = mid - sqSize / 2;
+                var startingY = mid - sqSize / 2;
+                foxDraw.DrawRectangle(startingX, startingY, sqSize, sqSize);
+            }
+        }
+        private static void CenteredBoxes(FoxDraw foxDraw, Int32 numberOfBoxes)
+        {
+            var mid = 400;
+            var sizeStep = mid * 2 / numberOfBoxes;
+
+            for (int i = 0; i < numberOfBoxes; i++)
+            {
+                foxDraw.SetFillColor(GetColor());
+                var sqSize = 800 - i * sizeStep;
+                var startingX = mid - sqSize / 2;
+                var startingY = mid - sqSize / 2;
+                foxDraw.DrawRectangle(startingX, startingY, sqSize, sqSize);
+            }
+        }
+        private static void DrawNumberOfRectanglesSize50(FoxDraw foxDraw)
         {
             Console.WriteLine("Specify number of rectangles: ");
             string inputR = Console.ReadLine();  // Get a number:
@@ -180,7 +226,7 @@ namespace DrawingApplication
                 foxDraw.DrawRectangle(userNumberX, userNumberY, size, size);
             }
         }
-        private void DrawNumberOfRectangles(FoxDraw foxDraw, Int32 number)
+        /*private static void DrawNumberOfRectangles(FoxDraw foxDraw, Int32 number)
         {
             Random rnd = new Random();
             var numberRectangles = number;
@@ -195,7 +241,7 @@ namespace DrawingApplication
             }
         }
 
-        private void DrawLines50Long(FoxDraw foxDraw, Int32 numberOfLines)
+        private static void DrawLines50Long(FoxDraw foxDraw, Int32 numberOfLines)
         {
 
             Random rnd = new Random();
@@ -209,7 +255,7 @@ namespace DrawingApplication
             }
         }
 
-        private void ToTheCenter(FoxDraw foxDraw, Int32 numberOfLines)
+        private static void ToTheCenter(FoxDraw foxDraw, Int32 numberOfLines)
         {
             Random rnd = new Random();
             for (int i = 0; i < numberOfLines; i++)
@@ -220,7 +266,7 @@ namespace DrawingApplication
                 foxDraw.SetStrokeThicknes(2);
                 foxDraw.DrawLine(new Point(x, y), new Point(Width / 2, Height / 2));
             }
-        }
+        }*/
 
         private static Color GetColor()
         {
