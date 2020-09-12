@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using GreenFox;
+using SharpDX.WIC;
 
 namespace DrawingApplication
 {
@@ -32,10 +33,33 @@ namespace DrawingApplication
 
             // LinePlayQuarters(foxDraw, 25, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
 
-            // 
+            // ENVELOPE STAR
+
+            EnvelopeStar(foxDraw); // IMHO my star looks better than example ;-)
+
+
 
         }
+        private static void EnvelopeStar(FoxDraw foxDraw)
+        {
+            foxDraw.SetBackgroundColor(Colors.White);
+            foxDraw.SetStrokeThicknes(2);
+            var side = 800 / 2;
+            var step = side / 16;
+            foxDraw.SetStrokeColor(Colors.LightGreen);
+            var negator = 1;
 
+            for (int row = 0; row < 2; row++)
+            {
+                negator = negator * -1;
+                for (int i = 0; i < 15; i++)
+                {
+                    var linePoint = step * (i + 1);
+                    foxDraw.DrawLine(side + (negator * linePoint), side, side, 2 * side - linePoint);
+                    foxDraw.DrawLine(side, 0 + linePoint, side + (negator * linePoint), side);
+                }
+            }
+        }
         private static void LinePlayQuarters(FoxDraw foxDraw, Int32 linePlay)
         {
             foxDraw.SetBackgroundColor(Colors.White);
