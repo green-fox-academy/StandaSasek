@@ -40,30 +40,50 @@ namespace DrawingApplication
 
             // TRIANGLES
 
-            //Point startingPoint = new Point(200, 100);
-            var size = 100;
+            // Triangles(foxDraw, 20, 30);
+
+            // SUPER HEXAGON
+
+            var size = 50;
+            var lines = 10;
+            Point startingPoint = new Point(400, 400);
             foxDraw.SetFillColor(Colors.White);
 
-
+            //            for (int i = 0; i < lines; i++)
+            //          {
             for (int col = 0; col < 2; col++)
             {
-                Point a = new Point(col * size + 200, 100);
-                Point b = new Point(a.X - size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
-                Point c = new Point(a.X + size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
-                foxDraw.DrawPolygon(a, new List<Point> { b, c, a });
-            }
-            for (int col = 0; col < 1; col++)
-            {
-                Point a = new Point(col * size + 200 + size / 2, 100 + (Math.Sqrt(3) / 2.0 * size));
-                Point b = new Point(a.X - size / 2, a.Y - (Math.Sqrt(3) / 2.0 * size));
-                Point c = new Point(a.X + size / 2, a.Y - (Math.Sqrt(3) / 2.0 * size));
-                foxDraw.DrawPolygon(a, new List<Point> { b, c, a });
-            }
+                Point a = new Point(startingPoint.X - (Math.Sqrt(3) / 2.0 * size), startingPoint.Y - 1 * size);
+                Point b = new Point(a.X + 1 * size, a.Y);
+                Point c = new Point(a.X + 1 * size + (Math.Sqrt(3) / 2.0 * size), 1 * size + a.Y);
+                Point d = new Point(a.X + 1 * size, a.Y - 2 * size);
+                Point e = new Point(a.X, a.Y - 2 * size);
+                Point f = new Point(a.X - (Math.Sqrt(3) / 2.0 * size), 0.5 * size + a.Y);
 
-
+                foxDraw.DrawPolygon(a, new List<Point> { a, b, c, d, e, f });
+            }
+            //   }
 
 
         }
+
+        private static void Triangles(FoxDraw foxDraw, int lines, int size)
+        {
+            Point startingPoint = new Point(400, 400 - lines / 2 * (Math.Sqrt(3) / 2.0 * size));
+            foxDraw.SetFillColor(Colors.White);
+
+            for (int i = 0; i < lines; i++)
+            {
+                for (int col = 0; col < i + 1; col++)
+                {
+                    Point a = new Point(col * size + startingPoint.X - i * size / 2, startingPoint.Y + i * (Math.Sqrt(3) / 2.0 * size));
+                    Point b = new Point(a.X - size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
+                    Point c = new Point(a.X + size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
+                    foxDraw.DrawPolygon(a, new List<Point> { b, c, a });
+                }
+            }
+        }
+
         private static void EnvelopeStar(FoxDraw foxDraw)
         {
             foxDraw.SetBackgroundColor(Colors.White);
