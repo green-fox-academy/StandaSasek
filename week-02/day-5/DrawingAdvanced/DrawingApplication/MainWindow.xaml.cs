@@ -20,8 +20,6 @@ namespace DrawingApplication
             var canvas = this.Get<Canvas>("canvas");
             var foxDraw = new FoxDraw(canvas);
 
-
-
             // DRAWING PROJECT
 
             // LINE PLAY
@@ -31,6 +29,10 @@ namespace DrawingApplication
             // LINE PLAY QUARTERS
 
             // LinePlayQuarters(foxDraw, 25); // Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+
+            // LinePlayQuarters(foxDraw, 25, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+
+            // 
 
         }
 
@@ -51,6 +53,28 @@ namespace DrawingApplication
                         foxDraw.SetStrokeColor(Colors.LightGreen);
                         foxDraw.DrawLine(col * side, row * side + linePoint, col * side + linePoint, (row + 1) * side);
                         foxDraw.SetStrokeColor(Colors.Purple);
+                        foxDraw.DrawLine(col * side + linePoint, row * side, (col + 1) * side, row * side + linePoint);
+                    }
+                }
+            }
+        }
+        private static void LinePlayQuarters(FoxDraw foxDraw, Int32 linePlay, bool colors)
+        {
+            foxDraw.SetBackgroundColor(Colors.White);
+            foxDraw.SetStrokeThicknes(2);
+            var side = 800 / Math.Sqrt(linePlay);
+            var step = side / 16;
+
+            for (int col = 0; col < Math.Sqrt(linePlay); col++)
+            {
+                for (int row = 0; row < Math.Sqrt(linePlay); row++)
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        var linePoint = step * (i + 1);
+                        foxDraw.SetStrokeColor(GetColor());
+                        foxDraw.DrawLine(col * side, row * side + linePoint, col * side + linePoint, (row + 1) * side);
+                        foxDraw.SetStrokeColor(GetColor());
                         foxDraw.DrawLine(col * side + linePoint, row * side, (col + 1) * side, row * side + linePoint);
                     }
                 }
