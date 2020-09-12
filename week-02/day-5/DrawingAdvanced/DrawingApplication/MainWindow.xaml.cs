@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+// using System.Reflection.Metadata.Ecma335;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -24,21 +25,53 @@ namespace DrawingApplication
             // DRAWING PROJECT
 
             // LINE PLAY
+
+            // LinePlay1(foxDraw);
+
+            // LINE PLAY QUARTERS
+
+            // LinePlayQuarters(foxDraw, 25); // Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+
+        }
+
+        private static void LinePlayQuarters(FoxDraw foxDraw, Int32 linePlay)
+        {
             foxDraw.SetBackgroundColor(Colors.White);
             foxDraw.SetStrokeThicknes(2);
-            var step = 50;
+            var side = 800 / Math.Sqrt(linePlay);
+            var step = side / 16;
+
+            for (int col = 0; col < Math.Sqrt(linePlay); col++)
+            {
+                for (int row = 0; row < Math.Sqrt(linePlay); row++)
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        var linePoint = step * (i + 1);
+                        foxDraw.SetStrokeColor(Colors.LightGreen);
+                        foxDraw.DrawLine(col * side, row * side + linePoint, col * side + linePoint, (row + 1) * side);
+                        foxDraw.SetStrokeColor(Colors.Purple);
+                        foxDraw.DrawLine(col * side + linePoint, row * side, (col + 1) * side, row * side + linePoint);
+                    }
+                }
+            }
+        }
+
+        private static void LinePlay1(FoxDraw foxDraw)
+        {
+            foxDraw.SetBackgroundColor(Colors.White);
+            foxDraw.SetStrokeThicknes(2);
+            var side = 800 / 2;
+            var step = side / 16;
 
             for (int i = 0; i < 15; i++)
             {
                 var linePoint = step * (i + 1);
                 foxDraw.SetStrokeColor(Colors.LightGreen);
-                foxDraw.DrawLine(0, linePoint, linePoint, 800);
+                foxDraw.DrawLine(0, linePoint, linePoint, 400);
                 foxDraw.SetStrokeColor(Colors.Purple);
-                foxDraw.DrawLine(linePoint, 0, 800, linePoint);
+                foxDraw.DrawLine(linePoint, 0, 400, linePoint);
             }
-           
-
-
         }
 
         private static void RectangleFromPoints(FoxDraw foxDraw)
