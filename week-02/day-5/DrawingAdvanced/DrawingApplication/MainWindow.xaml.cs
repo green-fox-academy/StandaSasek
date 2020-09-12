@@ -7,6 +7,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using GreenFox;
 using SharpDX.WIC;
+using SkiaSharp;
 
 namespace DrawingApplication
 {
@@ -31,11 +32,34 @@ namespace DrawingApplication
 
             // LinePlayQuarters(foxDraw, 25); // Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
 
-            // LinePlayQuarters(foxDraw, 25, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+            // LinePlayQuarters(foxDraw, 64, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
 
             // ENVELOPE STAR
 
-            EnvelopeStar(foxDraw); // IMHO my star looks better than example ;-)
+            // EnvelopeStar(foxDraw); // IMHO my star looks better than example ;-)
+
+            // TRIANGLES
+
+            //Point startingPoint = new Point(200, 100);
+            var size = 100;
+            foxDraw.SetFillColor(Colors.White);
+
+
+            for (int col = 0; col < 2; col++)
+            {
+                Point a = new Point(col * size + 200, 100);
+                Point b = new Point(a.X - size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
+                Point c = new Point(a.X + size / 2, (Math.Sqrt(3) / 2.0 * size) + a.Y);
+                foxDraw.DrawPolygon(a, new List<Point> { b, c, a });
+            }
+            for (int col = 0; col < 1; col++)
+            {
+                Point a = new Point(col * size + 200 + size / 2, 100 + (Math.Sqrt(3) / 2.0 * size));
+                Point b = new Point(a.X - size / 2, a.Y - (Math.Sqrt(3) / 2.0 * size));
+                Point c = new Point(a.X + size / 2, a.Y - (Math.Sqrt(3) / 2.0 * size));
+                foxDraw.DrawPolygon(a, new List<Point> { b, c, a });
+            }
+
 
 
 

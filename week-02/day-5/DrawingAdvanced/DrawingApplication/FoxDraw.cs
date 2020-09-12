@@ -73,7 +73,7 @@ namespace GreenFox
             DrawLine(new Point(x1, y1), new Point(x2, y2));
         }
 
-        public void DrawPolygon(IEnumerable<Point> points)
+        public void DrawPolygon(Point pointA, IEnumerable<Point> points)
         {
             var polygon = new Polygon()
             {
