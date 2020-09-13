@@ -36,7 +36,7 @@ namespace DrawingApplication
 
             // ENVELOPE STAR
 
-            // EnvelopeStar(foxDraw); // IMHO my star looks better than example ;-)
+            // EnvelopeStar(foxDraw, 750, 15); // Example star is ~750, 15. IMHO my star is more symmetrical than example ;-)
 
             // TRIANGLES
 
@@ -45,10 +45,9 @@ namespace DrawingApplication
             // SUPER HEXAGON
             // Hexagon(foxDraw, 50, 400, 400);
 
-            SuperHexagon(foxDraw);
+            // SuperHexagon(foxDraw);
 
         }
-
         private static void SuperHexagon(FoxDraw foxDraw)
         {
             var size = 30;
@@ -97,23 +96,24 @@ namespace DrawingApplication
             }
         }
 
-        private static void EnvelopeStar(FoxDraw foxDraw)
+        private static void EnvelopeStar(FoxDraw foxDraw, double size, double numberOfLines)
         {
             foxDraw.SetBackgroundColor(Colors.White);
             foxDraw.SetStrokeThicknes(2);
-            var side = 800 / 2;
-            var step = side / 16;
+            var center = 400;
+            var sideSize = size / 2;
+            var step = sideSize / numberOfLines;
             foxDraw.SetStrokeColor(Colors.LightGreen);
             var negator = 1;
 
             for (int row = 0; row < 2; row++)
             {
                 negator = negator * -1;
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i <= numberOfLines; i++)
                 {
-                    var linePoint = step * (i + 1);
-                    foxDraw.DrawLine(side + (negator * linePoint), side, side, 2 * side - linePoint);
-                    foxDraw.DrawLine(side, 0 + linePoint, side + (negator * linePoint), side);
+                    var linePoint = step * i;
+                    foxDraw.DrawLine(center + (negator * linePoint), center, center, center + sideSize - linePoint);
+                    foxDraw.DrawLine(center, center - sideSize + linePoint, center + (negator * linePoint), center);
                 }
             }
         }

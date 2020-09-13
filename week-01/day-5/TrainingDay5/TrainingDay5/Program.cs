@@ -571,8 +571,14 @@ namespace TrainingDay5
              }
              Console.WriteLine($"{bingo} {myNumber}");*/
 
+            // PARAMETRIC AVERAGE
+
+
+
+
           
            
         }
+
     }
 }
