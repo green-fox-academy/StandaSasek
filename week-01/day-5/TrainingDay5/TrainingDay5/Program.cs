@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace TrainingDay5
 {
@@ -341,18 +344,18 @@ namespace TrainingDay5
             //
             // The triangle should have as many lines as the number was
 
-           /* Console.WriteLine("Please enter number of rows of your triangle: ");
-            string input = Console.ReadLine();  // Get a number:
-            bool isInputCorrect = Int32.TryParse(input, out int number); // int number = ...
+            /* Console.WriteLine("Please enter number of rows of your triangle: ");
+             string input = Console.ReadLine();  // Get a number:
+             bool isInputCorrect = Int32.TryParse(input, out int number); // int number = ...
 
-            for (int row = 1; row <= number; row++)
-            {
-                for (int col = 0; col < row; col++)
-                {
-                    Console.Write("*");
-                }
-                Console.WriteLine();
-            }*/
+             for (int row = 1; row <= number; row++)
+             {
+                 for (int col = 0; col < row; col++)
+                 {
+                     Console.Write("*");
+                 }
+                 Console.WriteLine();
+             }*/
 
             // DRAW PYRAMID
             // Write a program that reads a number from the standard input, then draws a
@@ -542,11 +545,8 @@ namespace TrainingDay5
             // The stried number is lower
             // You found the number: 8
 
-
-            //just one guessed number
             /* Random rnd = new Random();
-             // int myNumber = rnd.Next(int.MinValue, int.MaxValue);  // creates a number between MIN and MAX int value
-             int myNumber = rnd.Next(0, 1001);  // creates a number between MIN int value and 1000 
+             int myNumber = rnd.Next(0, 101);  // creates a number between MIN int value and 100 
              int userNumber = 0;
              string guess = "Please guess my number: ";
              string higher = "The stored number is higher";
@@ -561,24 +561,95 @@ namespace TrainingDay5
                  if (userNumber < myNumber)
                  {
                      Console.WriteLine(higher);
-
                  }
                  else if (userNumber > myNumber)
                  {
                      Console.WriteLine(lower);
                  }
-
              }
              Console.WriteLine($"{bingo} {myNumber}");*/
 
             // PARAMETRIC AVERAGE
 
+            // Write a program that asks for a number.
+            // It would ask this many times to enter an integer,
+            // if all the integers are entered, it should print the sum and average of these
+            // integers like:
+            //
+            // Sum: 22, Average: 4.4
+
+            /*Console.WriteLine("From how many numbers will we calculate the average?");
+            string input = Console.ReadLine();
+            bool isInputCorrect = Int32.TryParse(input, out int numberForCount);
+            List<int> list = new List<int> { };
+            decimal average = 0;
+            double sum = 0;
+
+            for (int i = 0; i < numberForCount; i++)
+            {
+                Console.WriteLine("Please enter an integer:");
+                string input1 = Console.ReadLine();
+                bool isInputCorrect1 = Int32.TryParse(input1, out int numberToList);
+                list.Add(numberToList);
+            }
+            
+            foreach (var number in list)
+            {
+                sum += number;
+            }
+
+            average = (decimal)(sum / list.Count);
+            Console.WriteLine("Sum: {0}, Average: {1}", sum, Decimal.Round(average, 2));*/
+
+            // DRAW CHESS TABLE
+            // Create a program that draws a chess table like this
+            //
+            // % % % %
+            //  % % % %
+            // % % % %
+            //  % % % %
+            // % % % %
+            //  % % % %
+            // % % % %
+            //  % % % %
+
+            /*for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (i % 2 == 0)
+                    {
+                    Console.Write("% ");
+                    }                 
+                    else
+                    {
+                        Console.Write(" %");
+                    }
+                }
+                Console.WriteLine();
+            }*/
+
+            // FIND THE SUBSTRING
+            //  Create a function that takes two strings as a parameter
+            //  Returns the starting index where the second one is starting in the first one
+            //  Returns `-1` if the second string is not in the first one
+
+            //  Example:
+
+            /*//  should print: `17`
+            Console.WriteLine(Substr("this is what I'm searching in", "searching"));
+
+            //  should print: `-1`
+            Console.WriteLine(Substr("this is what I'm searching in", "not"));
+*/
 
 
-
-          
-           
         }
 
+        static int Substr(string input, string q)
+        {
+            int index = input.IndexOf(q);
+            return index;
+        }
     }
 }
