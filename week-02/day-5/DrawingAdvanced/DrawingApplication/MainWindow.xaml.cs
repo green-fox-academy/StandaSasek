@@ -30,9 +30,9 @@ namespace DrawingApplication
 
             // LINE PLAY QUARTERS
 
-            // LinePlayQuarters(foxDraw, 25); // Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+            // LinePlayQuarters(foxDraw, 64); // Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
 
-            // LinePlayQuarters(foxDraw, 64, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
+            // LinePlayQuarters(foxDraw, 25, true); // Rainbow version. Best picture is with 1 (in version LinePlay1()) and results of squaring (4, 9, 16 ...)
 
             // ENVELOPE STAR
 
@@ -43,28 +43,41 @@ namespace DrawingApplication
             // Triangles(foxDraw, 20, 30);
 
             // SUPER HEXAGON
+            // Hexagon(foxDraw, 50, 400, 400);
 
-            var size = 50;
-            var lines = 10;
-            Point startingPoint = new Point(400, 400);
-            foxDraw.SetFillColor(Colors.White);
+            SuperHexagon(foxDraw);
 
-            //            for (int i = 0; i < lines; i++)
-            //          {
-            for (int col = 0; col < 2; col++)
+        }
+
+        private static void SuperHexagon(FoxDraw foxDraw)
+        {
+            var size = 30;
+            List<int> hexOnLine = new List<int> { 4, 5, 6, 7 };
+            var x = 400 - 5 * size;
+            var y = 400 - (4 * (Math.Sqrt(3) / 2 * size));
+            var x2 = x + size * (9);
+
+            for (int col = 0; col < hexOnLine.Count; col++)
             {
-                Point a = new Point(startingPoint.X - (Math.Sqrt(3) / 2.0 * size), startingPoint.Y - 1 * size);
-                Point b = new Point(a.X + 1 * size, a.Y);
-                Point c = new Point(a.X + 1 * size + (Math.Sqrt(3) / 2.0 * size), 1 * size + a.Y);
-                Point d = new Point(a.X + 1 * size, a.Y - 2 * size);
-                Point e = new Point(a.X, a.Y - 2 * size);
-                Point f = new Point(a.X - (Math.Sqrt(3) / 2.0 * size), 0.5 * size + a.Y);
-
-                foxDraw.DrawPolygon(a, new List<Point> { a, b, c, d, e, f });
+                for (int line = 0; line < hexOnLine[col]; line++)
+                {
+                    Hexagon(foxDraw, size, x + (col * 1.5 * size), y - (col * (Math.Sqrt(3) / 2 * size)) + line * 2 * (Math.Sqrt(3) / 2 * size));
+                    Hexagon(foxDraw, size, x2 - (col * 1.5 * size), y - (col * (Math.Sqrt(3) / 2 * size)) + line * 2 * (Math.Sqrt(3) / 2 * size));
+                }
             }
-            //   }
+        }
 
-
+        private static void Hexagon(FoxDraw foxDraw, double size, double x, double y)
+        {
+            Point startingPoint = new Point(x, y);
+            foxDraw.SetFillColor(Colors.White);
+            Point a = new Point(startingPoint.X - 0.5 * size, startingPoint.Y - 1 * size);
+            Point b = new Point(a.X + 1 * size, a.Y);
+            Point c = new Point(a.X + 1.5 * size, a.Y + (Math.Sqrt(3) / 2.0 * size));
+            Point d = new Point(a.X + 1 * size, a.Y + 2 * (Math.Sqrt(3) / 2.0 * size));
+            Point e = new Point(a.X, a.Y + 2 * (Math.Sqrt(3) / 2.0 * size));
+            Point f = new Point(a.X - 0.5 * size, a.Y + (Math.Sqrt(3) / 2.0 * size));
+            foxDraw.DrawPolygon(a, new List<Point> { a, b, c, d, e, f });
         }
 
         private static void Triangles(FoxDraw foxDraw, int lines, int size)
