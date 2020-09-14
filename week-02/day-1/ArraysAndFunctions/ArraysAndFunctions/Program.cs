@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 
@@ -276,28 +277,43 @@ namespace ArraysAndFunctions
             //  Returns the indices of the integers in the array of which the first number is a part of
             //  Or returns an empty array if the number is not part of any of the integers in the array
 
-            //  Example:
+            /*//  Example:
             Console.WriteLine(SubInt(1, new int[] { 1, 11, 34, 52, 61 }));
             //  should print: `[0, 1, 4]`
             Console.WriteLine(SubInt(9, new int[] { 1, 11, 34, 52, 61 }));
-            //  should print: '[]'
+            //  should print: '[]'*/
 
+            // Not able to go through with the type of return - void does not work (only CW) ...
 
+            // UNIQUE
+            //  Create a method that takes an array of integers as a parameter
+            //  Returns an array of integers where every integer occurs only once
 
-
+            //  Example
+            Console.WriteLine(Unique(new[] { 1, 11, 34, 11, 52, 61, 1, 34 }));
+            //  should print: `[1, 11, 34, 52, 61]`
 
         }
-        public static int SubInt(int num01, int[] array01)
+        public static Array Unique(int[] Array)
         {
-            string[] numbersStrings = Array.ConvertAll(array01, ele => ele.ToString());
-            string[] subIntArray = new string[numbers.Length];
 
-            for (int i = 0; i < array01.Length; i++)
+        }
+
+        public static void SubInt(int num01, int[] array01)
+        {
+            string[] numbersStrings = Array.ConvertAll(array01, number => number.ToString());
+            List<int> indexes = new List<int> { };
+
+            for (int i = 0; i < numbersStrings.Length; i++)
             {
-                numbers[i] = ToString.array01[i];
-
-
-                Console.WriteLine(subIntArray);
+                if (numbersStrings[i].Contains(num01.ToString()))
+                {
+                    indexes.Add (i);
+                }
+            }
+            foreach (var index in indexes)
+            {
+            Console.Write(indexes[index]);
             }
         }
 
