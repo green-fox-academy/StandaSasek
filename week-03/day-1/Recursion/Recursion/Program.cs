@@ -60,13 +60,14 @@ namespace Recursion
             // Given a string, compute recursively a new string where all the 'x' chars have been removed.
 
             /*var word = "XNOT is Whx not";
-            Console.WriteLine(Xremoved(word)); // Removes all 'X' and 'x'*/
+            Console.WriteLine(Xremoved(word)); // Removes both 'X' and 'x'*/
 
             // Strings again and again
             // Given a string, compute recursively a new string where all the adjacent chars are now separated by a *
 
-            var word = "Hello";
-            Console.WriteLine(AddStar(word)); // Not finished
+            /*var word = "Hello";
+            Console.WriteLine(AddStar(word));*/
+
 
         }
         private static string AddStar(string word)
@@ -75,13 +76,9 @@ namespace Recursion
             {
                 return word;
             }
-            else if (word.Substring(1).Length == 1)
-            {
-                return word.Insert(0, "*");
-            }
             else
             {
-                return word.Substring(0, 1) + AddStar(word.Substring(1));
+                return word.Substring(0, 1) + "*" + AddStar(word.Substring(1));
             }
         }
 
