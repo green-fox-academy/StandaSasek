@@ -68,8 +68,56 @@ namespace Recursion
             /*var word = "Hello";
             Console.WriteLine(AddStar(word));*/
 
+            //Fibonacci
+            // The fibonacci sequence is a famous bit of mathematics, and it happens to have a recursive definition. The first two values 
+            // in the sequence are 0 and 1(essentially 2 base cases).Each subsequent value is the sum of the previous two values, so the whole 
+            // sequence is: 0, 1, 1, 2, 3, 5, 8, 13, 21 and so on.
+            // Define a recursive fibonacci(n) method that returns the nth fibonacci number, with n = 0 representing the start of the sequence.
+
+            /* int number = 7;
+             Console.WriteLine("Fibonacci number of {0} is {1}.", number, MyFibonacci(number));*/
+
+            // Maximum finder
+            // Write a function that finds the largest element of an array using recursion.
+
+            // var numbers = new int[] { 1, 2, 3, 4 }; // Was not able to find a solution without changing to list or so
+
+
+
+
 
         }
+       /* private static int MaxFinder(int[] numbers)
+        {
+            if (numbers.Length == 1)
+            {
+                return numbers[0];
+            }
+            else
+            {
+                return MaxFinder(numbers[Array.FindIndex()
+                  
+
+                )
+            }
+
+        }*/
+        private static int MyFibonacci(int number)
+        {
+            if (number == 0)
+            {
+                return 0;
+            }
+            else if (number == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return MyFibonacci(number - 1) + MyFibonacci(number - 2);
+            }
+        }
+
         private static string AddStar(string word)
         {
             if (word.Length <= 1)
