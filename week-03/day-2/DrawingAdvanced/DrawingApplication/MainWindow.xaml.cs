@@ -24,10 +24,28 @@ namespace DrawingApplication
 
             // draw from here
 
-            foxDraw.SetFillColor(Colors.White);
+            /*foxDraw.SetFillColor(Colors.White);
+            RectangleFractal(foxDraw, 100, 100, 600); // Not exact lines, made by thirds rounding somehow*/
 
-            RectangleFractal(foxDraw, 100, 100, 600); // Not exact lines, made by thirds rounding somehow
+            HexagonFractal(foxDraw, 200, 400, 400);
 
+
+
+        }
+        private static void HexagonFractal(FoxDraw foxDraw, double size, double x, double y)
+        {
+            Hexagon(foxDraw, size, x, y);
+
+            if (size < 110)
+            {
+                Hexagon(foxDraw, size, x, y);
+            }
+            else
+            {
+                HexagonFractal(foxDraw, size, x - size / 2, y);
+                HexagonFractal(foxDraw, size / 2, x - size / 4, y - size / 2);
+               // HexagonFractal(foxDraw, size / 2, x + size / 2, y);
+            }
         }
 
         private static void RectangleFractal(FoxDraw foxDraw, double xPoint, double yPoint, double size)
@@ -36,7 +54,6 @@ namespace DrawingApplication
             
             if (size < 5)
             {
-                foxDraw.SetStrokeColor(GetColor());
                 foxDraw.DrawRectangle(xPoint, yPoint, size, size);
             }
             else
