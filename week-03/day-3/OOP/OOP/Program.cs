@@ -45,10 +45,91 @@ namespace OOP
 
             onEngineer.PrintBlogPost();*/
 
+            /*Animal fox = new Animal("Fox");
+            Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);
 
+            for (int i = 0; i < 25; i++)
+            {
+                fox.Drink();
+                //fox.Eat();
+            }
+            Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);
+            for (int i = 0; i < 25; i++)
+            {
+                fox.Drink();
+                fox.Eat();
+            }
+            Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);
+            for (int i = 0; i < 25; i++)
+            {
+                // fox.Drink();
+                fox.Eat();
+            }
+            Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);
+            for (int i = 0; i < 60; i++)
+            {
+                fox.Play();
+            }
 
+            Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);*/
 
+            /*Sharpie green = new Sharpie("Green", 0.5);
 
+            for (int i = 0; i < 200; i++)
+            {
+                green.Use();
+            }
+            Console.WriteLine("In this {0} Sharpie remains {1}% of ink.", green.Color.ToLower(), Math.Round(green.InkAmount, 2));
+            Console.WriteLine();
+            for (int i = 0; i < 75; i++)
+            {
+                green.Use();
+            }
+            Console.WriteLine("In this {0} Sharpie remains {1}% of ink.", green.Color.ToLower(), Math.Round(green.InkAmount, 3));
+            Console.WriteLine();*/
+
+            /* Counter pocitadlo = new Counter();
+             Console.WriteLine(pocitadlo.Counted);
+
+             for (int i = 0; i < 50; i++)
+             {
+                 pocitadlo.Add();
+             }
+
+             Console.WriteLine(pocitadlo.Counted);
+
+             pocitadlo.Reset();
+
+             Console.WriteLine(pocitadlo.Counted);
+
+             for (int i = 0; i < 123; i++)
+             {
+                 pocitadlo.Add();
+             }
+
+             Console.WriteLine(pocitadlo.Counted);
+
+             string otherPocitadlo = "";
+             otherPocitadlo = pocitadlo.Get();
+
+             Console.WriteLine(pocitadlo + " " + pocitadlo.Counted + " new string " + otherPocitadlo);*/
+
+            List<Pokemon> pokemonOfAsh = InitializePokemon();
+
+            // Every pokemon has a name and a type.
+            // Certain types are effective against others, e.g. water is effective against fire.
+
+            // Ash has a few pokemon.
+            // A wild pokemon appeared!
+
+            Pokemon wildPokemon = new Pokemon("Oddish", "leaf", "water");
+
+            // Which pokemon should Ash use?
+
+            Console.Write("I choose you, ");
+            
+            
+            Console.WriteLine();
             Console.ReadLine();
 
 
@@ -58,6 +139,19 @@ namespace OOP
             List<string> cherry = new List<string> { "Fruit", "Dark green", "5", "Self-pollination" };
             List<string> nashi = new List<string> { "Fruit", "Dark green", "6", "Cross-pollination" };
             List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };
+        }
+
+        private static List<Pokemon> InitializePokemon()
+        {
+            return new List<Pokemon>
+            {
+                new Pokemon("Balbasaur", "leaf", "water"),
+                new Pokemon("Pikatchu", "electric", "water"),
+                new Pokemon("Charizard", "fire", "leaf"),
+                new Pokemon("Balbasaur", "water", "fire"),
+                new Pokemon("Kingler", "water", "fire")
+            };
+
         }
     }
 }
