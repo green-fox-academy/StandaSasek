@@ -34,7 +34,7 @@ namespace DrawingApplication
         }
         private static void HexagonFractal(FoxDraw foxDraw, double size, double x, double y)
         {
-            Hexagon(foxDraw, size, x, y);
+                Hexagon(foxDraw, size, x, y); 
 
             if (size < 110)
             {
@@ -42,16 +42,19 @@ namespace DrawingApplication
             }
             else
             {
-                HexagonFractal(foxDraw, size, x - size / 2, y);
-                HexagonFractal(foxDraw, size / 2, x - size / 4, y - size / 2);
-               // HexagonFractal(foxDraw, size / 2, x + size / 2, y);
+                HexagonFractal(foxDraw, size / 2, x - size / 4, y - (size / 2)); // top left small - perfect position
+                HexagonFractal(foxDraw, size / 2, x + size / 2, y); // right small - x is OK, y is like +10% or so - BUT there should be NO change in y at all
+
+                // Console.WriteLine("size " + (size / 2) + " x " + (x - size / 4) + " y " + (y + (size / 2))); // numbers from calc itself looks correct, new middle is 400 - 50, 400 + 100
+
+                HexagonFractal(foxDraw, size / 2, x - size / 4, y + (size / 2)); // left bottom small - x is OK, y is like +20% or so
             }
         }
 
         private static void RectangleFractal(FoxDraw foxDraw, double xPoint, double yPoint, double size)
         {
             foxDraw.DrawRectangle(xPoint, yPoint, size, size);
-            
+
             if (size < 5)
             {
                 foxDraw.DrawRectangle(xPoint, yPoint, size, size);
@@ -86,8 +89,13 @@ namespace DrawingApplication
         private static void Hexagon(FoxDraw foxDraw, double size, double x, double y)
         {
             Point startingPoint = new Point(x, y);
+            Console.WriteLine(size + " " + x + " " + y); // numbers from calc itself looks correct
+
             foxDraw.SetFillColor(Colors.White);
-            Point a = new Point(startingPoint.X - 0.5 * size, startingPoint.Y - 1 * size);
+
+            Console.WriteLine((startingPoint.X - (0.5 * size)) + "  " + (startingPoint.Y - (1.0 * size))); // numbers from calc itself looks correct
+
+            Point a = new Point(startingPoint.X - (0.5 * size), startingPoint.Y - (1.0 * size));
             Point b = new Point(a.X + 1 * size, a.Y);
             Point c = new Point(a.X + 1.5 * size, a.Y + (Math.Sqrt(3) / 2.0 * size));
             Point d = new Point(a.X + 1 * size, a.Y + 2 * (Math.Sqrt(3) / 2.0 * size));
