@@ -7,28 +7,18 @@ namespace OOP
     class Counter
     {
         int counted;
+        int setNumber;
 
-        public int Counted
-        {
-            get => counted;
-            set
-            {
-                if (value < 0)
-                {
-                    counted = 0;
-                }
-                else
-                {
-                    counted = value;
-                };
+        public int SetNumber { get => setNumber; private set => setNumber = value; }
 
-            }
-        }
-        public Counter ()
+        public int Counted { get => counted; private set => counted = value; }
+
+        public Counter(int startingNumber = 0)
         {
-            Counted = 0;
+            SetNumber = startingNumber;
+            Counted = startingNumber;
         }
-        public int Add (int number)
+        public int Add(int number)
         {
             Counted = Counted + number;
             return Counted;
@@ -44,7 +34,9 @@ namespace OOP
         }
         public void Reset()
         {
-            Counted = 0;
+            Counted = SetNumber;
         }
     }
 }
+
+

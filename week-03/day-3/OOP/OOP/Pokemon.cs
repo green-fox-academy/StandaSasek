@@ -17,7 +17,7 @@ namespace OOP
             EffectiveAgainst = effectiveAgainst;
         }
 
-        public bool IsEffectiveAgainst(Pokemon anotherPokemon)
+        public bool IsEffectiveAgainst(Pokemon anotherPokemon, Pokemon wildPokemon)
         {
             return EffectiveAgainst == anotherPokemon.Type;
         }

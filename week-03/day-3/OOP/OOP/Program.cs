@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Schema;
 
 namespace OOP
@@ -88,33 +89,28 @@ namespace OOP
             Console.WriteLine("In this {0} Sharpie remains {1}% of ink.", green.Color.ToLower(), Math.Round(green.InkAmount, 3));
             Console.WriteLine();*/
 
-            /* Counter pocitadlo = new Counter();
-             Console.WriteLine(pocitadlo.Counted);
+            /*Counter pocitadlo = new Counter();
+            Console.WriteLine(pocitadlo.Counted);
 
-             for (int i = 0; i < 50; i++)
-             {
-                 pocitadlo.Add();
-             }
+            for (int i = 0; i < 40; i++)
+            {
+                pocitadlo.Add();
+            }
 
-             Console.WriteLine(pocitadlo.Counted);
+            Console.WriteLine(pocitadlo.Counted);
 
-             pocitadlo.Reset();
+            pocitadlo.Reset();
 
-             Console.WriteLine(pocitadlo.Counted);
+            Console.WriteLine(pocitadlo.Counted);
 
-             for (int i = 0; i < 123; i++)
-             {
-                 pocitadlo.Add();
-             }
+            for (int i = 0; i < 123; i++)
+            {
+                pocitadlo.Add();
+            }
 
-             Console.WriteLine(pocitadlo.Counted);
+            Console.WriteLine(pocitadlo.Counted);*/
 
-             string otherPocitadlo = "";
-             otherPocitadlo = pocitadlo.Get();
-
-             Console.WriteLine(pocitadlo + " " + pocitadlo.Counted + " new string " + otherPocitadlo);*/
-
-            List<Pokemon> pokemonOfAsh = InitializePokemon();
+            /*List<Pokemon> pokemonOfAsh = InitializePokemon();
 
             // Every pokemon has a name and a type.
             // Certain types are effective against others, e.g. water is effective against fire.
@@ -126,19 +122,30 @@ namespace OOP
 
             // Which pokemon should Ash use?
 
-            Console.Write("I choose you, ");
-            
-            
+            var theRightPokemon = "";
+            foreach (var pokemon in pokemonOfAsh)
+            {
+                if (pokemon.IsEffectiveAgainst(wildPokemon, pokemon))
+                {
+                    theRightPokemon = pokemon.Name;
+                }
+            }
+
+            Console.Write("I choose you, " + theRightPokemon);*/
+
+
+
+
             Console.WriteLine();
             Console.ReadLine();
 
 
-            List<string> tree = new List<string> { "Type", "Leaf color", "Age", "Sex" };
+           /* List<string> tree = new List<string> { "Type", "Leaf color", "Age", "Sex" };
             List<string> apricot = new List<string> { "Ornamental", "Green", "5", "Partly self-pollinating" };
             List<string> apple = new List<string> { "Fruit", "Green", "5", "Cross-pollination" };
             List<string> cherry = new List<string> { "Fruit", "Dark green", "5", "Self-pollination" };
             List<string> nashi = new List<string> { "Fruit", "Dark green", "6", "Cross-pollination" };
-            List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };
+            List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };*/
         }
 
         private static List<Pokemon> InitializePokemon()
