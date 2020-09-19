@@ -15,8 +15,10 @@ namespace DiceSet
             DiceSet diceSet = new DiceSet();
 
             WriteNumbers(diceSet);
+            diceSet.Roll();
+            WriteNumbers(diceSet);
             Only6Back(diceSet);
-
+            Console.WriteLine();
             WriteNumbers(diceSet);
 
         }
