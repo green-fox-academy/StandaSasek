@@ -74,20 +74,7 @@ namespace OOP
 
             Console.WriteLine("Animal {0} feels hunger of {1} and thirst of {2}", fox.AnimalName, fox.Hunger, fox.Thirst);*/
 
-            /*Sharpie green = new Sharpie("Green", 0.5);
 
-            for (int i = 0; i < 200; i++)
-            {
-                green.Use();
-            }
-            Console.WriteLine("In this {0} Sharpie remains {1}% of ink.", green.Color.ToLower(), Math.Round(green.InkAmount, 2));
-            Console.WriteLine();
-            for (int i = 0; i < 75; i++)
-            {
-                green.Use();
-            }
-            Console.WriteLine("In this {0} Sharpie remains {1}% of ink.", green.Color.ToLower(), Math.Round(green.InkAmount, 3));
-            Console.WriteLine();*/
 
             /*Counter pocitadlo = new Counter();
             Console.WriteLine(pocitadlo.Counted);
@@ -133,11 +120,42 @@ namespace OOP
 
             Console.Write("I choose you, " + theRightPokemon);*/
 
+            // Sharpie Set
+            /*Reuse your Sharpie class
+            Create SharpieSet class
+            it contains a list of Sharpie
+            Add method CountUsable() -> sharpie is usable if it has ink in it
+            Add method RemoveTrash() -> removes all unusable sharpies*/
 
+            Sharpie green = new Sharpie("Green", 0.5);
+            Sharpie red = new Sharpie("Red", 50);
+            Sharpie blue = new Sharpie("Blue", 2);
+            Sharpie yellow = new Sharpie("Yellow", 40);
+            Sharpie black = new Sharpie("Black", 40);
+            SharpieSet penal = new SharpieSet();
 
+            penal.AddToSet(green);
+            penal.AddToSet(red);
+            penal.AddToSet(blue);
+            penal.AddToSet(yellow);
+            penal.AddToSet(black);
+            
+            penal.CountUsable();
+
+            for (int i = 0; i < 3; i++)
+            {
+                green.Use();
+                red.Use();
+                blue.Use();
+                yellow.Use();
+                black.Use();
+            }
+            penal.CountUsable();
+           
+            Console.WriteLine();
 
             Console.WriteLine();
-            Console.ReadLine();
+            penal.RemoveTrash();
 
 
            /* List<string> tree = new List<string> { "Type", "Leaf color", "Age", "Sex" };
@@ -148,7 +166,7 @@ namespace OOP
             List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };*/
         }
 
-        private static List<Pokemon> InitializePokemon()
+        /*private static List<Pokemon> InitializePokemon()
         {
             return new List<Pokemon>
             {
@@ -159,6 +177,6 @@ namespace OOP
                 new Pokemon("Kingler", "water", "fire")
             };
 
-        }
+        }*/
     }
 }

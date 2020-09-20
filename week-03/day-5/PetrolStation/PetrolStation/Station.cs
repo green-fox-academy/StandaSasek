@@ -66,10 +66,6 @@ namespace PetrolStation
             Console.ReadKey();
             car.CarStatus();
         }
-        internal static void Refill(string carName)
-        {
-            throw new NotImplementedException();
-        }
 
         public static void CleanSpilledGas()
         {

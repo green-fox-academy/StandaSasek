@@ -21,6 +21,10 @@ namespace PetrolStation
                     gasAmountCar = 100;
                     GasSpilled();
                 }
+                else if (value <= 5)
+                {
+                    EmptyCarTank();
+                }
                 else if (value < 0)
                 {
                     gasAmountCar = 0;
@@ -39,7 +43,7 @@ namespace PetrolStation
         public void EmptyCarTank()
         {
             Console.WriteLine("The car's fuel tank will soon be empty, refuel.");
-            Station.Refill(carName);
+            CarStatus();
         }
         public void GasSpilled()
         {
@@ -53,7 +57,18 @@ namespace PetrolStation
         }
         public void CarTrip(Int32 km)
         {
+            var enoughGasForTrip = GasAmountCar - km;
+            if (GasAmountCar - km >= 0)
+            {
+                this.GasAmountCar -= km;
             Console.WriteLine("Awesome, it was a beautiful {0} km long trip. Nice views and stunning architecture.", km);
+            }
+            else
+            { 
+                this.GasAmountCar -= GasAmountCar;
+            Console.WriteLine("Ohh, how sad situation, you were able to drive only {0} km.", km);
+            }
+            Console.ReadKey();
             this.GasAmountCar -= km;
             CarStatus();
         }

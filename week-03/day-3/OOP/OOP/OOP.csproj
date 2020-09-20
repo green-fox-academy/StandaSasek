@@ -9,8 +9,4 @@
     <None Remove="Program._cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="Program._cs" />
-  </ItemGroup>
-
 </Project>

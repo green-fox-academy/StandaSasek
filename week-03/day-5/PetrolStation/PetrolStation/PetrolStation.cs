@@ -36,13 +36,15 @@ namespace PetrolStation
             benzina.StationStatus();
             chrysler.CarStatus();
 
-            chrysler.CarTrip(56);
+            /*chrysler.CarTrip(56);
 
             benzina.RefillAutomatic(chrysler);
 
             chrysler.CarTrip(25);
 
-            benzina.RefillSelfservice(chrysler, 20);
+            benzina.RefillSelfservice(chrysler, 20);*/
+
+            chrysler.CarTrip(150);
 
         }
     }

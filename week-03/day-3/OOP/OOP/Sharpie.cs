@@ -6,12 +6,27 @@ namespace OOP
 {
     class Sharpie
     {
-        string color;
-        double width;
         double inkAmount;
-        public string Color { get => color; set => color = value; }
-        public double Width { get => width; set => width = value; }
-        public double InkAmount { get => inkAmount; set => inkAmount = value; }
+        public string Color { get; private set; }
+        public double Width { get; private set; }
+        public double InkAmount
+        {
+            get
+            {
+                return inkAmount;
+            }
+            private set
+            {
+                if (value <= 0)
+                {
+                    inkAmount = 0;
+                }
+                else
+                {
+                    inkAmount = value;
+                }
+            }
+        }
         public Sharpie(string color, double width)
         {
             Color = color;
@@ -20,7 +35,11 @@ namespace OOP
         }
         public void Use()
         {
-            InkAmount = InkAmount - 0.1 * width;
+            InkAmount -= Width;
+        }
+        public double InkAmountSharpie()
+        {
+            return InkAmount;
         }
     }
 }
