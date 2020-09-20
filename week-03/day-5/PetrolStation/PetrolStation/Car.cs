@@ -14,7 +14,7 @@ namespace PetrolStation
         public int GasAmountCar
         {
             get => gasAmountCar;
-            private set
+             set
             {
                 if (value > 100)
                 {
@@ -34,15 +34,13 @@ namespace PetrolStation
         public Car(string name)
         {
             CarName = name;
-            GasAmountCar = gasAmountCar;
-            gasAmountCar += 100;
+            gasAmountCar = 100;
         }
-        /*public void EmptyCarTank()
+        public void EmptyCarTank()
         {
             Console.WriteLine("The car's fuel tank will soon be empty, refuel.");
-            
-            // Station.Refill(this.CarName);
-        }*/
+            Station.Refill(carName);
+        }
         public void GasSpilled()
         {
             Console.WriteLine("Gasoline spilled under car, please call gas station staff.");
@@ -50,7 +48,7 @@ namespace PetrolStation
         }
         public int CarStatus()
         {
-            Console.WriteLine("Fuel level in tank of car {0} is {1} litres.", this.CarName, this.GasAmountCar); 
+            Console.WriteLine("Fuel level in {0} is {1} litres.", this.CarName, this.GasAmountCar); 
             return this.GasAmountCar;
         }
         public void CarTrip(Int32 km)

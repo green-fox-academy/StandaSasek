@@ -6,9 +6,6 @@ namespace Testing
 {
     public class Program
     {
-        static void Main()
-        {
-        }
         [Fact]
         public void PassingTest()
         {

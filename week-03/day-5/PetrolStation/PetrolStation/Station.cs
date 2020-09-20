@@ -9,8 +9,7 @@ namespace PetrolStation
 {
     class Station
     {
-        string stationName;
-        public string StationName { get => stationName; private set => stationName = value; }
+        public string StationName { get; private set; }
 
         private int gasAmountStation;
         public int GasAmountStation
@@ -40,18 +39,42 @@ namespace PetrolStation
         public void RefillEmptyStation()
         {
             Console.WriteLine("Please wait while we refill gasoline to the gas station tank.");
-            GasAmountStation += 1000;
+            var toFill = 1000 - GasAmountStation;
+            GasAmountStation += toFill;
+            Console.ReadKey();
+            StationStatus();
 
+            GasAmountStation += 1000;
+            Console.ReadKey();
+            Console.WriteLine("Gas station is ready to serve again.");
         }
-        public void Refill(string CarName)
+        public void RefillAutomatic(Car car)
         {
             Console.WriteLine("Please stop your engine and wait. We will refuel your car soon.");
-            // this.GasAmountStation -= 100 - CarStatus(CarName); // does not work... lost in names/classes/methods/this/Big letters/small letters again :-(
+            var missingGas = 100 - car.GasAmountCar;
+            var toFill = GasAmountStation - missingGas >= 0 ? missingGas : GasAmountStation;
+            GasAmountStation -= toFill;
+            car.GasAmountCar += toFill;
+            Console.ReadKey();
+            car.CarStatus();
         }
+        public void RefillSelfservice(Car car, int amount)
+        {
+            Console.WriteLine("Please stop your engine and refuel your car. Beware of your maximum gasoline volume.");
+            GasAmountStation -= amount;
+            car.GasAmountCar += amount;
+            Console.ReadKey();
+            car.CarStatus();
+        }
+        internal static void Refill(string carName)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void CleanSpilledGas()
         {
             Console.WriteLine("Please wait while we clean spilled gasoline.");
-            Console.ReadLine();
+            Console.ReadKey();
             Console.WriteLine("Gas station is clean again.");
         }
         public void StationStatus()

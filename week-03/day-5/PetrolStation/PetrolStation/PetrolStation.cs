@@ -19,15 +19,30 @@ namespace PetrolStation
             initialize capacity-> 100
             */
 
-            Station benzina1 = new Station("Benzina Praha");
+            /* TRY THESE:
+            EmptyCarTank()
+            CarStatus()
+            CarTrip(Int32 km)
+            
+            RefillEmptyStation()
+            RefillAutomatic(Car car)
+            RefillSelfservice(Car car, int amount) // try to overfill ;-)
+            StationStatus()
+            */
+
+            Station benzina = new Station("Benzina");
             Car chrysler = new Car("Chrysler");
 
-            benzina1.StationStatus();
+            benzina.StationStatus();
             chrysler.CarStatus();
 
             chrysler.CarTrip(56);
 
-            chrysler.GasSpilled();
+            benzina.RefillAutomatic(chrysler);
+
+            chrysler.CarTrip(25);
+
+            benzina.RefillSelfservice(chrysler, 20);
 
         }
     }
