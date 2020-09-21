@@ -7,9 +7,9 @@ namespace OOP
 {
     class PostIt
     {
-        public ConsoleColor BackgroundColor { get; set; }
-        public ConsoleColor TextColor { get; set; }
-        public String Text { get; set; }
+        public ConsoleColor BackgroundColor { get; private set; }
+        public ConsoleColor TextColor { get; privateset; }
+        public String Text { get; private set; }
 
         public PostIt(ConsoleColor background, ConsoleColor textColor, string text)
         {

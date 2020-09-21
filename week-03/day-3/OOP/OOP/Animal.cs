@@ -50,15 +50,9 @@ namespace OOP
             }
         }
 
-        public Animal(string animalName)
+        public Animal(string animalName = "IAnimal")
         {
             AnimalName = animalName;
-            hunger = 50;
-            thirst = 50;
-        }
-        public Animal()
-        {
-            AnimalName = "IAnimal";
             hunger = 50;
             thirst = 50;
         }

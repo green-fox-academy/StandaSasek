@@ -18,14 +18,7 @@ namespace FleetOfThings
         }
         public string NameWithCompleted()
         {
-            if (this.completed)
-            {
-                return ("[x] " + this.name);
-            }
-            else
-            {
-                return ("[ ] " + this.name);
-            }
+            return (completed ? "[x] " : "[ ] ") + name;
         }
     }
 }

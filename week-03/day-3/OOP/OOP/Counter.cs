@@ -18,15 +18,13 @@ namespace OOP
             SetNumber = startingNumber;
             Counted = startingNumber;
         }
-        public int Add(int number)
+        public void Add(int number)
         {
             Counted = Counted + number;
-            return Counted;
         }
-        public int Add()
+        public void Add()
         {
             Counted++;
-            return Counted;
         }
         public string Get()
         {

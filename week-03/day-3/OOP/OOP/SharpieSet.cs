@@ -19,9 +19,9 @@ namespace OOP
         public void CountUsable()
         {
             var numberOfSharpiesWithInk = 0;
-            foreach (var item in Sharpies)
+            for (int i = 0; i < Sharpies.Count; i++)
             {
-                if (item.InkAmountSharpie() > 0)
+                if (Sharpies[i].InkAmountSharpie() > 0)
                 {
                     numberOfSharpiesWithInk += 1;
                 }
@@ -30,16 +30,15 @@ namespace OOP
         }
         public void RemoveTrash()
         {
-            var numberOfSharpiesWithInk = Sharpies.Count;
-            for (int i = 0; i < Sharpies.Count; i++)
+            // var numberOfSharpiesWithInk = 1; // TODO find out why it counts -1 - if I set 0 as in CountUsable. When CountUsable is 
+            foreach (var item in Sharpies)
             {
-                if (Sharpies[i].InkAmountSharpie() == 0)
+                if (item.InkAmountSharpie() <= 0)
                 {
-                    Sharpies.Remove(Sharpies[i]);
-                    numberOfSharpiesWithInk -= 1;
+                    Sharpies.Remove(item);
                 }
             }
-            Console.WriteLine("In set left only {0} usable Sharpies.", numberOfSharpiesWithInk); // TODO find why it counts +1
+            Console.WriteLine("In set left only {0} usable Sharpies.", Sharpies.Count); 
         }
 
     }

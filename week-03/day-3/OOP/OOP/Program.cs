@@ -127,10 +127,10 @@ namespace OOP
             Add method CountUsable() -> sharpie is usable if it has ink in it
             Add method RemoveTrash() -> removes all unusable sharpies*/
 
-            Sharpie green = new Sharpie("Green", 0.5);
+            Sharpie green = new Sharpie("Green", 50);
             Sharpie red = new Sharpie("Red", 50);
-            Sharpie blue = new Sharpie("Blue", 2);
-            Sharpie yellow = new Sharpie("Yellow", 40);
+            Sharpie blue = new Sharpie("Blue", 50);
+            Sharpie yellow = new Sharpie("Yellow", 10);
             Sharpie black = new Sharpie("Black", 40);
             SharpieSet penal = new SharpieSet();
 
@@ -154,16 +154,19 @@ namespace OOP
            
             Console.WriteLine();
 
+            penal.RemoveTrash();
+
             Console.WriteLine();
+            penal.CountUsable();
             penal.RemoveTrash();
 
 
-           /* List<string> tree = new List<string> { "Type", "Leaf color", "Age", "Sex" };
-            List<string> apricot = new List<string> { "Ornamental", "Green", "5", "Partly self-pollinating" };
-            List<string> apple = new List<string> { "Fruit", "Green", "5", "Cross-pollination" };
-            List<string> cherry = new List<string> { "Fruit", "Dark green", "5", "Self-pollination" };
-            List<string> nashi = new List<string> { "Fruit", "Dark green", "6", "Cross-pollination" };
-            List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };*/
+            /* List<string> tree = new List<string> { "Type", "Leaf color", "Age", "Sex" };
+             List<string> apricot = new List<string> { "Ornamental", "Green", "5", "Partly self-pollinating" };
+             List<string> apple = new List<string> { "Fruit", "Green", "5", "Cross-pollination" };
+             List<string> cherry = new List<string> { "Fruit", "Dark green", "5", "Self-pollination" };
+             List<string> nashi = new List<string> { "Fruit", "Dark green", "6", "Cross-pollination" };
+             List<string> rowan = new List<string> { "Ornamental", "Light green", "7", "Self-pollination" };*/
         }
 
         /*private static List<Pokemon> InitializePokemon()
