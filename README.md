@@ -8,4 +8,4 @@ Please feel free to check my work in GreenFox Academy course:
   - [second day ever in C#](https://github.com/green-fox-academy/StandaSasek/tree/master/week-01/day-5)  
 
 
-My first real [app Kanban](https://github.com/green-fox-academy/StandaSasek/projects/1)
+My first real app TODO - check [app Kanban](https://github.com/green-fox-academy/StandaSasek/projects/1)
