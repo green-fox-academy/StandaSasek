@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace TODOapp
+namespace Todoapp
 {
-    class Todo //: IPrintable
+    class Todo
     {
-        protected string task;
+        public string task;
         // TODO add priority sorting function
         // protected string priority; 
         protected bool done;
@@ -28,9 +28,10 @@ namespace TODOapp
                 done = false;
             }
         }
-        /*public void PrintAllFields()
+        public string IsDone()
         {
-            Console.WriteLine($"- {task}");
-        }*/
+            return (done ? "[x] " : "[ ] ") + task;
+        }
+     
     }
 }

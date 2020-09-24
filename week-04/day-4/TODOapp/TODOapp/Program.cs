@@ -4,55 +4,141 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TODOapp
+namespace Todoapp
 {
     class Program
     {
         static void Main(string[] args)
         {
+            string pathFile = "todos.txt";
+
             if (args.Length == 0)
             {
                 Usage();
             }
-
-
-            foreach (var item in todos)
+            else if (args[0].Equals("-l"))
             {
-                item.PrintAllFields();
+                ListAllTodos(GetTodos(pathFile));
             }
-        }
-        public void List()
-        {
-            var todos = new List<Todo>();
-            using (var sr = new StreamReader("todos.txt"))
+            else if (args[0].Equals("-a"))
             {
-                var line = "";
-                while (line != null)
+                if (args.Length >= 2)
                 {
-                    line = sr.ReadLine();
-                    allLines.Add(line);
+                    Todo newTodo = new Todo(args[1]);
+                    AddToFile(newTodo, GetTodos(pathFile), pathFile);
                 }
-                var text = sr.ReadLine()
-        }
-
-        }
-        public void Add()
-        {
-            using (var sw = new StreamWriter("todos.txt"))
+                else
+                {
+                    Console.WriteLine("Unable to add: no task provided");
+                }
+            }
+            else if (args[0].Equals("-r"))
             {
-                sw.Write(todo);
+                if (args.Length >= 2)
+                {
+                    bool input = Int32.TryParse(args[1], out int index);
+                    if (input)
+                    {
+                        RemoveFromFile(index, GetTodos(pathFile), pathFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unable to remove: index is not a number");
+                    }
+                }
+                else if (args.Length == 1)
+                {
+                    Console.WriteLine("Unable to remove: no index provided");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unsupported argument");
             }
 
+            /*ListAllTodos(GetTodos(pathFile)); 
+            Todo pokus = new Todo("pokus new todo");
+            Console.WriteLine(pokus.task);*/
+
+        }
+        public static void ListAllTodos(Dictionary<int, string> todosList)
+        {
+            Console.WriteLine();
+            foreach (var line in todosList)
+            {
+                Console.WriteLine($"{line.Key} - {line.Value}");
+            }
+        }
+        public static Dictionary<int, string> GetTodos(string pathFile)
+        {
+            var todosList = new Dictionary<int, string>();
+            if (File.Exists(pathFile))
+            {
+                string[] lines = File.ReadAllLines(pathFile);
+                if (lines.Length == 0)
+                {
+                    Console.WriteLine("No todos for today! :)");
+                }
+                else
+                {
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        todosList.Add(i + 1, lines[i]);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unable to read file.");
+            }
+            return todosList;
+        }
+        public static void SaveTodos(string pathFile, Dictionary<int, string> todosList)
+        {
+            if (File.Exists(pathFile))
+            {
+                using (StreamWriter sw = new StreamWriter(pathFile))
+                {
+                    foreach (var todo in todosList)
+                    {
+                        sw.WriteLine("{0}", todo.Value);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Unable to read file.");
+            }
+        }
+        public static void AddToFile(Todo newTodo, Dictionary<int, string> todosList, string pathFile)
+        {
+            todosList.Add(todosList.Count + 1, newTodo.task);
+            SaveTodos(pathFile, todosList);
+        }
+        /*public static void CheckTask(int index, Dictionary<int, string> todosList, string pathFile)
+        {
+            todosList.Add(todosList.Count + 1, newTodo.task);
+            SaveTodos(pathFile, todosList);
+        }*/
+        public static void RemoveFromFile(int index, Dictionary<int, string> todosList, string pathFile)
+        {
+            var removed = todosList.Remove(index);
+            if (!removed)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Unable to remove: index is out of bound");
+            }
+            SaveTodos(pathFile, todosList);
         }
         public static void Usage()
         {
             Console.WriteLine("\nCommand Line Todo application\n" +
                 "=============================\n" +
                 "Command line arguments:\n" +
-                "    -l   Lists all the tasks\n" +
-                "    -a   Adds a new task\n" +
-                "    -r   Removes an task\n" +
-                "    -c   Completes an task");
+                "    -l                     Lists all the tasks\n" +
+                "    -a \"task to add\"       Adds a new task\n" +
+                "    -r NUM                 Removes task number NUM\n" +
+                "    -c NUM                 Completes task number NUM");
         }
     }
 }
