@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenFoxOrg", "Inheritance\GreenFoxOrg.csproj", "{6276E941-89DA-4073-946E-5AB415DCCBDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instruments", "Instruments\Instruments.csproj", "{E6DB648B-3EE7-4606-851B-90DF80095674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6276E941-89DA-4073-946E-5AB415DCCBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6276E941-89DA-4073-946E-5AB415DCCBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6276E941-89DA-4073-946E-5AB415DCCBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6276E941-89DA-4073-946E-5AB415DCCBDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6DB648B-3EE7-4606-851B-90DF80095674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6DB648B-3EE7-4606-851B-90DF80095674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6DB648B-3EE7-4606-851B-90DF80095674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6DB648B-3EE7-4606-851B-90DF80095674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3EB9D11F-43EE-41CF-B36E-976F20A593B0}
+		SolutionGuid = {C821AAF6-8826-400A-89BD-7548EFAF71A8}
 	EndGlobalSection
 EndGlobal

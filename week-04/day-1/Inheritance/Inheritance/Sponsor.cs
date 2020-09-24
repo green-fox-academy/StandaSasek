@@ -8,9 +8,9 @@ namespace Inheritance
     {
         public string Company { get; private set; }
         public int HiredStudents { get; private set; }
-        public Sponsor(string _name, int _age, Gend _gender, string _company) : base(_name, _age, _gender)
+        public Sponsor(string inpName, int inpAge, Gend inpGender, string inpCompany) : base(inpName, inpAge, inpGender)
         {
-            Company = _company;
+            Company = inpCompany;
             HiredStudents = 0;
         }
         public Sponsor() : base()

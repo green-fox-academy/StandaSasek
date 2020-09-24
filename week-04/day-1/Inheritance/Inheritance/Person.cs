@@ -17,11 +17,11 @@ namespace Inheritance
         public int Age { get; private set; }
         public Gend Gender { get; private set; }
 
-        public Person(string _name, int _age, Gend _gender)
+        public Person(string inpName, int inpAge, Gend inpGender)
         {
-            Name = _name;
-            Age = _age;
-            Gender = _gender;
+            Name = inpName;
+            Age = inpAge;
+            Gender = inpGender;
         }
         public Person()
         {

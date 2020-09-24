@@ -14,6 +14,10 @@ namespace Domino
             // eg: [2, 4], [4, 3], [3, 5] ...
 
             PrintDominoes(dominoes);
+            dominoes.Sort();
+            Console.WriteLine();
+            PrintDominoes(dominoes);
+            Console.WriteLine();
             GetRightOrderList(dominoes);
             Console.WriteLine();
             PrintDominoes(dominoes);

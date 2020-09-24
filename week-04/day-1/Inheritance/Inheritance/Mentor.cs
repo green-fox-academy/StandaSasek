@@ -14,9 +14,9 @@ namespace Inheritance
     {
         public Seniority Level { get; private set; }
 
-        public Mentor(string _name, int _age, Gend _gender, Seniority _level) : base(_name, _age, _gender)
+        public Mentor(string inpName, int inpAge, Gend inpGender, Seniority inpLevel) : base(inpName, inpAge, inpGender)
         {
-            Level = _level;
+            Level = inpLevel;
         }
         public Mentor() : base()
         {

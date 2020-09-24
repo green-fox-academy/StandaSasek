@@ -5,20 +5,21 @@ namespace FleetOfThings
     public class Thing
     {
         private string name;
-        private bool completed;
+        public bool Completed { get; set; }
 
         public Thing(string name)
         {
             this.name = name;
+            Completed = false;
         }
 
         public void Complete()
         {
-            this.completed = true;
+            Completed = true;
         }
         public string NameWithCompleted()
         {
-            return (completed ? "[x] " : "[ ] ") + name;
+            return (Completed ? "[x] " : "[ ] ") + name;
         }
     }
 }

@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Inheritance
 {
-    class Student : Person
+    class Student : Person, ICloneable
     {
         public string PreviousOrganization { get; private set; }
         public int SkippedDays { get; private set; }
-        public Student(string _name, int _age, Gend _gender, string _prevOrg) : base(_name, _age, _gender)
+        public Student(string inpName, int inpAge, Gend inpGender, string inpPrevOrg) : base(inpName, inpAge, inpGender)
         {
-            PreviousOrganization = _prevOrg;
+            PreviousOrganization = inpPrevOrg;
             SkippedDays = 0;
         }
         public Student() : base()
@@ -32,6 +32,11 @@ namespace Inheritance
         public void SkipDays(int numberOfDays)
         {
             SkippedDays += numberOfDays; 
+        }
+
+        public object Clone()
+        {
+            return new Student(Name, Age, Gender, PreviousOrganization);
         }
     }
 }
