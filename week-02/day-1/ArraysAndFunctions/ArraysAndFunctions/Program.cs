@@ -293,10 +293,40 @@ namespace ArraysAndFunctions
 
             //  Example
 
-            Console.WriteLine(Unique(new[] { 1, 11, 34, 11, 52, 61, 1, 34 }));
+            // Console.WriteLine(Unique(new[] { 1, 11, 34, 11, 52, 61, 1, 34 }));
+            // should print: `[1, 11, 34, 52, 61]`
 
-            //  should print: `[1, 11, 34, 52, 61]`
+            // ANAGRAM
+            // Create a function named is anagram following your current language's style guide. It should take two strings and return a boolean value depending on whether its an anagram or not.
+            // Examples
+            // input 1 input 2 output
+            // "dog"   "god"   true
+            // "green" "fox"   false
 
+           /* Console.WriteLine(Anagram("dog", "god"));
+            Console.WriteLine(Anagram("green", "tax"));
+            */
+
+
+        }
+        public static bool Anagram(string word1, string word2)
+        {
+            if (word1.Length != word2.Length)
+            {
+                return false;
+            }
+            var sample1 = word1.ToLower().ToList();
+            sample1.Sort();
+            var sample2 = word2.ToLower().ToList();
+            sample2.Sort();
+            for (int i = 0; i < sample1.Count; i++)
+            {
+                if (sample1[i] != sample2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         public static string Unique(int[] array)
         {
