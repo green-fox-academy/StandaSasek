@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
+using System.Net.WebSockets;
 
 namespace ArraysAndFunctions
 {
@@ -290,15 +292,19 @@ namespace ArraysAndFunctions
             //  Returns an array of integers where every integer occurs only once
 
             //  Example
+
             Console.WriteLine(Unique(new[] { 1, 11, 34, 11, 52, 61, 1, 34 }));
+
             //  should print: `[1, 11, 34, 52, 61]`
 
         }
-        public static Array Unique(int[] Array)
+        public static string Unique(int[] array)
         {
-
+            //Array.Sort(array);
+            var unique = array.Distinct();
+            var result = $"[{String.Join(",", unique)}]";
+            return result;
         }
-
         public static void SubInt(int num01, int[] array01)
         {
             string[] numbersStrings = Array.ConvertAll(array01, number => number.ToString());
@@ -308,16 +314,14 @@ namespace ArraysAndFunctions
             {
                 if (numbersStrings[i].Contains(num01.ToString()))
                 {
-                    indexes.Add (i);
+                    indexes.Add(i);
                 }
             }
             foreach (var index in indexes)
             {
-            Console.Write(indexes[index]);
+                Console.Write(indexes[index]);
             }
         }
-
-
         public static double Factorio(double num01)
         {
             double factor = 1;
@@ -327,8 +331,6 @@ namespace ArraysAndFunctions
             }
             return factor;
         }
-
-
         public static double Sum(double num01)
         {
             double sumOfAll = 0;
@@ -338,12 +340,10 @@ namespace ArraysAndFunctions
             }
             return sumOfAll;
         }
-
         public static string AppendFunc(string str01)
         {
             return str01 += "a";
         }
-
         public static string Greet(string str01)
         {
             return "Greetings dear, " + str01;
