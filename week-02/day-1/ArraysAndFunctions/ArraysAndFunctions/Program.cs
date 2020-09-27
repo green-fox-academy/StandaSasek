@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
+// using System.Linq;
 using System.Net.WebSockets;
 
 namespace ArraysAndFunctions
@@ -303,23 +303,37 @@ namespace ArraysAndFunctions
             // "dog"   "god"   true
             // "green" "fox"   false
 
-           /* Console.WriteLine(Anagram("dog", "god"));
-            Console.WriteLine(Anagram("green", "tax"));
-            */
+            /* Console.WriteLine(Anagram("dog", "god"));
+             Console.WriteLine(Anagram("green", "tax"));
+             */
 
+            // PALINDROME BUILDER
+            // Create a function named create palindrome following your current language's style guide. It should take a string, create a palindrome from it and then return it.
+            // Examples
+            // input   output
+            // ""  ""
+            //"greenfox"  "greenfoxxofneerg"
+            //"123"   "123321"
+
+            // Console.WriteLine(PalindromeBuilder("Šašek"));
 
         }
+        /*  public static string PalindromeBuilder(string word)
+          {
+              var palindrome = word + word.Reverse().ToString();
+              return palindrome;
+          }*/
         public static bool Anagram(string word1, string word2)
         {
             if (word1.Length != word2.Length)
             {
                 return false;
             }
-            var sample1 = word1.ToLower().ToList();
-            sample1.Sort();
-            var sample2 = word2.ToLower().ToList();
-            sample2.Sort();
-            for (int i = 0; i < sample1.Count; i++)
+            var sample1 = word1.ToLower().ToCharArray();
+            Array.Sort(sample1);
+            var sample2 = word2.ToLower().ToCharArray();
+            Array.Sort(sample2);
+            for (int i = 0; i < sample1.Length; i++)
             {
                 if (sample1[i] != sample2[i])
                 {
@@ -330,9 +344,25 @@ namespace ArraysAndFunctions
         }
         public static string Unique(int[] array)
         {
-            //Array.Sort(array);
-            var unique = array.Distinct();
-            var result = $"[{String.Join(",", unique)}]";
+            var unique = new List<int>();
+            unique.Add(array[0]);
+            for (int i = 0; i < array.Length; i++)
+            {
+                bool isUnique = true;
+                foreach (var item in unique)
+                {
+                    if (array[i] == item)
+                    {
+                        isUnique = false;
+                        break;
+                    }
+                }
+                if (isUnique)
+                {
+                    unique.Add(array[i]);
+                }
+            }
+            var result = $"[{String.Join(", ", unique)}]";
             return result;
         }
         public static void SubInt(int num01, int[] array01)
