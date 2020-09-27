@@ -315,14 +315,21 @@ namespace ArraysAndFunctions
             //"greenfox"  "greenfoxxofneerg"
             //"123"   "123321"
 
-            // Console.WriteLine(PalindromeBuilder("Šašek"));
+            Console.WriteLine(PalindromeBuilder("Šašek"));
+            Console.WriteLine(PalindromeBuilder("greenfox"));
+            Console.WriteLine(PalindromeBuilder("123"));
+
 
         }
-        /*  public static string PalindromeBuilder(string word)
-          {
-              var palindrome = word + word.Reverse().ToString();
-              return palindrome;
-          }*/
+        public static string PalindromeBuilder(string word)
+        {
+            var palindrome = word;
+            for (int i = word.Length - 1; i >= 0; i--)
+            {
+                palindrome += word[i];
+            }
+            return palindrome;
+        }
         public static bool Anagram(string word1, string word2)
         {
             if (word1.Length != word2.Length)
