@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 // using System.Linq;
 using System.Net.WebSockets;
+using System.Text;
 
 namespace ArraysAndFunctions
 {
@@ -315,11 +316,75 @@ namespace ArraysAndFunctions
             //"greenfox"  "greenfoxxofneerg"
             //"123"   "123321"
 
-            Console.WriteLine(PalindromeBuilder("Šašek"));
+            /*Console.WriteLine(PalindromeBuilder("Šašek"));
             Console.WriteLine(PalindromeBuilder("greenfox"));
-            Console.WriteLine(PalindromeBuilder("123"));
+            Console.WriteLine(PalindromeBuilder("123"));*/
 
+            // PALINDROME SEARCHER
+            // Create a function named search palindrome following your current language's style guide. It should take a string, search for palindromes that at least 3 characters long and return a list with the found palindromes.
+            //Examples
+            //input   output
+            //"dog goat dad duck doodle never"["og go", "g g", " dad ", "dad", "d d", "dood", "eve"]
+            //"apple"[]
+            //"racecar"["racecar", "aceca", "cec"]
+            //""[]
 
+            // PalindromeSearcher("dog goat dad duck doodle never"); // works well for our examples, do not work for Palindrome sentences, like "Murder for a jar of red rum."
+
+        }
+        public static void PalindromeSearcher(String words)
+        {
+            List<string> results = new List<string>();
+            words.ToLower();
+            for (int i = 1; i < words.Length - 1; i++)
+            {
+                int indexToStart = 0;
+                int lengthOfPalin = 0;
+                int letterFromIndex = 1;
+                while (i - letterFromIndex >= 0 && i + letterFromIndex < words.Length) // palindromes with the odd length 
+                {
+                    if (words[i - letterFromIndex] != words[i + letterFromIndex])
+                    {
+                        letterFromIndex += words.Length;
+                        break;
+                    }
+                    else
+                    {
+                        indexToStart = i - letterFromIndex;
+                        lengthOfPalin = (letterFromIndex * 2) + 1;
+                        string palin = words.Substring(indexToStart, lengthOfPalin);
+                        results.Add(palin);
+                    }
+                    letterFromIndex++;
+                }
+                letterFromIndex = 1;
+                if (words[i] == words[i + letterFromIndex])
+                {
+                    while (i - letterFromIndex >= 0 && i + letterFromIndex + 1 < words.Length) // palindromes with the even length 
+                    {
+                        if (words[i - letterFromIndex] != words[i + letterFromIndex + 1])
+                        {
+                            letterFromIndex += words.Length;
+                            break;
+                        }
+                        else
+                        {
+                            indexToStart = i - letterFromIndex;
+                            lengthOfPalin = (letterFromIndex * 2) + 2;
+                            string palin = words.Substring(indexToStart, lengthOfPalin);
+                            results.Add(palin);
+                        }
+                        letterFromIndex++;
+                    }
+                }
+            }
+            Console.Write("[");
+            foreach (var result in results)
+            {
+                Console.Write($"\"{result}\", ");
+            }
+            Console.Write("]");
+            Console.WriteLine();
         }
         public static string PalindromeBuilder(string word)
         {
