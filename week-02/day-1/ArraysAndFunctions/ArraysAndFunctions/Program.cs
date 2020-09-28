@@ -331,6 +331,62 @@ namespace ArraysAndFunctions
 
             // PalindromeSearcher("dog goat dad duck doodle never"); // works well for our examples, do not work for Palindrome sentences, like "Murder for a jar of red rum."
 
+            // SORT THAT LIST
+            //  Create a function that takes a list of numbers as parameter
+            //  Returns a list where the elements are sorted in ascending numerical order
+            //  Make a second boolean parameter, if it's `true` sort that list descending
+
+            //  Example:
+            // Console.WriteLine(Bubble(new int[] { 34, 12, 24, 9, 5 }));
+            //  should print [5, 9, 12, 24, 34]
+            // Console.WriteLine(AdvancedBubble(new int[] { 34, 12, 24, 9, 5 }, true));
+            //  should print [34, 24, 12, 9, 5]
+
+
+
+        }
+        public static string AdvancedBubble(int[] array, bool descending)
+        {
+            int[] sorted = array;
+            for (int s = 0; s < sorted.Length; s++)
+            {
+                for (int i = s; i < sorted.Length; i++)
+                {
+                    if (descending)
+                    {
+                        if (sorted[s] < sorted[i])
+                        {
+                            int temp = sorted[s];
+                            sorted[s] = sorted[i];
+                            sorted[i] = temp;
+                        }
+                    }
+                    else if (sorted[s] > sorted[i])
+                    {
+                        int temp = sorted[s];
+                        sorted[s] = sorted[i];
+                        sorted[i] = temp;
+                    }
+                }
+            }
+            return $"[{String.Join(",", sorted)}]";
+        }
+        public static string Bubble(int[] array)
+        {
+            int[] sorted = array;
+            for (int s = 0; s < sorted.Length; s++)
+            {
+                for (int i = s; i < sorted.Length; i++)
+                {
+                    if (sorted[s] > sorted[i])
+                    {
+                        int temp = sorted[s];
+                        sorted[s] = sorted[i];
+                        sorted[i] = temp;
+                    }
+                }
+            }
+            return $"[{String.Join(",", sorted)}]";
         }
         public static void PalindromeSearcher(String words)
         {
