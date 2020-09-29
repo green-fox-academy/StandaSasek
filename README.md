@@ -8,4 +8,5 @@ Please feel free to check my work in GreenFox Academy course:
   - [second day ever in C#](https://github.com/green-fox-academy/StandaSasek/tree/master/week-01/day-5)  
 
 
-My first real app TODO - check [app Kanban](https://github.com/green-fox-academy/StandaSasek/projects/1)
+My first real app TODO - check my progress [app Kanban](https://github.com/green-fox-academy/StandaSasek/projects/1)
+My first real game Wanderer - check my progress [game Kanban](https://github.com/green-fox-academy/StandaSasek/projects/2)
