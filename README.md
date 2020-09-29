@@ -9,4 +9,5 @@ Please feel free to check my work in GreenFox Academy course:
 
 
 My first real app TODO - check my progress [app Kanban](https://github.com/green-fox-academy/StandaSasek/projects/1)
+
 My first real game Wanderer - check my progress [game Kanban](https://github.com/green-fox-academy/StandaSasek/projects/2)
