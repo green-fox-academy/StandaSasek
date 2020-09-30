@@ -12,9 +12,6 @@ namespace Wanderer
         public int XPosition { get; protected set; } = 0;
         public int YPosition { get; protected set; } = 0;
         public string CharPicture { get; protected set; }
-        public int[,] Layout { get; protected set; }
-        public bool TileIsEmpty { get; protected set; }
-        
         public Character(int xPosition, int yPosition)
         {
             XPosition = xPosition;
@@ -26,32 +23,39 @@ namespace Wanderer
             image.Source = new Avalonia.Media.Imaging.Bitmap(CharPicture);
             foxDraw.AddImage(image, 72 * XPosition, 72 * YPosition);
         }
-        public virtual void DrawMap(FoxDraw foxDraw)
+        public virtual void Move(object sender, Avalonia.Input.KeyEventArgs Key)
         {
-            string layoutFilePath = @"..\..\..\MapLayout.txt";
-            string[] layout = File.ReadAllLines(layoutFilePath);
-            string tile = @"..\..\..\Assets\floor.png";
-            string wall = @"..\..\..\Assets\wall.png";
-            for (int r = 0; r < layout.Length; r++)
+            switch (Key.Key)
             {
-                for (int c = 0; c < layout[r].Length; c++)
-                {
-                    Layout[r,c] = layout[r][c];
-                    if (layout[r][c] == '1')
+                case Avalonia.Input.Key.Left:
                     {
-                        var image = new Avalonia.Controls.Image();
-                        image.Source = new Avalonia.Media.Imaging.Bitmap(tile);
-                        foxDraw.AddImage(image, 72 * r, 72 * c);
+                        this.CharPicture = @"..\..\..\Assets\hero-left.png";
+                        this.XPosition += 72;
+                        // this.DrawOnTile(foxDraw); // why it does not call the function
                     }
-                    else
+                    break;
+                case Avalonia.Input.Key.Up:
                     {
-                        var image = new Avalonia.Controls.Image();
-                        image.Source = new Avalonia.Media.Imaging.Bitmap(wall);
-                        foxDraw.AddImage(image, 72 * r, 72 * c);
+                        this.CharPicture = @"..\..\..\Assets\hero-up.png";
+                        this.YPosition -= 72;
                     }
-                }
+                    break;
+                case Avalonia.Input.Key.Right:
+                    {
+                        this.CharPicture = @"..\..\..\Assets\hero-right.png";
+                        this.XPosition -= 72;
+                    }
+                    break;
+                case Avalonia.Input.Key.Down:
+                    {
+                        this.CharPicture = @"..\..\..\Assets\hero-down.png";
+                        this.YPosition += 72;
+                    }
+                    break;
+                default:
+                    break;
+
             }
         }
-
     }
 }

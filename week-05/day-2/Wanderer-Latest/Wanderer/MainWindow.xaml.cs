@@ -25,11 +25,11 @@ namespace DrawingApplication
 
             Map gameMap = new Map();
             Hero hero = new Hero(0, 0);
+            gameMap.DrawMap(foxDraw);
             hero.DrawOnTile(foxDraw);
 
-            //KeyUp += hero.Move;
+            KeyUp += hero.Move;
             
-
         }
         private void InitializeComponent()
         {

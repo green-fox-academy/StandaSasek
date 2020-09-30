@@ -18,28 +18,33 @@ namespace Wanderer
             image.Source = new Avalonia.Media.Imaging.Bitmap(CharPicture);
             foxDraw.AddImage(image, 72 * this.XPosition, 72 * this.YPosition);
         }
-        public void Move(int x, int y, Avalonia.Input.KeyEventArgs Key)
+        public override void Move(object sender, Avalonia.Input.KeyEventArgs Key)
         {
             switch (Key.Key)
             {
                 case Avalonia.Input.Key.Left:
                     {
                         this.CharPicture = @"..\..\..\Assets\hero-left.png";
+                        this.XPosition += 72;
+                        // this.DrawOnTile(foxDraw); // why it does not call the function
                     }
                     break;
                 case Avalonia.Input.Key.Up:
                     {
                         this.CharPicture = @"..\..\..\Assets\hero-up.png";
+                        this.YPosition -= 72;
                     }
                     break;
                 case Avalonia.Input.Key.Right:
                     {
                         this.CharPicture = @"..\..\..\Assets\hero-right.png";
+                        this.XPosition -= 72;
                     }
                     break;
                 case Avalonia.Input.Key.Down:
                     {
                         this.CharPicture = @"..\..\..\Assets\hero-down.png";
+                        this.YPosition += 72;
                     }
                     break;
                 default:
