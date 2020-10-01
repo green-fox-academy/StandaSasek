@@ -1,56 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Avalonia;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using Avalonia.Media;
+using Avalonia.Input;
 using GreenFox;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Wanderer;
 
 namespace Wanderer
 {
     class Hero : Character
     {
-        public Hero(int xPosition, int yPosition) : base(xPosition, yPosition)
+        public Hero(FoxDraw foxDraw, int xPosition, int yPosition) : base(foxDraw, xPosition, yPosition)
         {
-            CharPicture = @"..\..\..\Assets\hero-down.png";
+            PictureFile = @"..\..\..\Assets\hero-down.png";
+            CharPicture.Source = new Avalonia.Media.Imaging.Bitmap(PictureFile);
+            FoxDraw.AddImage(CharPicture, 72 * XPosition, 72 * YPosition);
         }
-        public override void DrawOnTile(FoxDraw foxDraw)
+        public void Move(object sender, KeyEventArgs pressed)
         {
-            var image = new Avalonia.Controls.Image();
-            image.Source = new Avalonia.Media.Imaging.Bitmap(CharPicture);
-            foxDraw.AddImage(image, 72 * this.XPosition, 72 * this.YPosition);
-        }
-        public override void Move(object sender, Avalonia.Input.KeyEventArgs Key)
-        {
-            switch (Key.Key)
+            switch (pressed.Key)
             {
-                case Avalonia.Input.Key.Left:
+                case Key.A:
                     {
-                        this.CharPicture = @"..\..\..\Assets\hero-left.png";
-                        this.XPosition += 72;
-                        // this.DrawOnTile(foxDraw); // why it does not call the function
+                        this.PictureFile = @"..\..\..\Assets\hero-left.png";
+                        CharPicture.Source = new Avalonia.Media.Imaging.Bitmap(PictureFile);
+                        this.XPosition -= 1;
                     }
                     break;
-                case Avalonia.Input.Key.Up:
+                case Key.W:
                     {
-                        this.CharPicture = @"..\..\..\Assets\hero-up.png";
-                        this.YPosition -= 72;
+                        this.PictureFile = @"..\..\..\Assets\hero-up.png";
+                        CharPicture.Source = new Avalonia.Media.Imaging.Bitmap(PictureFile);
+                        this.YPosition -= 1;
                     }
                     break;
-                case Avalonia.Input.Key.Right:
+                case Key.D:
                     {
-                        this.CharPicture = @"..\..\..\Assets\hero-right.png";
-                        this.XPosition -= 72;
+                        this.PictureFile = @"..\..\..\Assets\hero-right.png";
+                        CharPicture.Source = new Avalonia.Media.Imaging.Bitmap(PictureFile);
+                        this.XPosition += 1;
                     }
                     break;
-                case Avalonia.Input.Key.Down:
+                case Key.S:
                     {
-                        this.CharPicture = @"..\..\..\Assets\hero-down.png";
-                        this.YPosition += 72;
+                        this.PictureFile = @"..\..\..\Assets\hero-down.png";
+                        CharPicture.Source = new Avalonia.Media.Imaging.Bitmap(PictureFile);
+                        this.YPosition += 1;
                     }
                     break;
                 default:
                     break;
-
             }
+            DrawOnTile();
         }
     }
 }

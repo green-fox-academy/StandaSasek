@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Avalonia.Layout;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using GreenFox;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Wanderer;
 
 namespace Wanderer
 {
@@ -16,9 +18,7 @@ namespace Wanderer
         public int[,] Layout { get; protected set; }
         public Map()
         {
-            
         }
-        
         public void DrawMap(FoxDraw foxDraw)
         {
             string layoutFilePath = @"..\..\..\MapLayout.txt";

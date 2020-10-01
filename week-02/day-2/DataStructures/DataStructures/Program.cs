@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace DataStructures
@@ -205,7 +204,7 @@ namespace DataStructures
              Console.ReadLine();*/
 
             // MAP INTRODUCTION 2
-            var myMap = new Dictionary<string, string>
+            /*var myMap = new Dictionary<string, string>
             { { "978-1-60309-452-8", "A Letter to Jo" },
                 { "978-1-60309-459-7", "Lupus" },
                 { "978-1-60309-444-3", "Red Panda and Moon Bear" },
@@ -217,20 +216,125 @@ namespace DataStructures
             }
 
             myMap.Remove("978-1-60309-444-3");
-
-            var item = myMap.First(kvp => kvp.Value == "The Lab"); // need to decode it - identifies key of searched value
-            myMap.Remove(item.Key);
-            
+            foreach (KeyValuePair<string, string> kvp in myMap)
+            {
+                if (kvp.Value == "The Lab")
+                {
+                    myMap.Remove(kvp.Key);
+                }
+            }
             Console.WriteLine();
             foreach (KeyValuePair<string, string> kvp in myMap)
             {
                 Console.WriteLine("{1} (ISBN: {0})", kvp.Key, kvp.Value);
             }
+            myMap.Add("978-1-60309-450-4", "They Called Us Enemy");
+            myMap.Add("978-1-60309-453-5", "Why Did We Trust Him?");
+
+            foreach (KeyValuePair<string, string> kvp in myMap)
+            {
+                if (kvp.Key == "478-0-61159-424-8")
+                {
+                    Console.WriteLine("Item with key: 478-0-61159-424-8 is in dict: " + true);
+                }
+            }
+            foreach (KeyValuePair<string, string> kvp in myMap)
+            {
+                if (kvp.Key == "978-1-60309-453-5")
+                {
+                    Console.WriteLine("ISBN: {0} is associated to {1}", kvp.Key, kvp.Value);
+                }
+            }*/
+
+            // PERSONAL FINANCE
+            //            We are going to represent our expenses in a list containing integers.
+            //Create a list with the following items.
+            //500, 1000, 1250, 175, 800 and 120
+            //Create an application which solves the following problems.
+            //How much did we spend?
+            //Which was our greatest expense?
+            //Which was our cheapest spending?
+            //What was the average amount of our spendings?
+
+            /*List<int> spendings = new List<int> { 500, 1000, 1250, 175, 800, 120 };
+            Spendings(spendings);*/
+
+            // TELEPHONE BOOK
+            // What is John K. Miller's phone number?
+            //Whose phone number is 307 - 687 - 2982 ?
+            //Do we know Chris E.Myers' phone number?
+            /*var phoneBook = new Dictionary<string, string>
+            { { "William A. Lathan", "405-709-1865" },
+                { "John K. Miller", "402-247-8568" },
+                { "Hortensia E. Foster", "606-481-6467" },
+                { "Amanda D. Newland", "319-243-5613" },
+                { "Brooke P. Askew", "307-687-2982" }};
+
+            SearchPhoneBook(phoneBook, "John K. Miller");
+            SearchPhoneBook(phoneBook, "307-687-2982");
+            SearchPhoneBook(phoneBook, "Chris E.Myers");*/
 
 
-            Console.ReadLine();
+        }
+        public static void SearchPhoneBook(Dictionary<string, string> phoneBook, string question)
+        {
+            bool isKnownOwner = false;
+            bool isKnownNumber = false;
+            bool isKnown = true;
+            string answer = "";
+            foreach (KeyValuePair<string, string> phone in phoneBook)
+            {
+                if (phone.Key == question)
+                {
+                    isKnownOwner = true;
+                    answer = phone.Value;
+                }
+                else if (phone.Value == question)
+                {
+                    isKnownNumber = true;
+                    answer = phone.Key;
+                }
+                else if (phone.Value != question && phone.Key != question)
+                {
+                    isKnown = false;
+                }
+            }
+            if (isKnownOwner)
+            {
+                Console.WriteLine($"You asked for owner of phone number {question}. Owner is {answer}");
+            }
+            else if (isKnownNumber)
+            {
+                Console.WriteLine($"You asked for phone number of {question}. It is {answer}");
+            }
+            else if (!isKnown)
+            {
+                Console.WriteLine($"We don't know phone number of " + question);
+            }
         }
 
+        public static void Spendings(List<int> amounts)
+        {
+            int sum = 0;
+            List<int> sorted = new List<int>(amounts);
+            for (int s = 0; s < sorted.Count; s++)
+            {
+                sum = sum + amounts[s];
+                for (int i = s; i < sorted.Count; i++)
+                {
+                    if (sorted[s] > sorted[i])
+                    {
+                        int temp = sorted[s];
+                        sorted[s] = sorted[i];
+                        sorted[i] = temp;
+                    }
+                }
+            }
+            Console.WriteLine("How much did we spend? " + sum);
+            Console.WriteLine("Which was our greatest expense? " + sorted[sorted.Count - 1]);
+            Console.WriteLine("Which was our cheapest spending? " + sorted[0]);
+            Console.WriteLine("What was the average amount of our spendings? " + (sum / sorted.Count));
+        }
         public static string Reverse(string rev01)
         {
             var reversed = string.Empty;

@@ -24,9 +24,9 @@ namespace DrawingApplication
             this.KeyUp += MainWindow_KeyUp;
 
             Map gameMap = new Map();
-            Hero hero = new Hero(0, 0);
             gameMap.DrawMap(foxDraw);
-            hero.DrawOnTile(foxDraw);
+            Hero hero = new Hero(foxDraw, 0, 0);
+            hero.DrawOnTile();
 
             KeyUp += hero.Move;
             
