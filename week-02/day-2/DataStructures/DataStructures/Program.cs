@@ -274,7 +274,31 @@ namespace DataStructures
             SearchPhoneBook(phoneBook, "307-687-2982");
             SearchPhoneBook(phoneBook, "Chris E.Myers");*/
 
+            // SHOPPING LIST
+            // We are going to represent a shopping list in a list containing strings.
+            // Create a list with the following items.
+            // Eggs, milk, fish, apples, bread and chicken
+            // Create an application which solves the following problems.
+            // Do we have milk on the list?
+            // Do we have bananas on the list?
 
+            List<string> shoppingList = new List<string> { "eggs", "milk", "fish", "apples", "bread", "chicken" };
+            Console.WriteLine("Do we have milk on the list? " + ShoppingListSearch(shoppingList, "milk"));
+            Console.WriteLine("Do we have bananas on the list? " + ShoppingListSearch(shoppingList, "bananas"));
+
+
+        }
+        public static bool ShoppingListSearch(List<string> list, string request)
+        {
+            bool result = false;
+            foreach (var item in list)
+            {
+                if (item == request)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
         public static void SearchPhoneBook(Dictionary<string, string> phoneBook, string question)
         {
