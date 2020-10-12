@@ -19,7 +19,6 @@ namespace LINQ
             var numbers = new List<Pirate> { pirate };
             var numbersArray = new Pirate[] { new Pirate() };
             WriteNumbers(numbersArray);
-
         }
         public static void WriteNumbers(IEnumerable<Pirate> input)
         {
@@ -49,27 +48,6 @@ namespace LINQ
              }
              //The same code in short by LINQ
              var HpSum = input.Where(p => p.HP < 20).Sum(p => p.HP);*/
-
-            /*var hpSumForEach = 0;
-            foreach (var pirate in input)
-            {
-                var beersCount = 0;
-                foreach (var drink in pirate.Drinks)
-                {
-                    if (drink == "beer")
-                    {
-                        beersCount += 1;
-                    }
-                    if (pirate.HP < 20)
-                    {
-                        hpSumForEach += pirate.HP;
-                    }
-                }
-            }*/
-            //The same code in short by LINQ
-            var beersSum = input.Where(p => p.Drinks.Equals("beer")).Count();
-
-
         }
     }
 }
