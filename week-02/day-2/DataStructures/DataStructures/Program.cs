@@ -282,9 +282,10 @@ namespace DataStructures
             // Do we have milk on the list?
             // Do we have bananas on the list?
 
-            List<string> shoppingList = new List<string> { "eggs", "milk", "fish", "apples", "bread", "chicken" };
+            /*List<string> shoppingList = new List<string> { "eggs", "milk", "fish", "apples", "bread", "chicken" };
             Console.WriteLine("Do we have milk on the list? " + ShoppingListSearch(shoppingList, "milk"));
-            Console.WriteLine("Do we have bananas on the list? " + ShoppingListSearch(shoppingList, "bananas"));
+            Console.WriteLine("Do we have bananas on the list? " + ShoppingListSearch(shoppingList, "bananas"));*/
+
 
 
         }
