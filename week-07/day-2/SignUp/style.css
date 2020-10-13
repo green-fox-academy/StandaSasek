@@ -42,6 +42,7 @@ h1 {
 }
 
 #or {
+    margin-top: 40px;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -49,6 +50,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 2px 2px 4px 1px #969696;
 }
 
 #right {
@@ -71,14 +73,11 @@ button {
     letter-spacing: .05rem;
     font-size: 1rem;
     position: relative;
+    border-radius: 3px;
 }
 
-#singUp {
-    clear: both;
-}
-
-#signUp button {
-    margin-top: 50px;
+#signUp {
+    margin-top: 40px;
 }
 
 button.lame {
@@ -109,6 +108,7 @@ button:active {
 }
 
 #fb button {
+    margin-top: 40px;
     background-color: #32508E;
     width: 300px;
 }
@@ -124,7 +124,6 @@ button:active {
     background-color: #DD4B39;
     width: 300px;
 }
-
 
 label {
     font-weight: bold;
