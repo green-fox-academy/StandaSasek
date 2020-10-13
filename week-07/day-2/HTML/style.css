@@ -1,0 +1,12 @@
+body {
+color: green;
+}
+
+#puppyname {
+     border: 1px red solid;
+ }
+
+ form div {
+     padding-top: 15px;
+     padding-bottom: 15px;
+ }

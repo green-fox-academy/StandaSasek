@@ -1,0 +1,58 @@
+body {
+    
+    font-family: 'Raleway', sans-serif;
+    margin-left: 10%;
+    max-width: 80%;
+    min-width: 300px;
+    color: #444444;
+ }
+ 
+ div {
+     padding-top: 15px;
+     padding-bottom: 15px;
+     width: 400px;
+ }
+ h1 {
+    display: flex;
+    letter-spacing: .05rem;
+}
+
+
+.button {
+    display: inline-block;
+    font-weight: bold;
+    padding: 1.2rem 3.5rem;
+    border-radius: 10rem;
+    background-color: #333333;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .05rem;
+    font-size: 1rem;
+    position: relative;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    width: 400px;
+    height: 50px;
+    /*border: #222222 2px solid;*/
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#forgot {
+    font-weight: bold;
+    text-align: right;
+    padding-top: 1rem;
+    color: #222222;
+}
+
+input:focus{
+    border: 4px solid #4dd335;
+}
