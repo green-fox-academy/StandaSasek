@@ -1,0 +1,55 @@
+body {
+    
+    font-family: 'Raleway', sans-serif;
+    margin-left: 10%;
+    max-width: 80%;
+    min-width: 300px;
+    color: #444444;
+ }
+ 
+ div {
+     padding-top: 15px;
+     padding-bottom: 15px;
+     width: 400px;
+ }
+ h1 {
+    display: flex;
+    letter-spacing: .05rem;
+}
+
+
+.button {
+    display: inline-block;
+    font-weight: bold;
+    padding: 1.1rem 3rem;
+    border-radius: 10rem;
+    background-color: #333333;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .05rem;
+    font-size: 1rem;
+    position: relative;
+}
+
+label {
+    font-weight: bold;
+    font-size: small;
+}
+
+input {
+    
+    border: none;
+    outline: none;
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1.8rem;
+    width: 400px;
+    height: 50px;
+    border: #535353 1px solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus{
+    border: 2px solid #4dd335;
+}
