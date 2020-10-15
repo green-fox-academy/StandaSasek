@@ -1,0 +1,11 @@
+﻿body {
+
+}
+
+table, td, th {
+    text-align: center;
+    border: 1px solid black; 
+    width: 800px; 
+    border-collapse: collapse; 
+    padding: 10px;
+}
