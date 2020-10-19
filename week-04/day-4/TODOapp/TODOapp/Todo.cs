@@ -7,30 +7,30 @@ namespace Todoapp
 {
     class Todo
     {
-        public string task;
+        public string Task { get; set; }
         // TODO add priority sorting function
         // protected string priority; 
-        protected bool done;
+        public char Done { get; set; }
 
-        public Todo(string task)
+        public Todo(char done, string task)
         {
-            this.task = task;
+            Task = task;
+            Done = done;
         }
-        
-        public void Done()
+        public void IfDone()
         {
-            if (!done)
+            if (Done == 'n')
             {
-                done = true;
+                Done = 'd';
             }
             else
             {
-                done = false;
+                Done = 'n';
             }
         }
         public string IsDone()
         {
-            return (done ? "[x] " : "[ ] ") + task;
+            return (Done == 'd' ? "[x] " : "[ ] ") + Task;
         }
      
     }

@@ -69,9 +69,9 @@ namespace Todoapp
                 Console.WriteLine($"{line.Key} - {line.Value}");
             }
         }
-        public static Dictionary<int, string> GetTodos(string pathFile)
+        public static Dictionary<int, Todo> GetTodos(string pathFile)
         {
-            var todosList = new Dictionary<int, string>();
+            var todosList = new Dictionary<int, Todo>();
             if (File.Exists(pathFile))
             {
                 string[] lines = File.ReadAllLines(pathFile);
@@ -83,7 +83,13 @@ namespace Todoapp
                 {
                     for (int i = 0; i < lines.Length; i++)
                     {
-                        todosList.Add(i + 1, lines[i]);
+                        var task = "";
+                        for (int j = 1; j < lines[i].Length; i++)
+                        {
+                            task += lines[j];
+                        }
+                        Todo todo = new Todo(lines[i][0], task);
+                        todosList.Add(i + 1, todo);
                     }
                 }
             }
@@ -93,7 +99,7 @@ namespace Todoapp
             }
             return todosList;
         }
-        public static void SaveTodos(string pathFile, Dictionary<int, string> todosList)
+        public static void SaveTodos(string pathFile, Dictionary<int, Todo> todosList)
         {
             if (File.Exists(pathFile))
             {
@@ -101,7 +107,7 @@ namespace Todoapp
                 {
                     foreach (var todo in todosList)
                     {
-                        sw.WriteLine("{0}", todo.Value);
+                        sw.WriteLine(todo.Done.ToString() + todo.Task);
                     }
                 }
             }

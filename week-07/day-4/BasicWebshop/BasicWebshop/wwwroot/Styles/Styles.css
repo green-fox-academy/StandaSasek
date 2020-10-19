@@ -1,11 +1,40 @@
 ﻿body {
-
+    max-width: 800px; 
+    margin: 50px auto;
 }
 
-table, td, th {
+.cell {
     text-align: center;
-    border: 1px solid black; 
-    width: 800px; 
-    border-collapse: collapse; 
+    border: 1px solid red;
+    border-collapse: collapse;
     padding: 10px;
+}
+
+table {
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 50px auto;
+    border: 1px solid blue;
+}
+
+nav {
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border: 1px solid green;
+}
+
+.navigation {
+    display: flex;
+    width: 140px;
+    height: 50px;
+    border: 1px solid brown;
+    justify-content: center;
+    align-items: center;
 }

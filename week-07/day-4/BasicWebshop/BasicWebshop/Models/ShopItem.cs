@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BasicWebshop.Services;
+using BasicWebshop.Models;
 
 namespace BasicWebshop.Models
 {
@@ -20,7 +21,5 @@ namespace BasicWebshop.Models
             Price = price;
             QuantityOfStock = quantityOfStock;
         }
-        
-        
     }
 }

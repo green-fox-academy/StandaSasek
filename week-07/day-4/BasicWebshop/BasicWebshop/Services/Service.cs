@@ -22,28 +22,23 @@ namespace BasicWebshop.Services
         }
         public static List<ShopItem> OnlyAvailable()
         {
-            var onlyAvailable = ListItems().Where(o => o.QuantityOfStock > 0).ToList();
-            return onlyAvailable;
+            return ListItems().Where(o => o.QuantityOfStock > 0).ToList();
         }
         public static List<ShopItem> OrderByCheapest()
         {
-            var orderByCheapest = ListItems().OrderBy(o => o.Price).ToList();
-            return orderByCheapest;
+            return ListItems().OrderBy(o => o.Price).ToList();
         }
         public static List<ShopItem> ContainsNike()
         {
-            var onlyContainsNike = ListItems().Where(o => o.Name.ToLower().Contains("nike") || o.Description.ToLower().Contains("nike")).ToList();
-            return onlyContainsNike;
+            return ListItems().Where(o => o.Name.ToLower().Contains("nike") || o.Description.ToLower().Contains("nike")).ToList();
         }
         public static double AverageStock()
         {
-            double averageStock = ListItems().Average(a => a.QuantityOfStock);
-            return averageStock;
+            return ListItems().Average(a => a.QuantityOfStock);
         }
         public static string MostExpensive()
         {
-            var mostExpensive = ListItems().OrderByDescending(o => o.Price).ToList();
-            return mostExpensive[0].Name;
+            return ListItems().OrderByDescending(o => o.Price).ToList()[0].Name;
         }
     }
 }

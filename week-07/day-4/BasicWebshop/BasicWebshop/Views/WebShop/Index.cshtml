@@ -1,4 +1,5 @@
-﻿@using BasicWebshop.Models
+﻿@using BasicWebshop.Models;
+@model BasicWebshop.Models.IndexViewModels
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,21 +8,27 @@
 </head>
 <body>
     <a href="~/"><h1>Fun Fan Web Shop</h1></a>
-    <nav>
-        <a href="~/only-available">ONLY AVAILABLE</a>
-        <a href="~/cheapest-first">CHEAPEST FIRST</a>
-        <a href="~/contains-nike">CONTAINS NIKE</a>
-        <a href="~/average-stock">AVERAGE STOCK</a>
-        <a href="~/most-expensive">MOST EXPENSIVE AVAILABLE</a>
-    </nav>
+    @Html.Partial("_Menu")
+
     <main>
-        <table>
-            <tr><th>Name</th><th>Description</th><th>Price</th><th>Quantity of stock</th></tr>
-            @foreach (ShopItem item in ViewBag.Items)
+        @{ if (Model.AverageStock != 0)
             {
-                <tr><td>@item.Name</td><td>@item.Description</td><td>@item.Price</td><td>@item.QuantityOfStock</td></tr>
+                <p>
+                    Average stock: @Model.AverageStock
+                </p>
             }
-        </table>
+            else if (Model.MostExpensive != null)
+            {
+                <p>
+                    Most expensive: @Model.MostExpensive
+                </p>
+            }
+            else
+            {
+                @Html.Partial("_Table")
+            }
+        }
+
     </main>
 </body>
 </html>

@@ -15,41 +15,37 @@ namespace BasicWebshop.Controllers
         public IActionResult Index()
         {
             var shopItems = Service.ListItems();
-            ViewBag.Items = shopItems;
-            return View();
+            return View(new IndexViewModels(shopItems));
         }
         [HttpGet("only-available")]
         public IActionResult OnlyAvailable()
         {
-            var shopItems = Service.OnlyAvailable();
-            ViewBag.Items = shopItems;
-            return View();
+            var onlyAvailable = Service.OnlyAvailable();
+            return View("Index", new IndexViewModels(onlyAvailable));
         }
         [HttpGet("cheapest-first")]
         public IActionResult CheapestFirst()
         {
-            var shopItems = Service.OrderByCheapest();
-            ViewBag.Items = shopItems;
-            return View();
+            var cheapestFirst = Service.OrderByCheapest();
+            return View("Index", new IndexViewModels(cheapestFirst));
         }
         [HttpGet("contains-nike")]
         public IActionResult ContainsNike()
         {
-            var shopItems = Service.ContainsNike();
-            ViewBag.Items = shopItems;
-            return View();
+            var containsNike = Service.ContainsNike();
+            return View("Index", new IndexViewModels(containsNike));
         }
         [HttpGet("average-stock")]
         public IActionResult AverageStock()
         {
             var averageStock = Service.AverageStock();
-            return View(averageStock);
+            return View("Index", new IndexViewModels(Service.ListItems(), averageStock));
         }
         [HttpGet("most-expensive")]
         public IActionResult MostExpensive()
         {
             var mostExpensive = Service.MostExpensive();
-            return View(mostExpensive);
+            return View("Index", new IndexViewModels(Service.ListItems(), 0, mostExpensive));
         }
     }
 }
