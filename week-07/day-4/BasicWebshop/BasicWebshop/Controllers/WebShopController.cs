@@ -47,5 +47,11 @@ namespace BasicWebshop.Controllers
             var mostExpensive = Service.MostExpensive();
             return View("Index", new IndexViewModels(Service.ListItems(), 0, mostExpensive));
         }
+        [HttpPost("search")]
+        public IActionResult Search(string searchTask)
+        {
+            var searchResult = Service.Search(searchTask);
+            return View("Index", new IndexViewModels(searchResult));
+        }
     }
 }

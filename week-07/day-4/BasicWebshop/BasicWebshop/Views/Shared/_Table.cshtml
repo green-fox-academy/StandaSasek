@@ -1,7 +1,17 @@
 ﻿<table>
-    <tr><th class="cell head">Name</th><th class="cell head">Description</th><th class="cell head">Price</th><th class="cell head">Quantity of stock</th></tr>
+    <tr>
+        <th class="cell head">Name</th>
+        <th class="cell head">Description</th>
+        <th class="cell head">Price</th>
+        <th class="cell head">Quantity of stock</th>
+    </tr>
     @foreach (var item in Model.ShopItems)
     {
-        <tr><td class="cell">@item.Name</td><td class="cell">@item.Description</td><td class="cell">@item.Price</td><td class="cell">@item.QuantityOfStock</td></tr>
+        <tr>
+            <td class="cell">@item.Name</td>
+            <td class="cell">@item.Description</td>
+            <td class="cell">@item.Price</td>
+            <td class="cell">@item.QuantityOfStock</td>
+        </tr>
     }
 </table>

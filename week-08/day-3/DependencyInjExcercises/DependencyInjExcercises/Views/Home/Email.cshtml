@@ -1,0 +1,19 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>This is really useful</title>
+</head>
+<body>
+    @Html.Partial("_Menu")
+
+    <form action="~/useful/validate-email" method="GET">
+        <div>
+            <label>Email</label>
+            <input type="text" name="email" id="email">
+            <div id="button">
+                <button class="button" type="submit">Submit</button>
+            @Html.Raw(ViewBag.CheckedEmail)
+            </div>
+        </div>
+    </form>
+</body>
+</html>

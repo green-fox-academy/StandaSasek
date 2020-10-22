@@ -40,5 +40,9 @@ namespace BasicWebshop.Services
         {
             return ListItems().OrderByDescending(o => o.Price).ToList()[0].Name;
         }
+        public static List<ShopItem> Search(string searchTask)
+        {
+            return ListItems().Where(o => o.Name.ToLower().Contains(searchTask) || o.Description.ToLower().Contains(searchTask)).ToList();
+        }
     }
 }
