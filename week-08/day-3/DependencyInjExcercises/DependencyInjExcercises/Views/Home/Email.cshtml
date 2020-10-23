@@ -5,14 +5,14 @@
 <body>
     @Html.Partial("_Menu")
 
-    <form action="~/useful/validate-email" method="GET">
+    <form action="~/useful/email" method="GET">
         <div>
             <label>Email</label>
             <input type="text" name="email" id="email">
             <div id="button">
                 <button class="button" type="submit">Submit</button>
-            @Html.Raw(ViewBag.CheckedEmail)
             </div>
+            @Html.Raw(ViewBag.CheckedEmail)
         </div>
     </form>
 </body>

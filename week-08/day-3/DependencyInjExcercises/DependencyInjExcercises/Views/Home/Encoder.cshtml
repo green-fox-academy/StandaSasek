@@ -1,0 +1,21 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>This is really useful</title>
+</head>
+<body>
+    @Html.Partial("_Menu")
+
+    <form action="~/useful/encoder" method="GET">
+        <div>
+            <label>Caesar - enter text to encode</label>
+            <input type="text" name="word" id="encoder">
+            <label>Enter positive integer as a key</label>
+            <input type="number" min="0" name="number" id="key" required>
+            <div id="button">
+                <button class="button" type="submit">Submit</button>
+            </div>
+                @Html.Raw(ViewBag.Caesar)
+        </div>
+    </form>
+</body>
+</html>

@@ -28,17 +28,25 @@ namespace DependencyInjExcercises
             return View("useful");
         }
         [HttpGet("email")]
-        public IActionResult Email()
-        {
-            return View("email");
-        }
-        [HttpGet("validate-email")]
         public IActionResult ValidateEmail(string email)
         {
             var emailChecked = service.ValidateEmail(email);
             ViewBag.CheckedEmail = emailChecked;
             return View("email");
         }
-
+        [HttpGet("encoder")]
+        public IActionResult Encoder(string word, int number)
+        {
+            var result = service.Caesar(word, number);
+            ViewBag.Caesar = result;
+            return View("encoder");
+        }
+        [HttpGet("decoder")]
+        public IActionResult Decoder(string word, int number)
+        {
+            var result = service.Caesar(word, -number);
+            ViewBag.Caesar = result;
+            return View("decoder");
+        }
     }
 }
