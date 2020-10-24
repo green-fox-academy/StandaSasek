@@ -1,0 +1,24 @@
+﻿@using FoxClub.Models;
+@model IndexViewModels
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fox Club</title>
+</head>
+<body>
+    @Html.Partial("_Menu")
+    <main>
+        <h2>Welcome to Programmer Fox Club!</h2>
+        <form action="~/login" method="GET">
+            <p>Please provide a name, so you can associate it to your pet!</p>
+            <label>Name</label>
+            <input type="text" name="name" id="login" required>
+            <div id="button">
+                <button class="button" type="submit">GO</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>
