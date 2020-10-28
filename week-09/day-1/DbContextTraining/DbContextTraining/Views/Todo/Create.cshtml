@@ -1,0 +1,16 @@
+﻿@using DbContextTraining.Models;
+@model IndexViewModels
+@{
+    Layout = "_layout";
+}
+<form action="" method="POST">
+    Add a new TODO
+    <input type="text" id="title" name="title" required autofocus placeholder="...what to do...?" />
+    <input type="checkbox" id="isUrgent" name="isUrgent" value="true" />
+    <Label for="isUrgent">Is urgent</Label>
+    <input type="submit" value="Submit" />
+</form>
+<p></p>
+@Html.Partial("_Table")
+
+

@@ -1,0 +1,5 @@
+﻿INSERT INTO Todos (Title, IsUrgent, IsDone) VALUES ('Start the day', 1, 1)
+INSERT INTO Todos (Title, IsUrgent, IsDone) VALUES ('Finish H2 workshop', 1, 0)
+INSERT INTO Todos (Title, IsUrgent, IsDone) VALUES ('Finish exam', 0, 1)
+INSERT INTO Todos (Title, IsUrgent, IsDone) VALUES ('Create CRUD project', 0, 0)
+INSERT INTO Todos (Title, IsUrgent, IsDone) VALUES ('Finish the day', 0, 0)

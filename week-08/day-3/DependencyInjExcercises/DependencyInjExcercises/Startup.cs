@@ -22,7 +22,7 @@ namespace DependencyInjExcercises
             services.AddTransient<Printer>();
             services.AddTransient<IColor, RedColor>();
             services.AddTransient<IColor, GreenColor>();
-            services.AddTransient<IColor, BlueColor>();
+            //services.AddTransient<IColor, BlueColor>();
             services.AddTransient<UtilityService>();
             services.AddTransient<MyOtherMiddleware>();
         }

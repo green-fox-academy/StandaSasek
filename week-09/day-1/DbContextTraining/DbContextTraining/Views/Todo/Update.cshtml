@@ -1,0 +1,20 @@
+﻿@using DbContextTraining.Models;
+@model IndexViewModels
+@addTagHelper *, Microsoft.AspNetCore.MVC.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    Layout = "_layout"; var todo = Model.MyTodo;
+}
+
+<form action="" method="POST">
+    Update selected TODO
+    <input type="text" id="title" name="title" required autofocus value="@todo.Title" />
+    <input type="text" id="description" name="description" value="@todo.Description" />
+    <input type="checkbox" asp-for="IsDone" id="IsDone" name="IsDone" value="true" checked="@todo.IsDone">
+    <Label for="IsDone">Is done</Label>
+    <input type="checkbox" asp-for="IsUrgent" id="IsUrgent" name="IsUrgent" value="true" checked="@todo.IsUrgent">
+    <Label for="isUrgent">Is urgent</Label>
+    <input type="submit" value="Submit">
+</form>
+
+
