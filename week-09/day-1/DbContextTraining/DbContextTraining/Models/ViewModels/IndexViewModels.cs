@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DbContextTraining.Services;
+using DbContextTraining.Models.Entities;
 
 namespace DbContextTraining.Models
 {
@@ -9,16 +10,25 @@ namespace DbContextTraining.Models
     {
         public List<Todo> MyTodos { get; set; }
         public Todo MyTodo { get; set; }
-        public IndexViewModels(List<Todo> myTodos, Todo myTodo)
+        public List<Assignee> MyAssignees { get; set; }
+        public Assignee MyAssignee { get; set; }
+        public IndexViewModels(List<Todo> myTodos, Todo myTodo, List<Assignee> myAssignees, Assignee myAssignee)
         {
-            MyTodos = myTodos;
             MyTodo = myTodo;
+            MyTodos = myTodos;
+            MyAssignees = myAssignees;
+            MyAssignee = myAssignee;
         }
         public IndexViewModels()
         {
         }
         public IndexViewModels(List<Todo> myTodos)
         {
+            MyTodos = myTodos;
+        }
+        public IndexViewModels(List<Todo> myTodos, List<Assignee> myAssignees)
+        {
+            MyAssignees = myAssignees;
             MyTodos = myTodos;
         }
         public IndexViewModels(Todo myTodo)

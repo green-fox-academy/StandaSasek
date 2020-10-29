@@ -2,11 +2,19 @@
 @model IndexViewModels
 
 <h1>Todos for today:</h1>
+<form action="" method="POST">
+    Search for TODO
+    <input type="text" id="search" name="search" placeholder="search within title or description" />
+    <input type="checkbox" id="IsNotDone" name="IsNotDone" value="true" />
+    <Label for="IsNotDone">Only active?</Label>
+    <input type="submit" value="Search" />
+</form>
 <table>
     <tr>
-        <th class="cell">ID</thclass="cell">
+        <th class="cell">ID</th>
         <th class="cell">TITLE</th>
         <th class="cell">DESCRIPTION</th>
+        <th class="cell">ASSIGNEE</th>
         <th class="cell">DONE</th>
         <th class="cell">URGENT</th>
     </tr>
@@ -16,6 +24,7 @@
             <td class="cell">@todo.Id</td>
             <td class="cell">@todo.Title</td>
             <td class="cell">@todo.Description</td>
+            <td class="cell">@todo.Assignee.Name</td>
             @{if (todo.IsDone)
                 {
                     <td class="cell">&#9989;</td>

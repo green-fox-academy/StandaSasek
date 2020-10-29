@@ -1,0 +1,35 @@
+﻿@using DbContextTraining.Models;
+@model IndexViewModels
+@{
+    Layout = "_layout";
+}
+<p> </p>
+<form action="" method="POST">
+    Add a new Assignee
+    <input type="text" id="name" name="name" required autofocus placeholder="name" />
+    <input type="email" id="email" name="email" placeholder="email" />
+    <input type="submit" value="Submit" />
+</form>
+<h1>Assignees:</h1>
+<table>
+    <tr>
+        <th class="cell"></th>
+        <th class="cell">ID</th>
+        <th class="cell">NAME</th>
+        <th class="cell">EMAIL</th>
+        <th class="cell"></th>
+    </tr>
+    @foreach (var assignee in Model.MyAssignees)
+    {
+<tr>
+    <td class="cell"><a href="/delete?id=@assignee.Id">delete</a></td>
+    <td class="cell">@assignee.Id</td>
+    <td class="cell"><input type="text" id="name" name="name" value="@assignee.Name" /></td>
+    <td class="cell"><input type="email" id="email" name="email" value="@assignee.Email" /></td>
+    <td class="cell"><a href="/update?id=@assignee.Id">update</a></td>
+</tr>
+    }
+</table>
+
+</form>
+
