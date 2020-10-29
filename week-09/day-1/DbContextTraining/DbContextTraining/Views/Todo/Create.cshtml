@@ -4,9 +4,20 @@
     Layout = "_layout";
 }
 <p></p>
-<form action="" method="POST">
+<form action="" method="POST" id="createtodo">
     Add a new TODO
+    <Label for="title">Title</Label>
     <input type="text" id="title" name="title" required autofocus placeholder="...what to do...?" />
+    <Label for="description">Description</Label>
+    <input type="text" id="description" name="description" />
+    <Label for="assignee">Assigned to</Label>
+    <select name="assigneeid" id="assignee" form="createtodo">
+        @{foreach (var assignee in Model.MyAssignees)
+            {
+                <option value="@assignee.Id">@assignee.Name</option>
+            }
+        }
+    </select>
     <input type="checkbox" id="isUrgent" name="isUrgent" value="true" />
     <Label for="isUrgent">Is urgent</Label>
     <input type="submit" value="Submit" />

@@ -7,17 +7,17 @@ namespace DbContextTraining.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Assignee",
+                name: "Assignees",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assignee", x => x.Id);
+                    table.PrimaryKey("PK_Assignees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,15 +30,15 @@ namespace DbContextTraining.Migrations
                     Description = table.Column<string>(nullable: true),
                     IsUrgent = table.Column<bool>(nullable: false),
                     IsDone = table.Column<bool>(nullable: false),
-                    AssigneeId = table.Column<int>(nullable: true)
+                    AssigneeId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Todos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Todos_Assignee_AssigneeId",
+                        name: "FK_Todos_Assignees_AssigneeId",
                         column: x => x.AssigneeId,
-                        principalTable: "Assignee",
+                        principalTable: "Assignees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -55,7 +55,7 @@ namespace DbContextTraining.Migrations
                 name: "Todos");
 
             migrationBuilder.DropTable(
-                name: "Assignee");
+                name: "Assignees");
         }
     }
 }

@@ -8,7 +8,7 @@ using DbContextTraining.Models.Entities;
 using DbContextTraining.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DbContextTraining
+namespace DbContextTraining.Controllers
 {
     [Route("")]
     public class TodoController : Controller
@@ -21,38 +21,34 @@ namespace DbContextTraining
         [HttpGet("")]
         public IActionResult Index()
         {
+            var assignees = service.ReadAllAssignees();
             var todos = service.ReadAllTodos();
-            return View("index", new IndexViewModels(todos));
+            return View("index", new IndexViewModels(todos, assignees));
         }
         [HttpPost("")]
-        public IActionResult Index(bool isNotDone, string search)
+        public IActionResult Index(bool isNotDone, string search, long assigneeid)
         {
-            if (!String.IsNullOrEmpty(search) && isNotDone)
+            List<Todo> todos;
+            if (!String.IsNullOrEmpty(search) && assigneeid != 0)
             {
-                var todos = service.SearchNotDoneTodos(search);
-                return View("index", new IndexViewModels(todos));
+                todos = service.SearchAllTodos(search, isNotDone, assigneeid);
             }
-            else if (!String.IsNullOrEmpty(search))
+            else if (assigneeid != 0)
             {
-                var todos = service.SearchAllTodos(search);
-                return View("index", new IndexViewModels(todos));
-            }
-            else if (isNotDone)
-            {
-                var todos = service.ReadAllTodos(isNotDone);
-                return View("index", new IndexViewModels(todos));
+                todos = service.ReadAllTodosAssignedTo(assigneeid, isNotDone);
             }
             else
             {
-                var todos = service.ReadAllTodos();
-                return View("index", new IndexViewModels(todos));
+                todos = service.ReadAllTodos(isNotDone);
             }
+            var assignees = service.ReadAllAssignees();
+            return View("index", new IndexViewModels(todos, assignees));
         }
         [HttpGet("create")]
         public IActionResult CreateTodo()
         {
-            var todos = service.ReadAllTodos();
-            return View("create", new IndexViewModels(todos));
+            var assignees = service.ReadAllAssignees();
+            return View("create", new IndexViewModels(assignees));
         }
         [HttpPost("create")]
         public IActionResult CreatedTodo(Todo todo)
@@ -69,8 +65,9 @@ namespace DbContextTraining
         [HttpGet("update")]
         public IActionResult UpdateTodo(long id)
         {
+            var assignees = service.ReadAllAssignees();
             var todo = service.ReadTodo(id);
-            return View("update", new IndexViewModels(todo));
+            return View("update", new IndexViewModels(todo, assignees));
         }
         [HttpPost("update")]
         public IActionResult UpdatedTodo(Todo todo)

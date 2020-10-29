@@ -26,6 +26,7 @@ namespace DbContextTraining
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<ITodoService, DbTodoService>();
+            services.AddTransient<IAssigneeService, DbAssigneeService>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
         }
 

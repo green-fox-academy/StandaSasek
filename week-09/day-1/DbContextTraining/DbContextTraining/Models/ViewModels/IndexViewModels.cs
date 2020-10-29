@@ -35,5 +35,23 @@ namespace DbContextTraining.Models
         {
             MyTodo = myTodo;
         }
+        public IndexViewModels(Todo myTodo, List<Assignee> myAssignees)
+        {
+            MyTodo = myTodo;
+            MyAssignees = myAssignees;
+        }
+        public IndexViewModels(List<Assignee> myAssignees, Assignee myAssignee)
+        {
+            MyAssignees = myAssignees;
+            MyAssignee = myAssignee;
+        }
+        public IndexViewModels(List<Assignee> myAssignees)
+        {
+            MyAssignees = myAssignees;
+        }
+        public IndexViewModels(Assignee myAssignee)
+        {
+            MyAssignee = myAssignee;
+        }
     }
 }

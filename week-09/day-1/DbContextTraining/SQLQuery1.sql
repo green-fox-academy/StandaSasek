@@ -5,6 +5,6 @@ INSERT INTO Todos (Title, Description, IsUrgent, IsDone, AssigneeId) VALUES ('Cr
 INSERT INTO Todos (Title, Description, IsUrgent, IsDone, AssigneeId) VALUES ('Finish the day', 'dinner and family', 1, 0, 1)
 
 
-INSERT INTO Assignee (Name, Email) VALUES ('Standa', 'standa@email.ne')
-INSERT INTO Assignee (Name, Email) VALUES ('Honza', 'honza@email.jo')
-INSERT INTO Assignee (Name, Email) VALUES ('Daniel', 'daniel@email.jak')
+INSERT INTO Assignees (Name, Email) VALUES ('Standa', 'standa@email.ne')
+INSERT INTO Assignees (Name, Email) VALUES ('Honza', 'honza@email.jo')
+INSERT INTO Assignees (Name, Email) VALUES ('Daniel', 'daniel@email.jak')

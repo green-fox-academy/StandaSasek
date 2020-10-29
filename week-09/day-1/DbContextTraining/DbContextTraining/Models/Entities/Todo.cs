@@ -16,6 +16,7 @@ namespace DbContextTraining.Models.Entities
         public bool IsUrgent { get; set; }
         public bool IsDone { get; set; }
         public Assignee Assignee { get; set; }
+        public long AssigneeId { get; set; }
         public Todo(long id, string title, string description, Assignee assignee, bool isUrgent = false, bool isDone = false)
         {
             Id = id;

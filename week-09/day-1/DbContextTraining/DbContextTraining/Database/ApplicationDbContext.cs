@@ -19,7 +19,7 @@ namespace DbContextTraining.Database
         {
             modelBuilder.Entity<Todo>()
                 .HasOne<Assignee>(todo => todo.Assignee)
-                .WithMany(assignee => assignee.Todos);
+                .WithMany(assignee => assignee.Todos).HasForeignKey(todo => todo.AssigneeId);
         }
     }
 }

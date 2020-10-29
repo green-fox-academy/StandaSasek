@@ -21,9 +21,9 @@ namespace DbContextTraining.Migrations
 
             modelBuilder.Entity("DbContextTraining.Models.Entities.Assignee", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
@@ -44,8 +44,8 @@ namespace DbContextTraining.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AssigneeId")
-                        .HasColumnType("int");
+                    b.Property<long?>("AssigneeId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
