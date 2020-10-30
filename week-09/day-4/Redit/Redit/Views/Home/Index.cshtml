@@ -1,26 +1,19 @@
-﻿@{
+﻿@using Redit.Models;
+@model Redit.Models.ViewModels.IndexViewModel
+@{
     Layout = "_layout";
 }
 <a href="/submit">Submit new post</a>
 <h1>Trending posts</h1>
 <p></p>
 <table>
+    @foreach (var post in Model.MyPosts)
+    {
     <tr>
-        <td class="cell">count</td>
+        <td class="cell">@post.Votes.Count</td>
         <td class="cell">plus</td>
         <td class="cell">minus</td>
-        <td class="cell">link to post</td>
+        <td class="cell">@post.Link</td>
     </tr>
-    <tr>
-        <td class="cell">count</td>
-        <td class="cell">plus</td>
-        <td class="cell">minus</td>
-        <td class="cell">link to post</td>
-    </tr>
-    <tr>
-        <td class="cell">count</td>
-        <td class="cell">plus</td>
-        <td class="cell">minus</td>
-        <td class="cell">link to post</td>
-    </tr>
+    }
 </table>

@@ -15,7 +15,7 @@ namespace Redit.Models.Entities
         public string Password { get; set; }
         public List<Post> Posts { get; set; }
         public List<Vote> Votes { get; set; }
-        public User(string name, string email, string password, List<Post> posts, List<Vote> votes)
+        public User(List<Post> posts, List<Vote> votes, string name = "Standa", string email = "standa@email.ne", string password = "Standa")
         {
             Name = name;
             Email = email;
