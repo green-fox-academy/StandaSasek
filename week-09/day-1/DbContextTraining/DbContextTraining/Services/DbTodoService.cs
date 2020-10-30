@@ -15,11 +15,11 @@ namespace DbContextTraining.Services
             this.dbContext = dbContext;
         }
 
-       /* public List<Todo> ReadAllTodos()
-        {
-            return dbContext.Todos.Include(ass => ass.Assignee)
-                .ToList();
-        }*/
+        /* public List<Todo> ReadAllTodos()
+         {
+             return dbContext.Todos.Include(ass => ass.Assignee)
+                 .ToList();
+         }*/
         public List<Todo> ReadAllTodos(bool isNotDone = false)
         {
             return dbContext.Todos.Include(ass => ass.Assignee)
@@ -38,7 +38,7 @@ namespace DbContextTraining.Services
             return dbContext.Assignees.ToList();
         }
 
-        public List<Todo> SearchAllTodos(string search, bool isNotDone = false, long assigneeid = 0)
+        public List<Todo> SearchAllTodos(string search, long assigneeid, bool isNotDone = false)
         {
             return dbContext.Todos.Include(ass => ass.Assignee)
                 .Where(t => t.Title.ToLower().Contains(search.ToLower()) || t.Description.ToLower().Contains(search.ToLower()))
@@ -46,13 +46,13 @@ namespace DbContextTraining.Services
                 .Where(t => assigneeid != 0 ? t.AssigneeId.Equals(assigneeid) : true)
                 .ToList();
         }
-
-      /*  public List<Todo> SearchNotDoneTodos(string search)
+        public List<Todo> SearchAllTodos(string search, bool isNotDone = false)
         {
             return dbContext.Todos.Include(ass => ass.Assignee)
-                .Where(t => !t.IsDone).Where(t => t.Title.ToLower().Contains(search.ToLower()) || t.Description.ToLower().Contains(search.ToLower()))
+                .Where(t => t.Title.ToLower().Contains(search.ToLower()) || t.Description.ToLower().Contains(search.ToLower()))
+                .Where(t => isNotDone ? !t.IsDone : true)
                 .ToList();
-        }*/
+        }
 
         public void CreateTodo(Todo todo)
         {

@@ -3,35 +3,25 @@
 @{
     Layout = "_layout";
 }
-<p> </p>
-<form action="/create-assignee" method="POST">
-    Add a new Assignee
-    <input type="text" id="name" name="name" required placeholder="name" />
-    <input type="email" id="email" name="email" required placeholder="email" />
-    <input type="submit" value="Submit" />
-</form>
+
 <h1>Assignees:</h1>
-<form action="/update-assignee" method="POST">
-<table>
-    <tr>
-        <th class="cell"></th>
-        <th class="cell">ID</th>
-        <th class="cell">NAME</th>
-        <th class="cell">EMAIL</th>
-        <th class="cell"></th>
-    </tr>
- 
+    <table>
+        <tr>
+            <th class="cell">ID</th>
+            <th class="cell">NAME</th>
+            <th class="cell">EMAIL</th>
+            
+        </tr>
         @foreach (var assignee in Model.MyAssignees)
         {
-    <tr>
-        <td class="cell"><a href="/delete-assignee?id=@assignee.Id">delete</a></td>
-        <td class="cell"><input type="hidden" id="id" name="id" value="@assignee.Id" required /></td>
-        <td class="cell"><input type="text" id="name" name="name" value="@assignee.Name" required /></td>
-        <td class="cell"><input type="email" id="email" name="email" value="@assignee.Email" required /></td>
-        <td class="cell"><input type="submit" value="Update" /></td>
-    </tr>
-    }
-</table>
-</form>
-
+            <tr>
+                <td class="cell">@assignee.Id</td>
+                <td class="cell">@assignee.Name</td>
+                <td class="cell">@assignee.Email</td>
+               
+                <td class="cell"><a href="/delete-assignee?id=@assignee.Id">delete</a></td>
+                <td class="cell"><a href="/update-assignee?id=@assignee.Id">update</a></td>
+            </tr>
+        }
+    </table>
 

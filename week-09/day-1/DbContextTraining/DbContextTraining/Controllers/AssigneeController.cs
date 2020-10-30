@@ -20,14 +20,18 @@ namespace DbContextTraining.Controllers
             this.service = service;
         }
         [HttpGet("assignees")]
-        public IActionResult Assignee()
+        public IActionResult Assignees()
         {
             var assignees = service.ReadAllAssignees();
             return View("assignees", new IndexViewModels(assignees));
         }
-
+        [HttpGet("create-assignee")]
+        public IActionResult CreateAssignee()
+        {
+            return View("create-assignee");
+        }
         [HttpPost("create-assignee")]
-        public IActionResult CreateAssignee(Assignee assignee)
+        public IActionResult CreatedAssignee(Assignee assignee)
         {
             service.CreateAssignee(assignee);
             return RedirectToAction("assignees");
@@ -38,8 +42,14 @@ namespace DbContextTraining.Controllers
             service.DeleteAssignee(id);
             return RedirectToAction("assignees");
         }
+        [HttpGet("update-assignee")]
+        public IActionResult UpdateAssignee(long id)
+        {
+            var assignee = service.ReadAssignee(id);
+            return View("update-assignee", new IndexViewModels(assignee));
+        }
         [HttpPost("update-assignee")]
-        public IActionResult UpdateAssignee(Assignee assignee)
+        public IActionResult UpdatedAssignee(Assignee assignee)
         {
             service.UpdateAssignee(assignee);
             return RedirectToAction("assignees");

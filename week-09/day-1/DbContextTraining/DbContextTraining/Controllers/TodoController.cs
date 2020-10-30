@@ -26,12 +26,16 @@ namespace DbContextTraining.Controllers
             return View("index", new IndexViewModels(todos, assignees));
         }
         [HttpPost("")]
-        public IActionResult Index(bool isNotDone, string search, long assigneeid)
+        public IActionResult Index(bool isNotDone, string search, long assigneeid = 0)
         {
             List<Todo> todos;
             if (!String.IsNullOrEmpty(search) && assigneeid != 0)
             {
-                todos = service.SearchAllTodos(search, isNotDone, assigneeid);
+                todos = service.SearchAllTodos(search, assigneeid, isNotDone);
+            }
+            else if (!String.IsNullOrEmpty(search))
+            {
+                todos = service.SearchAllTodos(search, isNotDone);
             }
             else if (assigneeid != 0)
             {

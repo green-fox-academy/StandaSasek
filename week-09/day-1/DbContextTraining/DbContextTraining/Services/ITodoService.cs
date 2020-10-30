@@ -14,7 +14,8 @@ namespace DbContextTraining.Services
         public List<Assignee> ReadAllAssignees();
         public void CreateTodo(Todo todo);
         public Todo ReadTodo(long id);
-        public List<Todo> SearchAllTodos(string search, bool isNotDone = false, long assigneeid = 0);
+        public List<Todo> SearchAllTodos(string search, long assigneeid, bool isNotDone = false);
+        public List<Todo> SearchAllTodos(string search, bool isNotDone = false);
         public void UpdateTodo(Todo todoToModify);
         public void DeleteTodo(long id);
     }
