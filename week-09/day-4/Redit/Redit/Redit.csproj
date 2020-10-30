@@ -13,12 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="Models\Entities\" />
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Services\" />
-    <Folder Include="wwwroot\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
 
 </Project>

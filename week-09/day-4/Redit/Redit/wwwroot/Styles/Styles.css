@@ -1,0 +1,43 @@
+﻿body {
+    max-width: 800px; 
+    margin: 50px auto;
+}
+
+.cell {
+    text-align: center;
+    /*border: 1px solid grey;*/
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+
+
+table {
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 50px auto;
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+}
+
+nav {
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    border-bottom: 3px solid green;
+}
+
+.navigation {
+    display: flex;
+    width: 140px;
+    height: 50px;
+    border: 1px solid brown;
+    justify-content: center;
+    align-items: center;
+}
