@@ -20,17 +20,20 @@ namespace Redit.Database
             modelBuilder.Entity<Post>()
                .HasOne<User>(post => post.Author)
                .WithMany(user => user.Posts)
-               .HasForeignKey(post => post.UserId);
+               .HasForeignKey(post => post.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Vote>()
                 .HasOne<Post>(vote => vote.Post)
                 .WithMany(post => post.Votes)
-                .HasForeignKey(vote => vote.PostId);
+                .HasForeignKey(vote => vote.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Vote>()
                 .HasOne<User>(vote => vote.User)
                 .WithMany(user => user.Votes)
-                .HasForeignKey(vote => vote.UserId);
+                .HasForeignKey(vote => vote.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

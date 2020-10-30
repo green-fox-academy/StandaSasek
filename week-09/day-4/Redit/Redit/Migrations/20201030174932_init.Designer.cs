@@ -10,8 +10,8 @@ using Redit.Database;
 namespace Redit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201030132206_Init")]
-    partial class Init
+    [Migration("20201030174932_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,7 +95,7 @@ namespace Redit.Migrations
                     b.HasOne("Redit.Models.Entities.User", "Author")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -110,7 +110,7 @@ namespace Redit.Migrations
                     b.HasOne("Redit.Models.Entities.User", "User")
                         .WithMany("Votes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

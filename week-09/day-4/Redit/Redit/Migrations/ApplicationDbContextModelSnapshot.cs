@@ -93,7 +93,7 @@ namespace Redit.Migrations
                     b.HasOne("Redit.Models.Entities.User", "Author")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -108,7 +108,7 @@ namespace Redit.Migrations
                     b.HasOne("Redit.Models.Entities.User", "User")
                         .WithMany("Votes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
