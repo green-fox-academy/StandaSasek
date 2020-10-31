@@ -18,10 +18,15 @@ namespace Redit.Controllers
             this.service = service;
         }
         [HttpGet("")]
-        public IActionResult Index()
+        public IActionResult Index(int page = 0)
         {
+            const int pageSize = 3;
             var list = service.ListAllPosts();
-            return View("index", new IndexViewModel(list));
+            var count = list.Count();
+            var data = list.Skip(page * pageSize).Take(pageSize).ToList();
+            this.ViewBag.MaxPage = (count / pageSize) - (count % pageSize == 0 ? 1 : 0);
+            this.ViewBag.Page = page;
+            return View("index", new IndexViewModel(data));
         }
         [HttpGet("submit")]
         public IActionResult Submit()
