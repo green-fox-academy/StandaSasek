@@ -11,5 +11,6 @@ namespace Redit.Services
         public List<Post> ListAllPosts();
         public void Submit(Post post);
         public void UpdatePost(Post postToUpdate);
+        public void Vote(long id, int value);
     }
 }

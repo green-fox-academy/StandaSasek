@@ -37,5 +37,11 @@ namespace Redit.Controllers
             service.Submit(post);
             return RedirectToAction("index");
         }
+        [HttpGet("vote")]
+        public IActionResult Vote(int id, int value)
+        {
+            service.Vote(id, value);
+            return RedirectToAction("index");
+        }
     }
 }

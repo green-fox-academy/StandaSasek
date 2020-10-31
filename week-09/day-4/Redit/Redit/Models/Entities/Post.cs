@@ -14,6 +14,7 @@ namespace Redit.Models.Entities
         public string Text { get; set; }
         public string Link { get; set; }
         public List<Vote> Votes { get; set; }
+        public int WorkVotes { get; set; } // HACK remove after Login and User finished
         public User Author { get; set; }
         public int UserId { get; set; }
         public Post(DateTime created, string text, string link, List<Vote> votes, User author, int userId)

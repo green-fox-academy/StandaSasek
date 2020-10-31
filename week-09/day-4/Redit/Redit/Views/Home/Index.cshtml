@@ -7,13 +7,27 @@
 <h1>Trending posts</h1>
 <p></p>
 <table>
+    <tr>
+        <th class="cell">&#128077;</th>
+        <th class="cell">Score</th>
+        <th class="cell">&#128078;</th>
+        <th class="cell">Post</th>
+        <th class="cell">Author</th>
+        <th class="cell">Created</th>
+    </tr>
     @foreach (var post in Model.MyPosts)
     {
-    <tr>
-        <td class="cell">@post.Votes.Count</td>
-        <td class="cell">plus</td>
-        <td class="cell">minus</td>
-        <td class="cell">@post.Link</td>
-    </tr>
+        <tr>
+            <td class="cell"><a href="/vote?id=@post.Id&value=1">&#128077;</a></td>
+
+            @* HACK rework after Login and User finished *@
+            <td class="cell">@post.WorkVotes</td>
+            @* HACK rework after Login and User finished *@
+
+            <td class="cell"><a href="/vote?id=@post.Id&value=-1">&#128078;</a></td>
+            <td class="cell"><a href="@post.Link">@post.Text</a></td>
+            <td class="cell">@post.Author.Name</td>
+            <td class="cell">@post.Created</td>
+        </tr>
     }
 </table>
