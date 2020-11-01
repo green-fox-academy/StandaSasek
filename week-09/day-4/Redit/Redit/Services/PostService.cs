@@ -8,11 +8,11 @@ using Redit.Models.Entities;
 
 namespace Redit.Services
 {
-    public class PostServices : IPostServices
+    public class PostService : IPostService
     {
         private readonly ApplicationDbContext dbContext;
 
-        public PostServices(ApplicationDbContext dbContext)
+        public PostService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -21,6 +21,12 @@ namespace Redit.Services
          {
              return dbContext.Posts.OrderByDescending(post => post.WorkVotes).Include(post => post.Author).Include(post => post.Votes).ToList();
          }
+        public Post ReadPost(int id)
+        {
+            return dbContext.Posts.
+                Include(ass => ass.Author).
+                FirstOrDefault(t => t.Id.Equals(id));
+        }
         public void Submit(Post post)
         {
             dbContext.Posts.Add(post);
@@ -28,7 +34,10 @@ namespace Redit.Services
         }
         public void UpdatePost(Post postToUpdate)
         {
-            dbContext.Update(postToUpdate);
+            /*var dbPost = ReadPost(postToUpdate.Id);
+            dbPost.Text = postToUpdate.Text;
+            dbPost.Link = postToUpdate.Link;*/
+            dbContext.Update(postToUpdate); // works itself well
             dbContext.SaveChanges();
         }
         public void Vote(long id, int value)

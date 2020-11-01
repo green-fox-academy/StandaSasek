@@ -14,6 +14,7 @@ namespace Redit.Models.Entities
         public int UserId { get; set; }
         public Post Post { get; set; }
         public int PostId { get; set; }
+
         public Vote(User user, int userId, Post post, int postId)
         {
             User = user;

@@ -31,5 +31,10 @@ namespace Redit.Models.ViewModels
         {
             MyPosts = myPosts;
         }
+
+        public IndexViewModel(Post myPost)
+        {
+            MyPost = myPost;
+        }
     }
 }

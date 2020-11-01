@@ -26,7 +26,7 @@ namespace Redit
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IPostServices, PostServices>();
+            services.AddTransient<IPostService, PostService>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
         }
 

@@ -1,0 +1,14 @@
+﻿@using Redit.Models;
+@model Redit.Models.ViewModels.IndexViewModel
+@{
+    Layout = "_layout"; var post = Model.MyPost;
+}
+<h1>Update selected post</h1>
+<p></p>
+<form action="" method="POST">
+        <Label for="text">Text</Label>
+        <input type="text" id="text" name="text" required autofocus value="@post.Text" />
+        <Label for="link">Link</Label>
+        <input type="text" id="link" name="link" required value="@post.Link" />
+        <input type="submit" value="Submit" />
+    </form>

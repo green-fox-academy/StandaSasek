@@ -14,6 +14,7 @@
         <th class="cell">Post</th>
         <th class="cell">Author</th>
         <th class="cell">Created</th>
+        <th class="cell">Update?</th>
     </tr>
     @foreach (var post in Model.MyPosts)
     {
@@ -28,6 +29,7 @@
             <td class="cell"><a href="@post.Link">@post.Text</a></td>
             <td class="cell">@post.Author.Name</td>
             <td class="cell">@post.Created</td>
+            <td class="cell"><a href="/update?id=@post.Id">update</a></td>
         </tr>
     }
 </table>

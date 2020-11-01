@@ -12,8 +12,8 @@ namespace Redit.Controllers
     [Route("")]
     public class HomeController : Controller
     {
-        private readonly IPostServices service;
-        public HomeController(IPostServices service)
+        private readonly IPostService service;
+        public HomeController(IPostService service)
         {
             this.service = service;
         }
@@ -46,6 +46,21 @@ namespace Redit.Controllers
         public IActionResult Vote(int id, int value)
         {
             service.Vote(id, value);
+            return RedirectToAction("index");
+        }
+        [HttpGet("update")]
+        public IActionResult Update(int id)
+        {
+            var post = service.ReadPost(id);
+            return View("update", new IndexViewModel(post));
+        }
+        [HttpPost("update")]
+        public IActionResult Updated(Post post)
+        {
+            var user = new User();
+            post.Author = user;
+            post.UserId = user.Id;
+            service.UpdatePost(post);
             return RedirectToAction("index");
         }
     }
