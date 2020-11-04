@@ -26,7 +26,7 @@ namespace RESTApiTraining
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<ILogEntryService, LogEntryService>();
+            services.AddTransient<Service>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
         }
 

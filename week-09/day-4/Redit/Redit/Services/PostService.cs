@@ -37,7 +37,7 @@ namespace Redit.Services
             /*var dbPost = ReadPost(postToUpdate.Id);
             dbPost.Text = postToUpdate.Text;
             dbPost.Link = postToUpdate.Link;*/
-            dbContext.Update(postToUpdate); // works itself well
+            //dbContext.Update(postToUpdate); // works itself well
             dbContext.SaveChanges();
         }
         public void Vote(long id, int value)

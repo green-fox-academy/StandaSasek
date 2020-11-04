@@ -15,11 +15,11 @@ using RESTApiTraining.Services;
 
 namespace RESTApiTraining.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
     public class HomeController : Controller
     {
-        private readonly ILogEntryService service;
-        public HomeController(ILogEntryService service)
+        private readonly Service service;
+        public HomeController(Service service)
         {
             this.service = service;
         }
@@ -30,15 +30,42 @@ namespace RESTApiTraining.Controllers
             return File("index.html", "text/html");
         }
         [HttpGet("doubling")]
-        public IActionResult Doubling(int? input)
+        public IActionResult Doubling([FromQuery]int? input)
         {
             service.CreateLog(new LogEntry(DateTime.Now, "doubling", "input=" + input.ToString()));
             if (input is null)
             {
-                return Json(new { error = "Please provide an input!" });
+                return BadRequest(new { error = "Please provide an input!" });
             }
             var result = input * 2;
-            return Json(new { received = input, result = result });
+            return Json(new Data(input.Value, result.Value)); // version with object
+            // return Json(new { received = input, result = result });
+        }
+        [HttpPost("dountil/{operation}")]
+        public IActionResult DoUntil([FromRoute] string operation, [FromBody] Operation until)
+        {
+            service.CreateLog(new LogEntry(DateTime.Now, "dountil", "operation=" + operation + "&" + "number=" + until?.Until.ToString()));
+            int result = 0;
+            if (until == null || !until.Until.HasValue) // TODO until.Until is null OR !until.Until.HasValue
+            {
+                return BadRequest(new { error = "Please provide a number!" });
+            }
+            else if (operation == "sum")
+            {
+                for (int i = 1; i <= until.Until; i++)
+                {
+                    result += i;
+                }
+            }
+            else if (operation == "factor")
+            {
+                result++;
+                for (int i = 1; i <= until.Until; i++)
+                {
+                    result *= i;
+                }
+            }
+            return Ok(new { result = result }); // TODO = "Ok" makes state code 200
         }
         [HttpGet("greeter")]
         public IActionResult Greeter(string name, string title)
@@ -61,34 +88,9 @@ namespace RESTApiTraining.Controllers
         [HttpGet("appenda/{appendable}")]
         public IActionResult AppendA([FromRoute] string appendable)
         {
-            service.CreateLog(new LogEntry(DateTime.Now, "appenda", "appendable=" + appendable));
-            return Json(new { appended = $"{appendable}a" });
-        }
-        [HttpPost("dountil/{operation}")]
-        public IActionResult DoUntil([FromRoute] string operation, [FromBody] Operation until)
-        {
-            service.CreateLog(new LogEntry(DateTime.Now, "dountil", "operation=" + operation + "&" + "number=" + until.Until.ToString()));
-            int result = 0;
-            if (until.Until is null)
-            {
-                return Json(new { error = "Please provide a number!" });
-            }
-            else if (operation == "sum")
-            {
-                for (int i = 1; i <= until.Until; i++)
-                {
-                    result += i;
-                }
-            }
-            else if (operation == "factor")
-            {
-                result++;
-                for (int i = 1; i <= until.Until; i++)
-                {
-                    result *= i;
-                }
-            }
-            return Json(new { result = result });
+            service.CreateLog(new LogEntry(DateTime.Now, "appenda", "appendable=" + (appendable == null ? "" : appendable)));
+            var result = appendable + "a";
+            return Json(new { appended = result });
         }
         [HttpPost("arrays")]
         public IActionResult Arrays([FromBody]Arrays whatArray)
@@ -96,7 +98,7 @@ namespace RESTApiTraining.Controllers
             service.CreateLog(new LogEntry(DateTime.Now, "arrays", "what=" + whatArray.What + "&" + "numbers=" + String.Join(",", whatArray.Numbers)));
             if (whatArray.Numbers.Count == 0 || String.IsNullOrEmpty(whatArray.What))
             {
-                return Json(new { error = "Please provide what to do with the numbers!" });
+                return BadRequest(new { error = "Please provide what to do with the numbers!" });
             }
             var numbers = new List<int>(whatArray.Numbers);
             string operation = whatArray.What;
@@ -135,17 +137,17 @@ namespace RESTApiTraining.Controllers
             var numberOfLogs = listOfEntries.Count();
             return Json(new { entries = listOfEntries, entry_count = numberOfLogs });
         }
-        [HttpPost("sith")]
+       /* [HttpPost("sith")]
         public IActionResult Sith([FromBody]SithTalk text)
         {
             service.CreateLog(new LogEntry(DateTime.Now, "sith", text.Text));
             if (String.IsNullOrEmpty(text.Text))
             {
-                return Json(new { error = "Feed me some text you have to, padawan young you are. Hmmm." });
+                return BadRequest(new { error = "Feed me some text you have to, padawan young you are. Hmmm." });
             }
             var sithText = text.Text.Split(' ').ToList();
             service.YodaTalk(sithText);
             return Json(new { sith_text = translated });
-        }
+        }*/
     }
 }
