@@ -1,0 +1,16 @@
+﻿@using TodoApp.Models;
+@model IndexViewModels
+@{
+    Layout = "_layout"; var assignee = Model.MyAssignee;
+}
+
+<form action="" method="POST">
+    Update selected Assignee
+    <Label for="name">Name</Label>
+    <input type="text" id="name" name="name" required value="@assignee.Name" />
+    <Label for="email">Email</Label>
+    <input type="email" id="email" name="email" value="@assignee.Email" />
+    <input type="submit" value="Submit">
+</form>
+
+

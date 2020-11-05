@@ -1,0 +1,27 @@
+﻿@using TodoApp.Models;
+@model IndexViewModels
+@{
+    Layout = "_layout";
+}
+
+<h1>Assignees:</h1>
+    <table>
+        <tr>
+            <th class="cell">ID</th>
+            <th class="cell">NAME</th>
+            <th class="cell">EMAIL</th>
+            
+        </tr>
+        @foreach (var assignee in Model.MyAssignees)
+        {
+            <tr>
+                <td class="cell">@assignee.Id</td>
+                <td class="cell">@assignee.Name</td>
+                <td class="cell">@assignee.Email</td>
+               
+                <td class="cell"><a href="/delete-assignee?id=@assignee.Id">delete</a></td>
+                <td class="cell"><a href="/update-assignee?id=@assignee.Id">update</a></td>
+            </tr>
+        }
+    </table>
+
