@@ -11,6 +11,7 @@ namespace NTBErrorReporter.Database
 
     {
         public DbSet<Report> Reports { get; set; }
+        public DbSet<Reporter> Reporter { get; set; }
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -5,21 +5,43 @@
 }
 
 <form action="" method="POST" id="createreport">
-    Add a new report
-    <Label for="name">Name:</Label>
-    <select name="name" id="name" form="createreport" required>
-        <option hidden disabled selected value> -- select an option -- </option>
+    <h2>Add a new report</h2>
+    <Label for="reporterid">Name:</Label>
+    <select name="reporterid" id="reporterid" form="createreport" required>
+        <option hidden disabled selected> -- select an option -- </option>
         @{foreach (var person in Model.MyReporters)
             {
                 <option value="@person.Id">@person.Name</option>
             }
         }
-    </select>
+    </select><br />
     <Label for="manufacturer">Manufacturer:</Label>
-    <input type="text" id="manufacturer" name="manufacturer" required />
+    <input type="text" id="manufacturer" name="manufacturer" required /><br />
     <Label for="serialnumber">Serial Number:</Label>
-    <input type="text" id="serialnumber" name="serialnumber" required/>
+    <input type="text" id="serialnumber" name="serialnumber" required/><br />
     <Label for="description">Description:</Label>
-    <input type="text" id="description" name="description" required />
+    <input type="text" id="description" name="description" required /><br />
     <input type="submit" value="Report" />
 </form>
+<p></p>
+<table>
+    <tr>
+    <th >ID</th>
+    <th >date</th>
+    <th >reported by</th>
+    <th >manufacturer</th>
+    <th >serialnumber</th>
+    <th >description</th>
+    </tr>
+    @foreach (var report in Model.MyReports)
+    {
+        <tr>
+            <th>@report.Id</th>
+            <td>@report.Date</td>
+            <td>@report.ReporterName.Name</td>
+            <td>@report.Manufacturer</td>
+            <td>@report.SerialNumber</td>
+            <td>@report.Description</td>
+        </tr>
+    }
+</table>

@@ -23,5 +23,10 @@ namespace NTBErrorReporter.Models.ViewModels
             MyReporter = myReporter;
             MyReporters = myReporters;
         }
+        public IndexViewModel(List<Report> myReports, List<Reporter> myReporters)
+        {
+            MyReports = myReports;
+            MyReporters = myReporters;
+        }
     }
 }

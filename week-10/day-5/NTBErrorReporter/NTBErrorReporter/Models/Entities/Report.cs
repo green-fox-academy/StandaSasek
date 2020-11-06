@@ -18,14 +18,14 @@ namespace NTBErrorReporter.Models.Entities
         public string Description { get; set; }
         public DateTime Date { get; set; }
 
-        public Report(Reporter reporterName, int reporterId, string manufacturer, string serialNumber, string description, DateTime date)
+        public Report(Reporter reporterName, int reporterId, string manufacturer, string serialNumber, string description)
         {
             ReporterName = reporterName;
             ReporterId = reporterId;
             Manufacturer = manufacturer;
             SerialNumber = serialNumber;
             Description = description;
-            Date = date;
+            Date = DateTime.Now;
         }
         public Report()
         {

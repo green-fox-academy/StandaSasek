@@ -16,16 +16,38 @@ namespace NTBErrorReporter.Services
         {
             this.dbContext = dbContext;
         }
-/*        public void CreateReport(Report entity)
+        public void CreateReport(Report report)
         {
-            dbContext.Entities.Add(entity);
+            /*var dbReport = ReadReport(report.Id);
+           
+            dbReport.ReporterName = dbReporter;
+            dbReport.ReporterId = dbReporter.Id;
+            dbReport.Manufacturer = report.Manufacturer;
+            dbReport.SerialNumber = report.SerialNumber;
+            dbReport.Description = report.Description;*/
+            dbContext.Reports.Add(report);
             dbContext.SaveChanges();
         }
-        public List<Report> ReadAllEntities()
+        //TODO delete unneeded methods
+        public List<Report> ReadAllReports()
         {
-            return dbContext.Entities.ToList();
+            return dbContext.Reports.ToList();
         }
-        public void UpdateEntity(Report entityToUpdate)
+        public Report ReadReport(int id)
+        {
+            return dbContext.Reports
+                .Include(name => name.ReporterName)
+                .FirstOrDefault(r => r.Id.Equals(id));
+        }
+        public List<Reporter> ReadAllReporters()
+        {
+            return dbContext.Reporter.ToList();
+        }
+        public Reporter ReadReporter(int id)
+        {
+            return dbContext.Reporter.FirstOrDefault(r => r.Id.Equals(id));
+        }
+        /*public void UpdateEntity(Report entityToUpdate)
         {
             dbContext.Update(entityToUpdate);
             dbContext.SaveChanges();
@@ -34,6 +56,7 @@ namespace NTBErrorReporter.Services
         {
             dbContext.Entities.Remove(dbContext.Entities.FirstOrDefault(p => p.Name.Equals(name)));
             dbContext.SaveChanges();
-        }*/
+        }
+    }*/
     }
 }

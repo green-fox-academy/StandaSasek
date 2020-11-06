@@ -20,7 +20,18 @@ namespace NTBErrorReporter.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            var reporters = service.ReadAllReporters();
+            var reports = service.ReadAllReports();
+            return View(new IndexViewModel(reports, reporters));
         }
+        [HttpPost("")]
+        public IActionResult CreateReport(int reporterId, string manufacturer, string serialnumber, string description)
+        {
+            var dbReporter = service.ReadReporter(reporterId);
+            var report = new Report(dbReporter, reporterId, manufacturer, serialnumber, description);
+            service.CreateReport(report);
+            return RedirectToAction("index");
+        }
+
     }
 }
