@@ -42,11 +42,32 @@ namespace RESTApiTraining.Services
             }
             return result;
         }
-
+        public int DoUntil(string operation, Operation until)
+        {
+            int result = 0;
+            if (operation == "sum")
+            {
+                for (int i = 1; i <= until.Until; i++)
+                {
+                    result += i;
+                }
+            }
+            else if (operation == "factor")
+            {
+                result++;
+                for (int i = 1; i <= until.Until; i++)
+                {
+                    result *= i;
+                }
+            }
+            return result;
+        }
         public string YodaTalk(List<string> words)
         {
             var result = new List<string>();
             var sentence = new List<int>();
+
+
 
             for (int i = 0; i < words.Count; i++)
             {

@@ -1,0 +1,3 @@
+SELECT * FROM employees JOIN devices ON employees.id = devices.employee_id WHERE type = 'mobile' ORDER BY employees.name;
+
+SELECT * FROM employees JOIN devices ON employees.id = devices.employee_id WHERE role = 'psychologist' AND type = 'mobile' ORDER BY employees.name;

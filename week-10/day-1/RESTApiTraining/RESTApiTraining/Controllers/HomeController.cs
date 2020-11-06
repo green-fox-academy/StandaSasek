@@ -32,7 +32,7 @@ namespace RESTApiTraining.Controllers
         [HttpGet("doubling")]
         public IActionResult Doubling([FromQuery]int? input)
         {
-            service.CreateLog(new LogEntry(DateTime.Now, "doubling", "input=" + input.ToString()));
+            service.CreateLog(new LogEntry(DateTime.Now, "doubling", "input=" + Convert.ToString(input))); // input.ToString() is better to use Convert.ToString(input) - handles null int
             if (input is null)
             {
                 return BadRequest(new { error = "Please provide an input!" });
@@ -45,27 +45,12 @@ namespace RESTApiTraining.Controllers
         public IActionResult DoUntil([FromRoute] string operation, [FromBody] Operation until)
         {
             service.CreateLog(new LogEntry(DateTime.Now, "dountil", "operation=" + operation + "&" + "number=" + until?.Until.ToString()));
-            int result = 0;
             if (until == null || !until.Until.HasValue) // TODO until.Until is null OR !until.Until.HasValue
             {
                 return BadRequest(new { error = "Please provide a number!" });
             }
-            else if (operation == "sum")
-            {
-                for (int i = 1; i <= until.Until; i++)
-                {
-                    result += i;
-                }
-            }
-            else if (operation == "factor")
-            {
-                result++;
-                for (int i = 1; i <= until.Until; i++)
-                {
-                    result *= i;
-                }
-            }
-            return Ok(new { result = result }); // TODO = "Ok" makes state code 200
+            var result = DoUntil(operation, until);
+            return Ok(new { result = result });
         }
         [HttpGet("greeter")]
         public IActionResult Greeter(string name, string title)
