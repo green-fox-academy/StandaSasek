@@ -26,7 +26,7 @@ namespace NTBErrorReporter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IEntityServices, EntityServices>();
+            services.AddTransient<ReportService>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
         }
 

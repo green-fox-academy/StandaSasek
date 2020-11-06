@@ -8,24 +8,24 @@ using NTBErrorReporter.Models.Entities;
 
 namespace NTBErrorReporter.Services
 {
-    public class EntityServices : IEntityServices
+    public class ReportService // TODO decide if need of Interface
     {
         private readonly ApplicationDbContext dbContext;
 
-        public EntityServices(ApplicationDbContext dbContext)
+        public ReportService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
-        public void CreateEntity(Entity entity)
+/*        public void CreateReport(Report entity)
         {
             dbContext.Entities.Add(entity);
             dbContext.SaveChanges();
         }
-        public List<Entity> ReadAllEntities()
+        public List<Report> ReadAllEntities()
         {
             return dbContext.Entities.ToList();
         }
-        public void UpdateEntity(Entity entityToUpdate)
+        public void UpdateEntity(Report entityToUpdate)
         {
             dbContext.Update(entityToUpdate);
             dbContext.SaveChanges();
@@ -34,6 +34,6 @@ namespace NTBErrorReporter.Services
         {
             dbContext.Entities.Remove(dbContext.Entities.FirstOrDefault(p => p.Name.Equals(name)));
             dbContext.SaveChanges();
-        }
+        }*/
     }
 }

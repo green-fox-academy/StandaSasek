@@ -10,28 +10,28 @@ namespace NTBErrorReporter.Database
     public class ApplicationDbContext : DbContext
 
     {
-        public DbSet<Entity> Entities { get; set; }
+        public DbSet<Report> Reports { get; set; }
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /* modelBuilder.Entity<Entity>()
-                .HasOne<User>(post => post.Author)
-                .WithMany(user => user.Posts)
-                .HasForeignKey(post => post.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Report>()
+               .HasOne<Reporter>(report => report.ReporterName)
+               .WithMany(reporter => reporter.Reports)
+               .HasForeignKey(report => report.ReporterId)
+               /*.OnDelete(DeleteBehavior.Restrict)*/;
+/*
+            modelBuilder.Entity<Vote>()
+                .HasOne<Entity>(vote => vote.Post)
+                .WithMany(post => post.Votes)
+                .HasForeignKey(vote => vote.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-             modelBuilder.Entity<Vote>()
-                 .HasOne<Entity>(vote => vote.Post)
-                 .WithMany(post => post.Votes)
-                 .HasForeignKey(vote => vote.PostId)
-                 .OnDelete(DeleteBehavior.Cascade);
-
-             modelBuilder.Entity<Vote>()
-                 .HasOne<User>(vote => vote.User)
-                 .WithMany(user => user.Votes)
-                 .HasForeignKey(vote => vote.UserId)
-                 .OnDelete(DeleteBehavior.Restrict);*/
+            modelBuilder.Entity<Vote>()
+                .HasOne<User>(vote => vote.User)
+                .WithMany(user => user.Votes)
+                .HasForeignKey(vote => vote.UserId)
+                .OnDelete(DeleteBehavior.Restrict);*/
         }
     }
 }

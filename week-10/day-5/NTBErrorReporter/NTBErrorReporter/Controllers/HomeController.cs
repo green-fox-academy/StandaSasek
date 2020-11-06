@@ -12,8 +12,8 @@ namespace NTBErrorReporter.Controllers
     [Route("")]
     public class HomeController : Controller
     {
-        private readonly IEntityServices service;
-        public HomeController(IEntityServices service)
+        private readonly ReportService service;
+        public HomeController(ReportService service)
         {
             this.service = service;
         }

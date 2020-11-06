@@ -8,16 +8,20 @@ namespace NTBErrorReporter.Models.ViewModels
 {
     public class IndexViewModel
     {
-        public List<Entity> MyEntities { get; set; }
-        public Entity MyEntity { get; set; }
-        public IndexViewModel(List<Entity> myEntities, Entity myEntity)
-        {
-            MyEntities = myEntities;
-            MyEntity = myEntity;
-        }
+        public List<Report> MyReports { get; set; }
+        public Report MyReport { get; set; }
+        public Reporter MyReporter { get; set; }
+        public List<Reporter> MyReporters { get; set; }
+        
         public IndexViewModel()
         {
         }
-
+        public IndexViewModel(List<Report> myReports, Report myReport, Reporter myReporter, List<Reporter> myReporters)
+        {
+            MyReports = myReports;
+            MyReport = myReport;
+            MyReporter = myReporter;
+            MyReporters = myReporters;
+        }
     }
 }

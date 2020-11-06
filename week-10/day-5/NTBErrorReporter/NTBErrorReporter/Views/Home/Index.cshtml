@@ -3,3 +3,23 @@
 @{
     Layout = "_layout";
 }
+
+<form action="" method="POST" id="createreport">
+    Add a new report
+    <Label for="name">Name:</Label>
+    <select name="name" id="name" form="createreport" required>
+        <option hidden disabled selected value> -- select an option -- </option>
+        @{foreach (var person in Model.MyReporters)
+            {
+                <option value="@person.Id">@person.Name</option>
+            }
+        }
+    </select>
+    <Label for="manufacturer">Manufacturer:</Label>
+    <input type="text" id="manufacturer" name="manufacturer" required />
+    <Label for="serialnumber">Serial Number:</Label>
+    <input type="text" id="serialnumber" name="serialnumber" required/>
+    <Label for="description">Description:</Label>
+    <input type="text" id="description" name="description" required />
+    <input type="submit" value="Report" />
+</form>
