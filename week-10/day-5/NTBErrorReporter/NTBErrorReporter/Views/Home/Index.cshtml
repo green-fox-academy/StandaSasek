@@ -4,7 +4,8 @@
     Layout = "_layout";
 }
 
-<form action="" method="POST" id="createreport">
+
+<form action="report" method="POST" id="createreport">
     <h2>Add a new report</h2>
     <Label for="reporterid">Name:</Label>
     <select name="reporterid" id="reporterid" form="createreport" required>
@@ -23,25 +24,4 @@
     <input type="text" id="description" name="description" required /><br />
     <input type="submit" value="Report" />
 </form>
-<p></p>
-<table>
-    <tr>
-    <th >ID</th>
-    <th >date</th>
-    <th >reported by</th>
-    <th >manufacturer</th>
-    <th >serialnumber</th>
-    <th >description</th>
-    </tr>
-    @foreach (var report in Model.MyReports)
-    {
-        <tr>
-            <th>@report.Id</th>
-            <td>@report.Date</td>
-            <td>@report.ReporterName.Name</td>
-            <td>@report.Manufacturer</td>
-            <td>@report.SerialNumber</td>
-            <td>@report.Description</td>
-        </tr>
-    }
-</table>
+

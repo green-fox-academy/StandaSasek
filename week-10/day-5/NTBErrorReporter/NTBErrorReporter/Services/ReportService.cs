@@ -18,13 +18,6 @@ namespace NTBErrorReporter.Services
         }
         public void CreateReport(Report report)
         {
-            /*var dbReport = ReadReport(report.Id);
-           
-            dbReport.ReporterName = dbReporter;
-            dbReport.ReporterId = dbReporter.Id;
-            dbReport.Manufacturer = report.Manufacturer;
-            dbReport.SerialNumber = report.SerialNumber;
-            dbReport.Description = report.Description;*/
             dbContext.Reports.Add(report);
             dbContext.SaveChanges();
         }
@@ -32,6 +25,11 @@ namespace NTBErrorReporter.Services
         public List<Report> ReadAllReports()
         {
             return dbContext.Reports.ToList();
+        }
+        public List<Report> ReadAllReports(Search keyWord)
+        {
+            var manufacturer = keyWord.Manufacturer;
+            return dbContext.Reports.Where(r => r.Manufacturer.Equals(keyWord.Manufacturer) || r.ReporterName.Name.Equals(keyWord.Reporter)).ToList();
         }
         public Report ReadReport(int id)
         {
@@ -47,16 +45,18 @@ namespace NTBErrorReporter.Services
         {
             return dbContext.Reporter.FirstOrDefault(r => r.Id.Equals(id));
         }
-        /*public void UpdateEntity(Report entityToUpdate)
+        public void DeleteReport(int id)
         {
-            dbContext.Update(entityToUpdate);
+            dbContext.Reports.Remove(dbContext.Reports.FirstOrDefault(r => r.Id.Equals(id)));
             dbContext.SaveChanges();
         }
-        public void DeleteEntity(string name)
-        {
-            dbContext.Entities.Remove(dbContext.Entities.FirstOrDefault(p => p.Name.Equals(name)));
-            dbContext.SaveChanges();
-        }
-    }*/
     }
+
+    /*public void UpdateEntity(Report entityToUpdate)
+{
+dbContext.Update(entityToUpdate);
+dbContext.SaveChanges();
 }
+*/
+}
+

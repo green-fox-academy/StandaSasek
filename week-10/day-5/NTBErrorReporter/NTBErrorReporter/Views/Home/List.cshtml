@@ -1,0 +1,29 @@
+﻿@using NTBErrorReporter.Models;
+@model NTBErrorReporter.Models.ViewModels.IndexViewModel
+@{
+    Layout = "_layout";
+}
+
+
+<p></p>
+<table>
+    <tr>
+    <th >ID</th>
+    <th >date</th>
+    <th >reported by</th>
+    <th >manufacturer</th>
+    <th >serialnumber</th>
+    <th >description</th>
+    </tr>
+    @foreach (var report in Model.MyReports)
+    {
+        <tr>
+            <th>@report.Id</th>
+            <td>@report.Date</td>
+            <td>@report.ReporterName.Name</td>
+            <td>@report.Manufacturer</td>
+            <td>@report.SerialNumber</td>
+            <td>@report.Description</td>
+        </tr>
+    }
+</table>
