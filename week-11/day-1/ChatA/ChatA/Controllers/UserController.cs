@@ -22,5 +22,29 @@ namespace ChatA.Controllers
         {
             return View();
         }
+        [HttpGet("register")]
+        public IActionResult RegisterUser()
+        {
+            return View("register");
+        }
+        [HttpPost("register")]
+        public IActionResult RegisterUser([FromBody] string login, [FromBody] string password)
+        {
+            service.RegisterUser(login, password);
+
+            return View("index");
+        }
+        [HttpGet("login")]
+        public IActionResult LoginUser()
+        {
+            return View("register");
+        }
+        [HttpPost("login")]
+        public IActionResult LoginUser([FromBody] string login, [FromBody] string password)
+        {
+            service.LoginUser(login, password);
+
+            return View("index");
+        }
     }
 }

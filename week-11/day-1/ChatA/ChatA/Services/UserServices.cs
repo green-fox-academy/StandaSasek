@@ -5,35 +5,75 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ChatA.Database;
 using ChatA.Models.Entities;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace ChatA.Services
 {
     public class UserServices
     {
+        const string urlApi = "https://latest-chat.herokuapp.com/api";
         private readonly ApplicationDbContext dbContext;
+        private readonly IHttpClientFactory clientFactory;
 
-        public UserServices(ApplicationDbContext dbContext)
+        public UserServices(ApplicationDbContext dbContext, IHttpClientFactory clientFactory)
         {
             this.dbContext = dbContext;
+            this.clientFactory = clientFactory;
         }
-        public void CreateEntity(User user)
+        public UserServices()
+        {
+        }
+
+        internal User RegisterUser(string login, string password)
+        {
+            var userRegister = JsonConvert.SerializeObject(new { login = login, password = password });
+            var httpContent = new StringContent(userRegister, Encoding.UTF8, "application/json");
+
+            var response = clientFactory.CreateClient().PostAsync(urlApi + "api/user/register", httpContent).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<User>(data);
+            CreateUser(result);
+
+            return result;
+        }
+        public void CreateUser(User user)
         {
             dbContext.ChatUsers.Add(user);
             dbContext.SaveChanges();
         }
         public User ReadUser(int userId)
         {
-            return dbContext.ChatUsers.FirstOrDefault(u => u.UserId.Equals(userId)); ;
+            return dbContext.ChatUsers.FirstOrDefault(u => u.UserId.Equals(userId));
         }
-        /*public void UpdateEntity(User entityToUpdate)
+        internal User LoginUser(string login, string password)
         {
-            dbContext.Update(entityToUpdate);
-            dbContext.SaveChanges();
+            var userLogin = JsonConvert.SerializeObject(new { login = login, password = password });
+            var httpContent = new StringContent(userLogin, Encoding.UTF8, "application/json");
+
+            var response = clientFactory.CreateClient().PostAsync(urlApi + "api/user/register", httpContent).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<User>(data);
+            UpdateUserApiKey(result.UserId, result.ApiKey);
+
+            return result;
         }
-        public void DeleteEntity(string name)
+        public void UpdateUserApiKey(int userId, string apiKey)
         {
-            dbContext.Entities.Remove(dbContext.Entities.FirstOrDefault(p => p.Name.Equals(name)));
-            dbContext.SaveChanges();
-        }*/
+            var dbUser = dbContext.ChatUsers.FirstOrDefault(u => u.UserId.Equals(userId)); ;
+            if (!dbUser.ApiKey.Equals(apiKey))
+            {
+                dbUser.ApiKey = apiKey;
+                dbContext.Update(dbUser);
+                dbContext.SaveChanges();
+            }
+        }
+        /*
+public void DeleteEntity(string name)
+{
+   dbContext.Entities.Remove(dbContext.Entities.FirstOrDefault(p => p.Name.Equals(name)));
+   dbContext.SaveChanges();
+}*/
     }
 }
