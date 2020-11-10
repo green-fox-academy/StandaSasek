@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ChatA.Services;
+using ChatA.Models.Entities;
 
 namespace ChatA
 {
@@ -23,6 +24,7 @@ namespace ChatA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient();
             services.AddTransient<UserServices>();
         }
 

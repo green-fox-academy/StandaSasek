@@ -3,14 +3,16 @@
 @{
     Layout = "_layout";
 }
-<form asp-action="update" method="POST" id="update">
-    <h2>Update user @Model.MyUser.Login</h2>
+
+
+<form action="update" method="POST" id="update">
+    <h2>Update actual user</h2>
     <Label for="login">User name:</Label>
-    <input type="text" id="username" name="username" required value="@Model.MyUser.UserName"/><br />
-    <Label for="password">Password:</Label>
-    <input type="text" id="password" name="password" required value="@Model.MyUser.Password"/><br /> 
+    <input type="text" id="username" name="username" required value="@Model.MyLoggedUser.UserName" /><br />
+    @*<Label for="password">Password:</Label>
+        <input type="text" id="password" name="password" required value="@Model.MyLoggedUser.Password"/><br /> *@
     <Label for="avatarurl">Avatar URL:</Label>
-    <input type="text" id="avatarurl" name="avatarurl" required value="@Model.MyUser.AvatarUrl"/><br />
+    <input type="text" id="avatarurl" name="avatarurl" required value="@Model.MyLoggedUser.AvatarUrl" /><br />
     <input type="submit" value="Update!" />
 </form>
 

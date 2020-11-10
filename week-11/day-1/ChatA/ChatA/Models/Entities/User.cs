@@ -8,26 +8,16 @@ namespace ChatA.Models.Entities
 {
     public class User
     {
-        [Key]
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string ApiKey { get; set; }
-        public string Login { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string AvatarUrl { get; set; }
+        public string Login { get; set; } = "Standa";
+        public string Password { get; set; } = "pass";
 
+        public User(string login , string password )
+        {
+            Login = login;
+            Password = password;
+        }
         public User()
         {
-        }
-        public User(int userId, string apiKey, string login, string userName, string password, string avatarUrl)
-        {
-            UserId = userId;
-            ApiKey = apiKey;
-            Login = login;
-            UserName = userName;
-            Password = password;
-            AvatarUrl = avatarUrl;
         }
     }
 }

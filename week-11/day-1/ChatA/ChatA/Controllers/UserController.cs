@@ -20,35 +20,40 @@ namespace ChatA.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+
             return View();
         }
-        [HttpGet("register")]
-        public IActionResult RegisterUser()
-        {
-            return View("register");
-        }
-        [HttpPost("register")]
-        public IActionResult RegisterUser([FromBody] string login, [FromBody] string password)
-        {
-            service.RegisterUser(login, password);
+        /* [HttpGet("register")]
+         public IActionResult RegisterUser()
+         {
+             return View("register");
+         }
+         [HttpPost("register")]
+         public IActionResult RegisterUser([FromBody] string login, [FromBody] string password)
+         {
+             service.RegisterUser(login, password);
 
-            return View("index");
-        }
+             return View("index");
+         }*/
         [HttpGet("login")]
         public IActionResult LoginUser()
         {
-            return View("login");
+            var user = new User();
+            var message = service.LoginUser(user);
+            ViewBag.Message = message;
+            return View("index");
         }
-        [HttpPost("login")]
-        public IActionResult LoginUser([FromBody] string login, [FromBody] string password)
+        /*[HttpPost("login")]
+        public IActionResult LogedUser([FromBody] string login, [FromBody] string password)
         {
             service.LoginUser(login, password);
 
             return View("index");
-        }
+        }*/
         [HttpGet("user")]
         public IActionResult UserData()
         {
+
             return View("user");
         }
         [HttpGet("update")]
@@ -57,9 +62,9 @@ namespace ChatA.Controllers
             return View("update");
         }
         [HttpPost("update")]
-        public IActionResult UpdateUser([FromBody] User user)
+        public IActionResult UpdatedUser([FromBody] string userName, [FromBody]string avatarUrl)
         {
-            service.UpdateUser(user);
+            service.UpdateUser(userName, avatarUrl);
 
             return View("user");
         }
