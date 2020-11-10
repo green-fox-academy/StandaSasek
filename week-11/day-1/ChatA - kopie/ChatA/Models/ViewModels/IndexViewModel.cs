@@ -8,10 +8,12 @@ namespace ChatA.Models.ViewModels
 {
     public class IndexViewModel
     {
-        public User MyUser { get; set; }
-        public IndexViewModel(User myUser)
+        public List<User> MyEntities { get; set; }
+        public User MyEntity { get; set; }
+        public IndexViewModel(List<User> myEntities, User myEntity)
         {
-            MyUser = myUser;
+            MyEntities = myEntities;
+            MyEntity = myEntity;
         }
         public IndexViewModel()
         {
