@@ -20,53 +20,97 @@ namespace ChatA.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-
-            return View();
+            var userData = service.GetUserData();
+            if (String.IsNullOrEmpty(userData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("index", new IndexViewModel(userData));
         }
-        /* [HttpGet("register")]
-         public IActionResult RegisterUser()
-         {
-             return View("register");
-         }
-         [HttpPost("register")]
-         public IActionResult RegisterUser([FromBody] string login, [FromBody] string password)
-         {
-             service.RegisterUser(login, password);
-
-             return View("index");
-         }*/
+        [HttpGet("register")]
+        public IActionResult RegisterUser()
+        {
+            var userData = service.GetUserData();
+            if (String.IsNullOrEmpty(userData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("register");
+        }
+        [HttpPost("register")]
+        public IActionResult RegisterUser([FromBody] string login, [FromBody] string password)
+        {
+            var message = service.RegisterUser(login, password);
+            ViewBag.Message = message;
+            return View("index");
+        }
         [HttpGet("login")]
         public IActionResult LoginUser()
         {
             var user = new User();
             var message = service.LoginUser(user);
             ViewBag.Message = message;
-            return View("index");
+            var userData = service.GetUserData();
+            if (String.IsNullOrEmpty(userData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("index", new IndexViewModel(userData));
         }
-        /*[HttpPost("login")]
-        public IActionResult LogedUser([FromBody] string login, [FromBody] string password)
-        {
-            service.LoginUser(login, password);
-
-            return View("index");
-        }*/
         [HttpGet("user")]
         public IActionResult UserData()
         {
-
-            return View("user");
+            var userData = service.GetUserData();
+            if (String.IsNullOrEmpty(userData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("user", new IndexViewModel(userData));
         }
         [HttpGet("update")]
         public IActionResult UpdateUser()
         {
-            return View("update");
+            var userData = service.GetUserData();
+            if (String.IsNullOrEmpty(userData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("update", new IndexViewModel(userData));
         }
-        [HttpPost("update")]
-        public IActionResult UpdatedUser([FromBody] string userName, [FromBody]string avatarUrl)
+        [HttpPost("update")] // TODO do not work, but why?
+        public IActionResult UpdatedUser([FromBody] string userName, [FromBody] string avatarUrl)
         {
-            service.UpdateUser(userName, avatarUrl);
-
-            return View("user");
+            var userData = service.UpdateUser(userName, avatarUrl);
+            var newUserData = service.GetUserData();
+            if (String.IsNullOrEmpty(newUserData.ApiKey))
+            {
+                ViewBag.LoggedUser = false;
+            }
+            else
+            {
+                ViewBag.LoggedUser = true;
+            }
+            return View("user", new IndexViewModel(newUserData));
         }
     }
 }

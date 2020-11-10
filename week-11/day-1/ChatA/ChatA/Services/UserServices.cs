@@ -11,11 +11,11 @@ namespace ChatA.Services
         const string urlApi = "https://latest-chat.herokuapp.com/api/user";
         private readonly HttpClient httpClient;
         private static string ActualApiKey { get; set; }
-        
+
         public UserServices(IHttpClientFactory clientFactory)
         {
             httpClient = clientFactory.CreateClient();
-            httpClient.DefaultRequestHeaders.Add("apiKey", ActualApiKey);
+            //httpClient.DefaultRequestHeaders.Add("apiKey", ActualApiKey);
         }
 
         internal string GenericRequest(string requestData, string urlString)
@@ -25,49 +25,54 @@ namespace ChatA.Services
             var responseContent = response.Content.ReadAsStringAsync().Result;
             return responseContent;
         }
-        internal User RegisterUser(string login, string password)
+        internal string RegisterUser(string login, string password)
         {
-            var userRegister = JsonConvert.SerializeObject(new { login = login, password = password });
-            var httpContent = new StringContent(userRegister, Encoding.UTF8, "application/json");
+            var requestData = JsonConvert.SerializeObject(new { login = login, password = password });
+            var urlString = "/register";
+            var data = GenericRequest(requestData, urlString);
+            var user = JsonConvert.DeserializeObject<User>(data);
 
-            var response = httpClient.PostAsync((urlApi + "/register"), httpContent).Result;
-            var data = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<User>(data);
-
-            return result;
+            return String.IsNullOrEmpty(user.Login) ? "User registration status: False" : "User registration status: OK";
         }
         internal string LoginUser(User user)
         {
-            var requestData = JsonConvert.SerializeObject(new { login = user.Login, password = user.Password }); ;
+            var requestData = JsonConvert.SerializeObject(new { login = user.Login, password = user.Password });
             var urlString = "/login";
             var data = GenericRequest(requestData, urlString);
             var loggedUser = JsonConvert.DeserializeObject<LoggedUser>(data);
             SaveUserStrings(loggedUser.ApiKey);
 
-            return String.IsNullOrEmpty(loggedUser.ApiKey) ? "User login status: False" : "User login status: OK"; ;
+            return String.IsNullOrEmpty(loggedUser.ApiKey) ? "User login status: False" : "User login status: OK";
         }
         internal LoggedUser UpdateUser(string userName, string avatarUrl)
         {
-            var userUpdate = JsonConvert.SerializeObject(new { username = userName, avatarurl = avatarUrl });
-            var httpContent = new StringContent(userUpdate, Encoding.UTF8, "application/json");
-
-            var response = httpClient.PostAsync((urlApi + "/update"), httpContent).Result;
-            var data = response.Content.ReadAsStringAsync().Result;
+            var requestData = JsonConvert.SerializeObject(new { username = userName, avatarurl = avatarUrl });
+            var urlString = "/update";
+            var data = GenericRequest(requestData, urlString);
             var result = JsonConvert.DeserializeObject<LoggedUser>(data);
 
             return result;
         }
         public void SaveUserStrings(string apiKey)
         {
-            if (String.IsNullOrEmpty(ActualApiKey) || apiKey != ActualApiKey)
+            if (apiKey == ActualApiKey)
             {
-                ActualApiKey = apiKey;
+                return;
             }
+            ActualApiKey = apiKey;
         }
-        public LoggedUser UserData()
+        public LoggedUser GetUserData()
         {
-            var loggedUser = new LoggedUser();
-
+            if (String.IsNullOrEmpty(ActualApiKey))
+            {
+                return new LoggedUser();
+            }
+            httpClient.DefaultRequestHeaders.Add("apiKey", ActualApiKey);
+            var response = httpClient.GetAsync(urlApi).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            var loggedUser = JsonConvert.DeserializeObject<LoggedUser>(data);
+            loggedUser.ApiKey = ActualApiKey;
+            loggedUser.Login = new User().Login;
 
             return loggedUser;
         }

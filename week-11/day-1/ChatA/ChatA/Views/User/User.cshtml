@@ -6,4 +6,9 @@
     Layout = "_layout";
 }
 
-
+<h1>Actual user information</h1>
+<p></p>
+<p>Login name: @Model.MyLoggedUser.Login</p>
+<p>Chat user name: @Model.MyLoggedUser.UserName</p>
+<p>Avatar URL: @Model.MyLoggedUser.AvatarUrl</p>
+<p><img src="@Model.MyLoggedUser.AvatarUrl" alt="User avatar" /></p>
