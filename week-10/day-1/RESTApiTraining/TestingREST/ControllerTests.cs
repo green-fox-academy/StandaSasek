@@ -38,7 +38,7 @@ namespace TestingREST
             var result = JsonConvert.DeserializeObject<Dictionary<string, int>>(data);
             result.TryGetValue("result", out int actual);
 
-            response.EnsureSuccessStatusCode(); // version 1 off check of Status Code
+            response.IsSuccessStatusCode(); // version 1 off check of Status Code
             Assert.Equal(expected, actual);
         }*/
         [Fact]
@@ -51,7 +51,7 @@ namespace TestingREST
 
             var result = JsonConvert.DeserializeObject<Data>(data);
 
-            response.EnsureSuccessStatusCode();
+            response.IsSuccessStatusCode();
             Assert.Equal(expected, result.Result);
         }
         [Fact]
