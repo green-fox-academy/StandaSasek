@@ -8,7 +8,11 @@
 
 <h1>Actual user information</h1>
 <p></p>
-<p>Login name: @Model.MyLoggedUser.Login</p>
-<p>Chat user name: @Model.MyLoggedUser.UserName</p>
-<p>Avatar URL: @Model.MyLoggedUser.AvatarUrl</p>
-<p><img src="@Model.MyLoggedUser.AvatarUrl" alt="User avatar" /></p>
+<p><span class="badge badge-secondary">Login name:</span> @Model.MyLoggedUser.Login</p>
+<p><span class="badge badge-secondary">Chat user name:</span>@Model.MyLoggedUser.UserName</p>
+@*<p><span class="badge badge-secondary">Avatar URL:</span>@Model.MyLoggedUser.AvatarUrl</p>*@
+
+@if (ViewBag.LoggedUser)
+{
+    <p><img src="@Model.MyLoggedUser.AvatarUrl" alt="User avatar" /></p>
+}

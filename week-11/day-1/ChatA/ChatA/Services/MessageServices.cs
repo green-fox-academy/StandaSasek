@@ -6,22 +6,22 @@ using Newtonsoft.Json;
 
 namespace ChatA.Services
 {
-    public class UserServices
+    public class MessageService
     {
-        const string urlUserApi = "https://latest-chat.herokuapp.com/api/user";
+        const string urlMessageApi = "https://latest-chat.herokuapp.com/api/message";
         private readonly HttpClient httpClient;
         private static string ActualApiKey { get; set; }
 
-        public UserServices(IHttpClientFactory clientFactory)
+        public MessageService(IHttpClientFactory clientFactory)
         {
             httpClient = clientFactory.CreateClient();
             httpClient.DefaultRequestHeaders.Add("apikey", ActualApiKey);
         }
 
-        internal string GenericRequest(string requestData, string urlString)
+       /* internal string GenericRequest(string requestData, string urlString)
         {
             var httpContent = new StringContent(requestData, Encoding.UTF8, "application/json");
-            var response = httpClient.PostAsync((urlUserApi + urlString), httpContent).Result;
+            var response = httpClient.PostAsync((urlMessageApi + urlString), httpContent).Result;
             var responseContent = response.Content.ReadAsStringAsync().Result;
             return responseContent;
         }
@@ -84,13 +84,14 @@ namespace ChatA.Services
             {
                 return new LoggedUser();
             }
-            var response = httpClient.GetAsync(urlUserApi + "/user").Result;
+            var response = httpClient.GetAsync(urlMessageApi + "/user").Result;
             var data = response.Content.ReadAsStringAsync().Result;
             var loggedUser = JsonConvert.DeserializeObject<LoggedUser>(data);
             loggedUser.ApiKey = ActualApiKey;
             loggedUser.Login = new User().Login;
 
             return loggedUser;
-        }
+        }*/
+
     }
 }

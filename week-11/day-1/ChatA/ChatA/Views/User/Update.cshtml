@@ -5,13 +5,24 @@
 }
 
 
+        <h2>Update actual user</h2>
 <form action="update" method="POST" id="update">
-    <h2>Update actual user</h2>
-    <Label for="login">User name:</Label>
-    <input type="text" id="username" name="username" required value="@Model.MyLoggedUser.UserName" /><br />
-  
-    <Label for="avatarurl">Avatar URL:</Label>
-    <input type="text" id="avatarurl" name="avatarurl" required value="@Model.MyLoggedUser.AvatarUrl" /><br />
-    <input type="submit" value="Update!" />
+    <div class="form-group row">
+        <Label for="login" class="col-sm-2 col-form-label">User name:</Label>
+        <div class="col-sm-10">
+            <input type="text" id="username" class="form-control" name="username" required value="@Model.MyLoggedUser.UserName" /><br />
+        </div>
+    </div>
+    <div class="form-group row">
+        <Label for="avatarurl" class="col-sm-2 col-form-label">Avatar URL:</Label>
+        <div class="col-sm-10">
+            <input type="text" id="avatarurl" class="form-control" name="avatarurl" required value="@Model.MyLoggedUser.AvatarUrl" /><br />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Update!" />
+        </div>
+    </div>
 </form>
 

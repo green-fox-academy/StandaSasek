@@ -8,33 +8,39 @@
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/update">Update</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/user">Actual user</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/register" tabindex="-1" aria-disabled="true">Register</a>
-        </li>
-    </ul>
-
-    @if (!ViewBag.LoggedUser)
-    {
-        <p>No logged user, please log in</p>
-    }
-    else
-    {
-        <p> Actual logged user is @Model.MyLoggedUser.Login with chat nickname @Model.MyLoggedUser.UserName</p>
-    }
+    <div class="container">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/update">Update</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user">Actual user</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="/register" tabindex="-1" aria-disabled="true">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout actual user</a>
+            </li>
+        </ul>
 
 
-    @RenderBody()
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        @if (!ViewBag.LoggedUser)
+        {
+            <p>No logged user, please log in</p>
+        }
+        else
+        {
+            <p> Actual logged user is @Model.MyLoggedUser.Login with chat nickname @Model.MyLoggedUser.UserName</p>
+        }
+
+
+        @RenderBody()
+    </div>
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
