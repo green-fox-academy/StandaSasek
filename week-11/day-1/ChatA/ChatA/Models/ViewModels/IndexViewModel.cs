@@ -9,19 +9,13 @@ namespace ChatA.Models.ViewModels
 {
     public class IndexViewModel
     {
-        public User MyUser { get; set; }
         public LoggedUser MyLoggedUser { get; set; }
-        public IndexViewModel(User myUser, LoggedUser myLoggedUser)
+        public IndexViewModel(LoggedUser myLoggedUser)
         {
-            MyUser = myUser;
             MyLoggedUser = myLoggedUser;
         }
         public IndexViewModel()
         {
-        }
-        public IndexViewModel(LoggedUser myLoggedUser)
-        {
-            MyLoggedUser = myLoggedUser;
         }
     }
 }

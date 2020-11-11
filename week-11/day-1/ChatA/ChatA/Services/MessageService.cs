@@ -8,7 +8,7 @@ namespace ChatA.Services
 {
     public class MessageService
     {
-        const string urlMessageApi = "https://latest-chat.herokuapp.com/api/message";
+        const string urlMessageApi = "https://latest-chat.herokuapp.com/api";
         private readonly HttpClient httpClient;
         private static string ActualApiKey { get; set; }
 
@@ -18,14 +18,23 @@ namespace ChatA.Services
             httpClient.DefaultRequestHeaders.Add("apikey", ActualApiKey);
         }
 
-       /* internal string GenericRequest(string requestData, string urlString)
+        internal string GenericRequest(string requestData, string urlString)
         {
             var httpContent = new StringContent(requestData, Encoding.UTF8, "application/json");
             var response = httpClient.PostAsync((urlMessageApi + urlString), httpContent).Result;
             var responseContent = response.Content.ReadAsStringAsync().Result;
             return responseContent;
         }
-        internal string RegisterUser(string login, string password)
+        internal Message PostMessage(int channelId, string channelSecret, string content)
+        {
+            var requestData = JsonConvert.SerializeObject(new { channelId = channelId, channelSecret = channelSecret, content = content });
+            var urlString = "/message";
+            var data = GenericRequest(requestData, urlString);
+            var messageResponse = JsonConvert.DeserializeObject<Message>(data);
+
+            return messageResponse;
+        }
+        /*internal string RegisterUser(string login, string password)
         {
             var requestData = JsonConvert.SerializeObject(new { login = login, password = password });
             var urlString = "/register";
@@ -34,16 +43,7 @@ namespace ChatA.Services
 
             return String.IsNullOrEmpty(user.Login) ? "User registration status: False" : "User registration status: OK";
         }
-        internal string LoginUser(User user)
-        {
-            var requestData = JsonConvert.SerializeObject(new { login = user.Login, password = user.Password });
-            var urlString = "/login";
-            var data = GenericRequest(requestData, urlString);
-            var loggedUser = JsonConvert.DeserializeObject<LoggedUser>(data);
-            SaveUserStrings(loggedUser.ApiKey);
-
-            return String.IsNullOrEmpty(loggedUser.ApiKey) ? "User login status: False" : "User login status: OK";
-        }
+        
         internal LoggedUser UpdateUser(string userName, string avatarUrl)
         {
             var requestData = JsonConvert.SerializeObject(new { username = userName, avatarurl = avatarUrl });

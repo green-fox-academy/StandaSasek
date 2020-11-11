@@ -10,12 +10,13 @@ using ChatA.Services;
 namespace ChatA.Controllers
 {
     [Route("")]
-    public class UserController : Controller
+    public class HomeController : Controller
     {
-        private readonly UserServices service;
-        public UserController(UserServices service)
+        private readonly UserService userService;
+        private readonly MessageService messageService;
+        public HomeController(UserService userService)
         {
-            this.service = service;
+            this.userService = service;
         }
         [HttpGet("")]
         public IActionResult Index()
@@ -43,7 +44,7 @@ namespace ChatA.Controllers
         [HttpGet("login")]
         public IActionResult LoginUser()
         {
-            var user = new User();
+            var user = new LoggedUser();
             var message = service.LoginUser(user);
             TempData["Message"] = message;
             return RedirectToAction("index");
@@ -65,7 +66,7 @@ namespace ChatA.Controllers
         [HttpPost("update")] // TODO do not work, but why?
         public IActionResult UpdatedUser([FromForm] string userName, [FromForm] string avatarUrl)
         {
-            var userData = service.UpdateUser(userName, avatarUrl);
+            service.UpdateUser(userName, avatarUrl);
             var newUserData = service.GetUserData();
             ViewBag.LoggedUser = !String.IsNullOrEmpty(newUserData.ApiKey);
             return View("user", new IndexViewModel(newUserData));
@@ -76,6 +77,21 @@ namespace ChatA.Controllers
             var message = service.LogoutUser();
             TempData["Message"] = message;
             return RedirectToAction("index");
+        }
+        [HttpGet("message")]
+        public IActionResult PostMessage()
+        {
+            var userData = service.GetUserData();
+            ViewBag.LoggedUser = !String.IsNullOrEmpty(userData.ApiKey);
+            return View("update", new IndexViewModel(userData));
+        }
+        [HttpPost("update")] // TODO do not work, but why?
+        public IActionResult UpdatedUser([FromForm] string userName, [FromForm] string avatarUrl)
+        {
+            service.UpdateUser(userName, avatarUrl);
+            var newUserData = service.GetUserData();
+            ViewBag.LoggedUser = !String.IsNullOrEmpty(newUserData.ApiKey);
+            return View("user", new IndexViewModel(newUserData));
         }
     }
 }

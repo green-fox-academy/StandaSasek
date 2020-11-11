@@ -1,0 +1,30 @@
+﻿@using ChatA.Models;
+@model ChatA.Models.ViewModels.IndexViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    Layout = "_layout";
+}
+
+<h1>Actual user information</h1>
+<p></p>
+<p><span class="badge badge-secondary">Login name:</span> @Model.MyLoggedUser.Login</p>
+<p><span class="badge badge-secondary">Chat user name:</span>@Model.MyLoggedUser.UserName</p>
+<p>
+    <button class="btn badge-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Avatar URL:
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        @Model.MyLoggedUser.AvatarUrl
+    </div>
+</div>
+
+@if (ViewBag.LoggedUser)
+{
+<figure class="figure">
+    <img src="@Model.MyLoggedUser.AvatarUrl" class="figure-img img-fluid rounded" alt="User avatar">
+    <figcaption class="figure-caption">User avatar</figcaption>
+</figure>
+}
