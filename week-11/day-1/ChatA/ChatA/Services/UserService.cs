@@ -2,14 +2,13 @@
 using System.Net.Http;
 using System.Text;
 using ChatA.Models.Entities;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace ChatA.Services
 {
     public class UserService
     {
-        const string urlUserApi = "https://latest-chat.herokuapp.com/api/user";
+        private const string urlUserApi = "https://latest-chat.herokuapp.com/api/user";
         private readonly HttpClient httpClient;
         private static string ActualApiKey { get; set; }
 
@@ -26,25 +25,28 @@ namespace ChatA.Services
             var responseContent = response.Content.ReadAsStringAsync().Result;
             return responseContent;
         }
+
         internal string RegisterUser(string login, string password)
         {
-            var requestData = JsonConvert.SerializeObject(new { login = login, password = password });
+            var requestData = JsonConvert.SerializeObject(new { login, password });
             var urlString = "/register";
             var data = GenericRequest(requestData, urlString);
             var user = JsonConvert.DeserializeObject<LoggedUser>(data);
 
             return String.IsNullOrEmpty(user.Login) ? "User registration status: False" : "User registration status: OK";
         }
-        internal string LoginUser(LoggedUser user)
+
+        internal string LoginUser(/*LoggedUser user*/)
         {
             var requestData = JsonConvert.SerializeObject(new { login = "Standa", password = "pass" }); // HACK only default user login
             var urlString = "/login";
             var data = GenericRequest(requestData, urlString);
             var loggedUser = JsonConvert.DeserializeObject<LoggedUser>(data);
-            SaveUserStrings(loggedUser.ApiKey);
+            SaveApiKey(loggedUser.ApiKey);
 
             return String.IsNullOrEmpty(loggedUser.ApiKey) ? "User not logged" : "User logged successfully";
         }
+
         internal LoggedUser UpdateUser(string userName, string avatarUrl)
         {
             var requestData = JsonConvert.SerializeObject(new { username = userName, avatarurl = avatarUrl });
@@ -54,6 +56,7 @@ namespace ChatA.Services
 
             return result;
         }
+
         internal string LogoutUser()
         {
             if (String.IsNullOrEmpty(ActualApiKey))
@@ -71,7 +74,8 @@ namespace ChatA.Services
 
             return loggedUser == "true" ? "User logged out" : "User not logged out";
         }
-        public void SaveUserStrings(string apiKey)
+
+        public void SaveApiKey(string apiKey)
         {
             if (apiKey == ActualApiKey)
             {
@@ -79,6 +83,15 @@ namespace ChatA.Services
             }
             ActualApiKey = apiKey;
         }
+        public static string GetApiKey()
+        {
+            if (String.IsNullOrEmpty(ActualApiKey))
+            {
+                return "";
+            }
+            return ActualApiKey;
+        }
+
         public LoggedUser GetUserData()
         {
             if (String.IsNullOrEmpty(ActualApiKey))

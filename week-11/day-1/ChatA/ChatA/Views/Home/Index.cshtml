@@ -4,8 +4,60 @@
 @{
     Layout = "_layout";
 }
-<p> </p>
-@ViewBag.Message
 
-<h1>Latest Chat Ever</h1>
+@if (!ViewBag.Messages)
+{
+    <div class="alert alert-warning" role="alert">
+        No messages yet, please log in
+    </div>
+}
+else
+{
+<div class="container">
+    <ul class="list-group">
+        @foreach (var post in Model.MyMessages)
+        {
+            <li class="list-group-item border border-secondary">
+                <div class="container-fluid">
+                    <div class="row justify-content-between">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="@post.Author.AvatarUrl" class="float-right" alt="User avatar" width="50">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row justify-content-between">
+                                        <div class="col-md-3">
+                                            <span class="badge badge-info">@post.Author.UserName</span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <span class="badge badge-light">@post.Created.GetValueOrDefault()</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            @post.Content
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<form action="postmessage" method="POST" id="postmessage">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <label class="sr-only" for="content">New message here</label>
+            <input type="text" class="form-control mb-2" id="content" name="content" placeholder="... your message">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-secondary">Send it!</button>
+        </div>
+    </div>
+</form>
+}
 

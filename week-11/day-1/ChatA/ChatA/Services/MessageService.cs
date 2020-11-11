@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using ChatA.Models.Entities;
@@ -8,13 +8,14 @@ namespace ChatA.Services
 {
     public class MessageService
     {
-        const string urlMessageApi = "https://latest-chat.herokuapp.com/api";
+        private const string urlMessageApi = "https://latest-chat.herokuapp.com/api";
         private readonly HttpClient httpClient;
         private static string ActualApiKey { get; set; }
 
         public MessageService(IHttpClientFactory clientFactory)
         {
             httpClient = clientFactory.CreateClient();
+            ActualApiKey = UserService.GetApiKey();
             httpClient.DefaultRequestHeaders.Add("apikey", ActualApiKey);
         }
 
@@ -25,15 +26,32 @@ namespace ChatA.Services
             var responseContent = response.Content.ReadAsStringAsync().Result;
             return responseContent;
         }
-        internal Message PostMessage(int channelId, string channelSecret, string content)
+
+        internal Message PostMessage(/*int channelId,*/ string content)
         {
-            var requestData = JsonConvert.SerializeObject(new { channelId = channelId, channelSecret = channelSecret, content = content });
+            int? channelId = null;
+            string channelSecret = null;
+            var requestData = JsonConvert.SerializeObject(new { channelId, channelSecret, content });
             var urlString = "/message";
             var data = GenericRequest(requestData, urlString);
             var messageResponse = JsonConvert.DeserializeObject<Message>(data);
+            messageResponse.Content = content;
 
             return messageResponse;
         }
+
+        internal List<Message> GetMessagesByChannel(/*int channelId,*/ int count)
+        {
+            var channelMessages = new Channel();
+            var requestData = JsonConvert.SerializeObject(new { channelId = channelMessages.ChannelId, channelSecret = channelMessages.ChannelSecret, count });
+            var urlString = "/channel/get-messages";
+            var data = GenericRequest(requestData, urlString);
+            var channelResponse = JsonConvert.DeserializeObject<Channel>(data);
+            var messages = channelResponse.Messages;
+
+            return messages;
+        }
+
         /*internal string RegisterUser(string login, string password)
         {
             var requestData = JsonConvert.SerializeObject(new { login = login, password = password });
@@ -43,7 +61,7 @@ namespace ChatA.Services
 
             return String.IsNullOrEmpty(user.Login) ? "User registration status: False" : "User registration status: OK";
         }
-        
+
         internal LoggedUser UpdateUser(string userName, string avatarUrl)
         {
             var requestData = JsonConvert.SerializeObject(new { username = userName, avatarurl = avatarUrl });
@@ -92,6 +110,5 @@ namespace ChatA.Services
 
             return loggedUser;
         }*/
-
     }
 }

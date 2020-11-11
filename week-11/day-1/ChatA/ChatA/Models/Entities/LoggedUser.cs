@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ChatA.Models.Entities
+﻿namespace ChatA.Models.Entities
 {
     public class LoggedUser
     {
@@ -18,6 +12,7 @@ namespace ChatA.Models.Entities
         public LoggedUser()
         {
         }
+
         public LoggedUser(string apiKey, string userName, string avatarUrl, string login, string password)
         {
             ApiKey = apiKey;

@@ -9,38 +9,46 @@
 </head>
 <body>
     <div class="container">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/update">Update</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">Actual user</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="/register" tabindex="-1" aria-disabled="true">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout actual user</a>
-            </li>
-        </ul>
-
-
-        @if (!ViewBag.LoggedUser)
+        <div class="row">
+            <div class="col">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Click to login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/update">Update</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user">Actual user</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="/register" tabindex="-1" aria-disabled="true">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout actual user</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                @if (!ViewBag.LoggedUser)
         {
-            <p>No logged user, please log in</p>
+                <div class="alert alert-warning" role="alert">
+                    No logged user, please log in
+                </div>
         }
         else
         {
-            <p> Actual logged user is @Model.MyLoggedUser.Login with chat nickname @Model.MyLoggedUser.UserName</p>
+                <div class="alert alert-light" role="alert">
+                    Actual logged user is @Model.MyLoggedUser.Login with chat nickname @Model.MyLoggedUser.UserName
+                <img src="@Model.MyLoggedUser.AvatarUrl" class="float-right" alt="User avatar" width="50">
+                </div>
         }
-
-
+            </div>
+        </div>
+        <h1>Latest Chat Ever</h1>
         @RenderBody()
     </div>
-        <script src="~/lib/jquery/jquery.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

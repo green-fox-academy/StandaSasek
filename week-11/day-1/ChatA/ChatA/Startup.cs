@@ -21,6 +21,7 @@ namespace ChatA
             services.AddControllersWithViews();
             services.AddHttpClient();
             services.AddTransient<UserService>();
+            services.AddTransient<MessageService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
