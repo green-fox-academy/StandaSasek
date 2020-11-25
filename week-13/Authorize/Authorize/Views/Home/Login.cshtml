@@ -1,0 +1,20 @@
+﻿@using Authorize.Models;
+@model Authorize.Models.ViewModels.IndexViewModel
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Authorize</title>
+</head>
+<body>
+    @using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.TextBox("Username");
+        <br />
+        @Html.TextBox("Password");
+        <input type="submit" value="Submit" />
+    }
+
+</body>
+</html>
+

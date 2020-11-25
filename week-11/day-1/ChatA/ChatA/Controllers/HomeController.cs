@@ -13,11 +13,13 @@ namespace ChatA.Controllers
     {
         private readonly UserService uService;
         private readonly MessageService mService;
+        private readonly ChannelService cService;
 
-        public HomeController(UserService userService, MessageService messageService)
+        public HomeController(UserService userService, MessageService messageService, ChannelService channelService)
         {
             this.uService = userService;
             this.mService = messageService;
+            this.cService = channelService;
         }
 
         [HttpGet("")]
@@ -103,6 +105,15 @@ namespace ChatA.Controllers
         {
             var postedMessage = mService.PostMessage(content);
             TempData["Message"] = postedMessage.Created.HasValue ? "Message was not sent" : "Message sent successfully";
+
+            return RedirectToAction("index");
+        }
+
+        [HttpPost("channel")]
+        public IActionResult CreateChannel([FromForm] string name, string description)
+        {
+            var createdChannel = cService.CreateChannel(name, description);
+            TempData["Message"] = createdChannel ? $"Channel {name} created successfully" : "Channel was not created";
 
             return RedirectToAction("index");
         }
