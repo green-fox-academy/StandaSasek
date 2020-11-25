@@ -28,12 +28,12 @@ namespace LibrarianSystem
             services.AddTransient<HomeService>();
 
             var connectionString = Environment.GetEnvironmentVariable("MYSQLCONNSTR_DEFAULT");
-            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(connectionString)));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Main")));
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(connectionString)));
             
             services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", options =>
             {
-                options.Cookie.Name = "LibraryCookie";
+                options.Cookie.Name = "LibraryLoginCookie";
                 options.LoginPath = "/home/login";
             });
         }

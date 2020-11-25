@@ -8,28 +8,16 @@ namespace LibrarianSystem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Librarians",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Librarians", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Registered = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Registered = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Librarian = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,15 +33,16 @@ namespace LibrarianSystem.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Registered = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RegisteredById = table.Column<int>(type: "int", nullable: true)
+                    RegisteredById = table.Column<int>(type: "int", nullable: true),
+                    Destroyed = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Books_Librarians_RegisteredById",
+                        name: "FK_Books_Users_RegisteredById",
                         column: x => x.RegisteredById,
-                        principalTable: "Librarians",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -64,28 +53,29 @@ namespace LibrarianSystem.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BorrowerId = table.Column<int>(type: "int", nullable: false),
-                    BorrowedBookId = table.Column<int>(type: "int", nullable: false),
+                    BorrowedByClientId = table.Column<int>(type: "int", nullable: true),
+                    BorrowerClientId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PlannedEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RealEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RealEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Penalty = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Borrows", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Borrows_Books_BorrowedBookId",
-                        column: x => x.BorrowedBookId,
+                        name: "FK_Borrows_Books_BookId",
+                        column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Borrows_Users_BorrowerId",
-                        column: x => x.BorrowerId,
+                        name: "FK_Borrows_Users_BorrowedByClientId",
+                        column: x => x.BorrowedByClientId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,9 +98,9 @@ namespace LibrarianSystem.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Categories_Librarians_CategorizedById",
+                        name: "FK_Categories_Users_CategorizedById",
                         column: x => x.CategorizedById,
-                        principalTable: "Librarians",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -121,14 +111,14 @@ namespace LibrarianSystem.Migrations
                 column: "RegisteredById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Borrows_BorrowedBookId",
+                name: "IX_Borrows_BookId",
                 table: "Borrows",
-                column: "BorrowedBookId");
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Borrows_BorrowerId",
+                name: "IX_Borrows_BorrowedByClientId",
                 table: "Borrows",
-                column: "BorrowerId");
+                column: "BorrowedByClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_CategorizedBookId",
@@ -150,13 +140,10 @@ namespace LibrarianSystem.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Librarians");
+                name: "Users");
         }
     }
 }

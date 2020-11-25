@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibrarianSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201124133336_Init")]
+    [Migration("20201125143343_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace LibrarianSystem.Migrations
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Destroyed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -54,10 +57,13 @@ namespace LibrarianSystem.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("BorrowedBookId")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BorrowerId")
+                    b.Property<int?>("BorrowedByClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BorrowerClientId")
                         .HasColumnType("int");
 
                     b.Property<int>("Penalty")
@@ -66,7 +72,7 @@ namespace LibrarianSystem.Migrations
                     b.Property<DateTime>("PlannedEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("RealEnd")
+                    b.Property<DateTime?>("RealEnd")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Start")
@@ -74,9 +80,9 @@ namespace LibrarianSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BorrowedBookId");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("BorrowerId");
+                    b.HasIndex("BorrowedByClientId");
 
                     b.ToTable("Borrows");
                 });
@@ -106,30 +112,18 @@ namespace LibrarianSystem.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("LibrarianSystem.Models.Entities.Librarian", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Librarians");
-                });
-
             modelBuilder.Entity("LibrarianSystem.Models.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<bool>("Librarian")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -147,7 +141,7 @@ namespace LibrarianSystem.Migrations
 
             modelBuilder.Entity("LibrarianSystem.Models.Entities.Book", b =>
                 {
-                    b.HasOne("LibrarianSystem.Models.Entities.Librarian", "RegisteredBy")
+                    b.HasOne("LibrarianSystem.Models.Entities.User", "RegisteredBy")
                         .WithMany("RegisteredBooks")
                         .HasForeignKey("RegisteredById");
 
@@ -158,19 +152,17 @@ namespace LibrarianSystem.Migrations
                 {
                     b.HasOne("LibrarianSystem.Models.Entities.Book", "BorrowedBook")
                         .WithMany()
-                        .HasForeignKey("BorrowedBookId")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibrarianSystem.Models.Entities.User", "Borrower")
+                    b.HasOne("LibrarianSystem.Models.Entities.User", "BorrowedByClient")
                         .WithMany("BorrowedBooks")
-                        .HasForeignKey("BorrowerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BorrowedByClientId");
 
                     b.Navigation("BorrowedBook");
 
-                    b.Navigation("Borrower");
+                    b.Navigation("BorrowedByClient");
                 });
 
             modelBuilder.Entity("LibrarianSystem.Models.Entities.Category", b =>
@@ -181,7 +173,7 @@ namespace LibrarianSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibrarianSystem.Models.Entities.Librarian", "CategorizedBy")
+                    b.HasOne("LibrarianSystem.Models.Entities.User", "CategorizedBy")
                         .WithMany("CategorizedBooks")
                         .HasForeignKey("CategorizedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -197,16 +189,13 @@ namespace LibrarianSystem.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("LibrarianSystem.Models.Entities.Librarian", b =>
-                {
-                    b.Navigation("CategorizedBooks");
-
-                    b.Navigation("RegisteredBooks");
-                });
-
             modelBuilder.Entity("LibrarianSystem.Models.Entities.User", b =>
                 {
                     b.Navigation("BorrowedBooks");
+
+                    b.Navigation("CategorizedBooks");
+
+                    b.Navigation("RegisteredBooks");
                 });
 #pragma warning restore 612, 618
         }

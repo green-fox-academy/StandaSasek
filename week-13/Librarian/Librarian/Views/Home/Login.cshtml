@@ -4,6 +4,14 @@
     <title></title>
 </head>
 <body>
-    Welcome to Library
-    </body>
+    Please log to Library
+    <br />
+    @using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.TextBox("Username");
+        <br />
+        @Html.TextBox("Password");
+        <input type="submit" value="Submit" />
+    }
+</body>
 </html>

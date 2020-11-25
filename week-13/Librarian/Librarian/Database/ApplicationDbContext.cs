@@ -9,11 +9,10 @@ namespace LibrarianSystem.Database
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Borrow> Borrows { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Librarian> Librarians { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 

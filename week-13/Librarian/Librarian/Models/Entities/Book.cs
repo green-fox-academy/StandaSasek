@@ -12,7 +12,7 @@ namespace LibrarianSystem.Models.Entities
         public string Author { get; set; }
         public List<Category> Categories { get; set; }
         public DateTime Registered { get; set; }
-        public Librarian RegisteredBy { get; set; }
+        public User RegisteredBy { get; set; }
         public bool Destroyed { get; set; }
 
         public Book()

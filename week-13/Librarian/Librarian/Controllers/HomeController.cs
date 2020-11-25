@@ -1,9 +1,11 @@
 ﻿using LibrarianSystem.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace LibrarianSystem.Controllers
@@ -16,23 +18,47 @@ namespace LibrarianSystem.Controllers
         {
             this.service = service;
         }
+        [Authorize]
         [HttpGet("")]
         public IActionResult Index()
         {
-            return Ok("Welcome to Library");
+            var entity = HttpContext.User;
+            return Ok("Welcome to Library, our dear client!");
+        }
+        [Authorize]
+        [HttpGet("Librarian")]
+        public IActionResult Librarian()
+        {
+            var entity = HttpContext.User;
+            return Ok("Welcome to Library, Librarian!");
+        }
+        [HttpGet("Login")]
+        public IActionResult Login(string returnUrl)
+        {
+            TempData["returnUrl"] = returnUrl;
+            return View();
         }
         [HttpPost]
         public async Task<ActionResult> Login(string login, string password)
         {
             var entityUser = service.Login(login, password);
 
-            if (entityUser is null)
+            if (String.IsNullOrEmpty(entityUser.Login))
             {
                 return RedirectToAction("Login");
             }
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, entityUser.Login) };
+            var identity = new ClaimsIdentity(claims, "CookieAuth");
+            var principle = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(principle);
 
             var returnUrl = TempData["returnUrl"] as string;
 
+            if (entityUser.Librarian)
+            {
+                return RedirectToAction("Librarian");
+            }
             return LocalRedirect(returnUrl ?? "/");
         }
         public async Task<ActionResult> Logout()

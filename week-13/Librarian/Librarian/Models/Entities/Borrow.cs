@@ -8,7 +8,7 @@ namespace LibrarianSystem.Models.Entities
     public class Borrow
     {
         public int Id { get; set; }
-        public Client BorrowedByClient { get; set; }
+        public User BorrowedByClient { get; set; }
         public int BorrowerClientId { get; set; }
         public Book BorrowedBook { get; set; }
         public int BookId { get; set; }
