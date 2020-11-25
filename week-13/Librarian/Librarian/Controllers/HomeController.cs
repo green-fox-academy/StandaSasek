@@ -19,18 +19,18 @@ namespace LibrarianSystem.Controllers
             this.service = service;
         }
         [Authorize]
-        [HttpGet("")]
+        [HttpGet("Index")]
         public IActionResult Index()
         {
             var entity = HttpContext.User;
-            return Ok("Welcome to Library, our dear client!");
+            return Ok($"Welcome to Library, our dear {entity.Identity.Name}!");
         }
         [Authorize]
         [HttpGet("Librarian")]
         public IActionResult Librarian()
         {
             var entity = HttpContext.User;
-            return Ok("Welcome to Library, Librarian!");
+            return Ok($"Welcome to Library, Librarian {entity.Identity.Name}!");
         }
         [HttpGet("Login")]
         public IActionResult Login(string returnUrl)
@@ -38,7 +38,7 @@ namespace LibrarianSystem.Controllers
             TempData["returnUrl"] = returnUrl;
             return View();
         }
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<ActionResult> Login(string login, string password)
         {
             var entityUser = service.Login(login, password);
