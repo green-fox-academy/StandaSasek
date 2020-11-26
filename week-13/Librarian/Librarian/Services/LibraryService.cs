@@ -60,5 +60,11 @@ namespace LibrarianSystem.Services
 
             return librarians;
         }
+        internal List<Book> GetBooks()
+        {
+            var books = dbContext.Books.ToList();
+
+            return books;
+        }
     }
 }

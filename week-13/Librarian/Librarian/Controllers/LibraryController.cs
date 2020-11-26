@@ -96,5 +96,12 @@ namespace LibrarianSystem.Controllers
 
             return Ok(new { clients });
         }
+        [HttpGet("get-books")]
+        public ActionResult GetBooks()
+        {
+            var books = service.GetBooks();
+
+            return Ok(new { books });
+        }
     }
 }
