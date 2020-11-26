@@ -20,8 +20,8 @@ namespace LibrarianSystem.Controllers
         {
             this.service = service;
         }
-        [Authorize]
-        public IActionResult Index()
+       /*[Authorize]*/ 
+       public IActionResult Index()
         {
             var entity = HttpContext.User;
             return Ok($"Welcome to Library API, Librarian {entity.Identity.Name}!"); 
@@ -52,7 +52,7 @@ namespace LibrarianSystem.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
-        [Authorize]
+        /*[Authorize]*/
         [HttpGet("ActiveUser")]
         public IActionResult ActiveUser()
         {

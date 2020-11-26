@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibrarianSystem.Controllers
 {
-    [Authorize]
+    /*[Authorize]*/
     public class HomeController : Controller
     {
         private readonly HomeService service;
@@ -30,13 +30,13 @@ namespace LibrarianSystem.Controllers
             var entity = HttpContext.User;
             return Ok($"Welcome to Library, Librarian {entity.Identity.Name}!"); // TODO how to show user Name instead of Login?
         }
-        [AllowAnonymous]
+        /*[AllowAnonymous]*/
         [HttpGet("Login")]
         public IActionResult Login()
         {
             return View();
         }
-        [AllowAnonymous]
+        /*[AllowAnonymous]*/
         [HttpPost("Login")]
         public async Task<ActionResult> Login(string username, string password)
         {
