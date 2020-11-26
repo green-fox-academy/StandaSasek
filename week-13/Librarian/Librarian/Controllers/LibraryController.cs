@@ -59,5 +59,17 @@ namespace LibrarianSystem.Controllers
             var entity = HttpContext.User;
             return Json(entity.Identity.Name);
         }
+        [HttpPost("Register-User")]
+        public ActionResult RegisterUser([FromForm] string name, [FromForm] string login, [FromForm] string password)
+        {
+            var userRegistration = service.RegisterUser(name, login, password);
+                
+            if (!userRegistration)
+            {
+                return BadRequest("This login name is already used. Please choose different.");
+            }
+            
+            return Ok("User registration was successfull.");
+        }
     }
 }

@@ -20,5 +20,12 @@ namespace LibrarianSystem.Models.Entities
         public User()
         {
         }
+
+        public User(string name, string login, string password)
+        {
+            Name = name;
+            Login = login;
+            Password = password;
+        }
     }
 }

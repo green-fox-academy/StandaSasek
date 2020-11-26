@@ -21,5 +21,18 @@ namespace LibrarianSystem.Services
             var entityUser = dbContext.Users.FirstOrDefault(u => u.Login.Equals(login) && u.Password.Equals(password));
             return entityUser;
         }
+        internal bool RegisterUser(string name, string login, string password)
+        {
+            if (dbContext.Users.FirstOrDefault(u => u.Login.Equals(login)) != null)
+            {
+                return false;
+            }
+            var newUser = new User(name, login, password);
+            dbContext.Users.Add(newUser);
+            dbContext.SaveChanges();
+
+            return true;
+        }
+
     }
 }
