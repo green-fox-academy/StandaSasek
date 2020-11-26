@@ -85,6 +85,13 @@ namespace LibrarianSystem.Services
 
             return borrows;
         }
+        internal Borrow GetBorrowByClientAndBook(Book book, User client)
+        {
+            var borrow = dbContext.Borrows.Include(b => b.BorrowedBook).Include(b => b.BorrowedByClient)
+                .FirstOrDefault(b => b.BorrowedBook.Equals(book) && b.BorrowedByClient.Equals(client));
+
+            return borrow;
+        }
         internal List<Book> GetAvailableBooks()
         {
             var borrowedBooksId = dbContext.Borrows.Where(b => !b.RealEnd.HasValue).Select(b => b.BookId).ToList();
@@ -99,6 +106,19 @@ namespace LibrarianSystem.Services
             newBorrow.PlannedEnd = newBorrow.Start.AddDays(14);
 
             dbContext.Borrows.Add(newBorrow);
+            dbContext.SaveChanges();
+            return true;
+        }
+        internal bool EndBorrow(Book book, User client) // TODO add some checking
+        {
+            var borrow = GetBorrowByClientAndBook(book, client);
+            if (borrow.RealEnd.HasValue)
+            {
+                return false;
+            }
+            borrow.RealEnd = DateTime.Today;
+
+            dbContext.Borrows.Add(borrow);
             dbContext.SaveChanges();
             return true;
         }

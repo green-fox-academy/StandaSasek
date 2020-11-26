@@ -121,5 +121,16 @@ namespace LibrarianSystem.Controllers
 
             return Ok("Book was borrowed.");
         }
+        [HttpPost("return-book")]
+        public ActionResult ReturnBook([FromForm] string bookName, [FromForm] string clientName) // HACK remove client with functioning Auth
+        {
+            // HACK remove with functioning Auth
+            var actualClient = service.GetClientByName(clientName);
+            var actualBook = service.GetBookByName(bookName);
+
+            var borrow = service.EndBorrow(actualBook, actualClient); // TODO add some checking 
+
+            return Ok("Book was returned.");
+        }
     }
 }
