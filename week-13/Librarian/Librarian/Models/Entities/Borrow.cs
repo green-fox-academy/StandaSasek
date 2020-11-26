@@ -16,9 +16,15 @@ namespace LibrarianSystem.Models.Entities
         public DateTime PlannedEnd { get; set; }
         public DateTime? RealEnd { get; set; }
         public int Penalty { get; set; }
-     
+
         public Borrow()
         {
+        }
+
+        public Borrow(Book book, User client)
+        {
+            BorrowedBook = book;
+            BorrowedByClient = client;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LibrarianSystem.Database;
 using LibrarianSystem.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,12 @@ namespace LibrarianSystem.Services
 
             return clients;
         }
+        internal User GetClientByName(string name)
+        {
+            var client = dbContext.Users.FirstOrDefault(u => u.Name.Equals(name));
+
+            return client;
+        }
         internal List<User> GetLibrarians()
         {
             var librarians = dbContext.Users.Where(u => u.Librarian).ToList();
@@ -65,6 +72,35 @@ namespace LibrarianSystem.Services
             var books = dbContext.Books.ToList();
 
             return books;
+        }
+        internal Book GetBookByName(string name)
+        {
+            var book = dbContext.Books.FirstOrDefault(u => u.Name.Equals(name));
+
+            return book;
+        }
+        internal List<Borrow> GetBorrows()
+        {
+            var borrows = dbContext.Borrows.Include(b => b.BorrowedBook).Include(b => b.BorrowedByClient).ToList();
+
+            return borrows;
+        }
+        internal List<Book> GetAvailableBooks()
+        {
+            var borrowedBooksId = dbContext.Borrows.Where(b => !b.RealEnd.HasValue).Select(b => b.BookId).ToList();
+            var books = dbContext.Books.Where(book => !borrowedBooksId.Any(borrow => borrow == book.Id)).ToList();
+
+            return books;
+        }
+        internal bool AddBorrow(Book book, User client) // TODO add some checking
+        {
+            var newBorrow = new Borrow(book, client);
+            newBorrow.Start = DateTime.Today;
+            newBorrow.PlannedEnd = newBorrow.Start.AddDays(14);
+
+            dbContext.Borrows.Add(newBorrow);
+            dbContext.SaveChanges();
+            return true;
         }
     }
 }

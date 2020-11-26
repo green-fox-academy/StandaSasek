@@ -103,5 +103,23 @@ namespace LibrarianSystem.Controllers
 
             return Ok(new { books });
         }
+        [HttpGet("get-available-books")]
+        public ActionResult GetAvailableBooks()
+        {
+            var availableBooks = service.GetAvailableBooks();
+
+            return Ok(new { availableBooks });
+        }
+        [HttpPost("borrow-book")]
+        public ActionResult BorrowBook([FromForm] string bookName, [FromForm] string clientName) // HACK remove client with functioning Auth
+        {
+            // HACK remove with functioning Auth
+            var actualClient = service.GetClientByName(clientName);
+            var actualBook = service.GetBookByName(bookName);
+
+            var borrow = service.AddBorrow(actualBook, actualClient); // TODO add some checking 
+
+            return Ok("Book was borrowed.");
+        }
     }
 }
