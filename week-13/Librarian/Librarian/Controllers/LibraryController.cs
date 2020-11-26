@@ -20,14 +20,14 @@ namespace LibrarianSystem.Controllers
         {
             this.service = service;
         }
-       /*[Authorize]*/ 
-       public IActionResult Index()
+        /*[Authorize]*/
+        public IActionResult Index()
         {
             var entity = HttpContext.User;
-            return Ok($"Welcome to Library API, Librarian {entity.Identity.Name}!"); 
+            return Ok($"Welcome to Library API, Librarian {entity.Identity.Name}!");
         }
         [HttpPost]
-        public async Task<ActionResult> Login([FromForm]string username, [FromForm] string password)
+        public async Task<ActionResult> Login([FromForm] string username, [FromForm] string password)
         {
             var entityUser = service.Login(username, password);
 
@@ -53,23 +53,48 @@ namespace LibrarianSystem.Controllers
             return RedirectToAction("Login");
         }
         /*[Authorize]*/
-        [HttpGet("ActiveUser")]
+        [HttpGet("active-user")]
         public IActionResult ActiveUser()
         {
             var entity = HttpContext.User;
             return Json(entity.Identity.Name);
         }
-        [HttpPost("Register-User")]
-        public ActionResult RegisterUser([FromForm] string name, [FromForm] string login, [FromForm] string password)
+        [HttpPost("register-user")]
+        public ActionResult RegisterUser([FromForm] string name, [FromForm] string username, [FromForm] string password)
         {
-            var userRegistration = service.RegisterUser(name, login, password);
-                
+            var userRegistration = service.RegisterUser(name, username, password);
+
             if (!userRegistration)
             {
                 return BadRequest("This login name is already used. Please choose different.");
             }
-            
+
             return Ok("User registration was successfull.");
+        }
+        [HttpPost("add-book")]
+        public ActionResult AddBook([FromForm] string name, [FromForm] string author)
+        {
+            // HACK remove with functioning Auth
+            // get default Librarian
+            var librarian = service.GetDefaultLibrarian();
+
+            var bookAdding = service.AddBook(name, author, librarian); // TODO add some checking if needed
+
+            return Ok("Book was added.");
+        }
+        [HttpGet("get-clients")]
+        public ActionResult GetClients()
+        {
+            var clients = service.GetClients();
+
+            return Ok(new { clients });
+        }
+        [HttpGet("get-librarians")]
+        public ActionResult GetLibrarians()
+        {
+            var clients = service.GetLibrarians();
+
+            return Ok(new { clients });
         }
     }
 }

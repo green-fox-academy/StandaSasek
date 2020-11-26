@@ -28,11 +28,37 @@ namespace LibrarianSystem.Services
                 return false;
             }
             var newUser = new User(name, login, password);
+            newUser.Registered = DateTime.Now;
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
 
             return true;
         }
+        internal bool AddBook(string name, string author, User librarian) // TODO add some checking
+        {
+            var newBook = new Book(name, author, librarian);
+            dbContext.Books.Add(newBook);
+            dbContext.SaveChanges();
 
+            return true;
+        }
+        internal User GetDefaultLibrarian()
+        {
+            var librarian = dbContext.Users.FirstOrDefault(u => u.Librarian);
+
+            return librarian;
+        }
+        internal List<User> GetClients()
+        {
+            var clients = dbContext.Users.Where(u => !u.Librarian).ToList();
+
+            return clients;
+        }
+        internal List<User> GetLibrarians()
+        {
+            var librarians = dbContext.Users.Where(u => u.Librarian).ToList();
+
+            return librarians;
+        }
     }
 }

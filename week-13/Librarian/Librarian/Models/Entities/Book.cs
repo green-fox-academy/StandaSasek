@@ -14,9 +14,17 @@ namespace LibrarianSystem.Models.Entities
         public DateTime Registered { get; set; }
         public User RegisteredBy { get; set; }
         public bool Destroyed { get; set; }
+        public User Librarian { get; }
 
         public Book()
         {
+        }
+
+        public Book(string name, string author, User librarian)
+        {
+            Name = name;
+            Author = author;
+            Librarian = librarian;
         }
     }
 }
